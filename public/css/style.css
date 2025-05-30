@@ -1,0 +1,60 @@
+/* Start General Edits  */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Cairo' , sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+input {
+    outline: none;
+    border: none;
+}
+
+.highlight {
+    color: var(--decoration-color);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+::placeholder {
+    transition: var(--main-transition);
+}
+
+:focus::placeholder {
+    opacity: 0;
+}
+
+/* End General Edits  */
+
+/* Start Variables */
+:root {
+    --primary-color: #009688;
+    --second-color: #FF9800;
+    --main-background-color: #EDEDED;
+    --text-color: #777;
+    --main-transition-duration: .3s;
+    --blue-color: #0075FF;
+    --orange-color: #F59E0B;
+    --green-color: #22C55E;
+    --red-color: #F44336;
+    --grey-color: #BDBDBD;
+}
+/* End Variables */
+
+

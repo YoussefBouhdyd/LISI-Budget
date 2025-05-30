@@ -1,0 +1,274 @@
+.page {
+    background-color: #f1f5f9;
+    min-height: 100vh;
+}
+
+/* Start side bar  */
+.side-bar {
+    color: #333;
+    width: 250px;
+    box-shadow: 0 0 10px #ccc;
+    z-index: 1;
+}
+
+@media (max-width: 767px) {
+    .side-bar {
+        width: 60px;
+        padding: 10px;
+    }
+}
+
+.side-bar .logo {
+    margin-bottom: 60px;
+    letter-spacing: 1.5px;
+}
+
+@media (min-width: 768px) {
+    .side-bar .logo::before,
+    .side-bar .logo::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        background-color: #333;
+        transform: translateX(-50%);
+    }
+    .side-bar .logo::before {
+        height: 3px;
+        width: 120px;
+        bottom: -20px;
+    }
+    .side-bar .logo::after {
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        border: 5px solid #fff;
+        bottom: -30px;
+    }
+}
+
+@media (max-width: 767px) {
+    .side-bar .logo {
+        font-size: 15px;
+        margin-bottom: 15px;
+    }
+}
+
+.side-bar nav ul li {
+    margin-bottom: 15px;
+    transition: var(--main-transition);
+}
+
+.side-bar nav ul li:hover {
+    background-color: #f7f7f7;
+}
+
+.side-bar nav ul li a {
+    display: block;
+    padding: 15px;
+    color: #333;
+}
+
+.side-bar nav ul li i {
+    padding-right: 30px;
+}
+
+.page .side-bar .link .active {
+    background-color: #f7f7f7;
+}
+/* End side bar  */
+
+.page .content {
+    overflow: hidden;
+}
+
+/* Start Page Header  */
+.header .search i {
+    left: 10px;
+    color: var(--text-color);
+}
+
+.header .search input {
+    border: 1px solid #ccc;
+    padding: 10px 20px 10px 30px;
+    width: 200px;
+    transition: var(--main-transition);
+}
+
+@media (min-width: 768px) {
+    .header .search input:focus {
+        width: 300px;
+    }
+}
+
+.header .search input::placeholder {
+    text-transform: capitalize;
+}
+
+.header .profile i span {
+    background-color: #f44336;
+    width: 10px;
+    height: 10px;
+    bottom: 5px;
+    right: -5px;
+}
+
+.header img {
+    width: 50px;
+}
+/* End Page he.header  */
+
+/* Start Engagements Content  */
+
+.section-content .projects {
+    grid-column: 1 / -1;
+    overflow-x: auto;
+}
+
+.section-content .projects table {
+    border-collapse: collapse;
+    min-width: 1000px;
+}
+
+.section-content .projects table td {
+    padding: 15px 10px;
+    border: 1px solid #eee;
+}
+
+/* End Engagement  */
+
+/* Start Model Style  */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    min-width: 320px;
+    max-width: 90vw;
+    margin: auto;
+    position: relative;
+}
+
+#closeModalBtn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* End Model Style  */
+
+/* Delete Confirmation Modal Style Start */
+
+.delete-modal-content {
+    max-width: 350px;
+}
+
+.delete-modal-actions {
+    gap: 10px;
+}
+
+/* Delete Confirmation Modal Style End */
+
+/* Start Budget Styling  */
+
+.budget-stats,
+.lines-stats {
+    flex: 1;
+}
+
+.budget-summary-row {
+    gap: 40px;
+}
+
+.budget-progress-col {
+    min-width: 220px;
+}
+
+.budget-progress-circle {
+    position: relative;
+    width: 170px;
+    height: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.budget-progress-percent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 170px;
+    height: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.1rem;
+    font-weight: bold;
+    color: #dc3545;
+}
+
+.budget-total-amount {
+    font-size: 1.15rem;
+    color: #333;
+}
+
+.budget-total-label {
+    font-size: 0.95rem;
+    color: #888;
+}
+
+.budget-info {
+    min-width: 210px;
+    font-size: 1.05rem;
+    gap: 10px;
+}
+
+.budget-info-row {
+    gap: 10px;
+}
+
+.budget-info-label {
+    color: #333;
+}
+
+.budget-info-value {
+    color: #222;
+}
+
+.budget-info-danger {
+    color: var(--red-color);
+}
+
+.budget-info-success {
+    color: var(--green-color);
+}
+
+.progress-bar {
+    background: #eee;
+    border-radius: 6px;
+    height: 18px;
+    overflow: hidden;
+}
+
+@media (max-width: 767px) {
+    .budget-line:not(:last-child) {
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 10px;
+    }
+}
+
+/* End Budget Styling  */
