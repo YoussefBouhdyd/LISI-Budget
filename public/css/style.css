@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: 'Cairo' , sans-serif;
+    font-family: "Cairo", sans-serif;
 }
 
 html {
@@ -45,16 +45,14 @@ ul {
 /* Start Variables */
 :root {
     --primary-color: #009688;
-    --second-color: #FF9800;
-    --main-background-color: #EDEDED;
+    --second-color: #ff9800;
+    --main-background-color: #ededed;
     --text-color: #777;
-    --main-transition-duration: .3s;
-    --blue-color: #0075FF;
-    --orange-color: #F59E0B;
-    --green-color: #22C55E;
-    --red-color: #F44336;
-    --grey-color: #BDBDBD;
+    --main-transition-duration: 0.3s;
+    --blue-color: #0075ff;
+    --orange-color: #f59e0b;
+    --green-color: #22c55e;
+    --red-color: #f44336;
+    --gray-color: #bdbdbd;
 }
 /* End Variables */
-
-

@@ -37,7 +37,33 @@
         <!-- Start Budget Content -->
         <div class="section-content p-15 d-flex gap-10 column-mobile">
             <div class="budget-stats bg-white p-15 rad-6">
-                <h2 class="m-15-0">Budget Statics</h2>
+                <div class="d-flex s-between align-c mb-10">
+                    <h2 class="m-15-0">Budget Statics</h2>
+                    <button type="button" class="primary-button bg-blue rad-6 d-flex align-c gap-5 pointer" id="editBudgetBtn">
+                        <i class="fa-solid fa-pen"></i> <span class="hide-mobile">Modifier</span>
+                    </button>
+                    <!-- Modal -->
+                    <div id="editBudgetModal" class="modal-overlay" style="display:none;">
+                        <div class="modal-content bg-white p-20 rad-6" style="min-width:300px; max-width:90vw;">
+                            <h3 class="mb-15">Modifier le budget</h3>
+                            <form id="budgetEditForm" method="POST" action="#">
+                                @csrf
+                                <div class="mb-10">
+                                    <label for="budgetAmount" class="fw-bold">Montant du budget</label>
+                                    <input type="number" step="0.01" min="0" class="form-control" id="budgetAmount" name="budgetAmount" value="10000000" required>
+                                </div>
+                                <div class="mb-10">
+                                    <label for="budgetSaison" class="fw-bold">Saison</label>
+                                    <input type="text" class="form-control" id="budgetSaison" name="budgetSaison" value="2024/2025" required>
+                                </div>
+                                <div class="d-flex gap-10 mt-15">
+                                    <button type="submit" class="primary-button bg-blue rad-6 pointer">Enregistrer</button>
+                                    <button type="button" class="primary-button bg-gray rad-6 pointer" id="closeBudgetModal">Annuler</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 <div class="d-flex align-c mb-10 budget-summary-row flex-column">
                     <!-- Circular Progress Bar on the left, bigger -->
                     <div class="d-flex flex-column align-c budget-progress-col">
@@ -90,86 +116,128 @@
                 </div>
             </div>
             <div class="lines-stats bg-white p-15 rad-6">
-                <h2 class="m-15-0">Lignes Budgétaires</h2>
+                <div class="d-flex s-between align-c mb-10">
+                    <h2 class="m-15-0">Lignes Budgétaires</h2>
+                    <button type="button" class="primary-button bg-blue rad-6 d-flex align-c gap-5 pointer" id="editLinesBtn">
+                        <i class="fa-solid fa-pen"></i> <span class="hide-mobile">Modifier</span>
+                    </button>
+                    <!-- Modal for editing budget lines -->
+                    <div id="editLinesModal" class="modal-overlay" style="display:none;">
+                        <div class="modal-content bg-white p-20 rad-6" style="min-width:350px; max-width:95vw;">
+                            <h3 class="mb-15">Modifier les lignes budgétaires</h3>
+                            <form id="linesEditForm" method="POST" action="#">
+                                @csrf
+                                <div class="mb-10">
+                                    <label class="fw-bold" for="lineFonctionnement">Fonctionnement</label>
+                                    <input type="number" step="0.01" min="0" class="form-control" id="lineFonctionnement" name="lineFonctionnement" value="1200000" required>
+                                </div>
+                                <div class="mb-10">
+                                    <label class="fw-bold" for="lineInvestissement">Investissement</label>
+                                    <input type="number" step="0.01" min="0" class="form-control" id="lineInvestissement" name="lineInvestissement" value="800000" required>
+                                </div>
+                                <div class="mb-10">
+                                    <label class="fw-bold" for="lineMateriel">Matériel</label>
+                                    <input type="number" step="0.01" min="0" class="form-control" id="lineMateriel" name="lineMateriel" value="500000" required>
+                                </div>
+                                <div class="mb-10">
+                                    <label class="fw-bold" for="lineServices">Services</label>
+                                    <input type="number" step="0.01" min="0" class="form-control" id="lineServices" name="lineServices" value="300000" required>
+                                </div>
+                                <div class="mb-10">
+                                    <label class="fw-bold" for="lineMaintenance">Maintenance</label>
+                                    <input type="number" step="0.01" min="0" class="form-control" id="lineMaintenance" name="lineMaintenance" value="150000" required>
+                                </div>
+                                <div class="mb-10">
+                                    <label class="fw-bold" for="lineFormation">Formation</label>
+                                    <input type="number" step="0.01" min="0" class="form-control" id="lineFormation" name="lineFormation" value="50000" required>
+                                </div>
+                                <div class="d-flex gap-10 mt-15">
+                                    <button type="submit" class="primary-button bg-blue rad-6 pointer">Enregistrer</button>
+                                    <button type="button" class="primary-button bg-gray rad-6 pointer" id="closeLinesModal">Annuler</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 <div class="budget-lines-list">
-                    <!-- Ligne 1 -->
+                    <!-- Ligne 1: >80% -->
                     <div class="budget-line mb-20">
                         <div class="d-flex justify-between align-c mb-10 column-mobile">
                             <span class="fw-bold mr-10">Fonctionnement:</span>
-                            <span>1 200 000,00 DZD (40,00%)</span>
+                            <span>1 200 000,00 DZD (85,00%)</span>
                         </div>
                         <div class="progress-bar">
-                            <div style="width: 40%; background: #007bff; height: 100%;"></div>
+                            <div class="progress-bar-inner" data-percent="85" style="width: 85%; height: 100%;"></div>
                         </div>
                         <div class="d-flex justify-between mt-5 gap-10 column-mobile align-c">
-                            <span>Dépensé: <span class="budget-info-danger">200 000,00 DZD</span></span>
-                            <span>Restant: <span class="budget-info-success">1 000 000,00 DZD</span></span>
+                            <span>Dépensé: <span class="budget-info-danger">1 020 000,00 DZD</span></span>
+                            <span>Restant: <span class="budget-info-success">180 000,00 DZD</span></span>
                         </div>
                     </div>
-                    <!-- Ligne 2 -->
+                    <!-- Ligne 2: >50% -->
                     <div class="budget-line mb-20">
                         <div class="d-flex justify-between align-c mb-10 column-mobile">
                             <span class="fw-bold mr-10">Investissement:</span>
-                            <span>800 000,00 DZD (26,67%)</span>
+                            <span>800 000,00 DZD (60,00%)</span>
                         </div>
                         <div class="progress-bar">
-                            <div style="width: 26.67%; background: #28a745; height: 100%;"></div>
+                            <div class="progress-bar-inner" data-percent="60" style="width: 60%; height: 100%;"></div>
                         </div>
                         <div class="d-flex justify-between mt-5 gap-10 column-mobile align-c">
-                            <span>Dépensé: <span class="budget-info-danger">300 000,00 DZD</span></span>
-                            <span>Restant: <span class="budget-info-success">500 000,00 DZD</span></span>
+                            <span>Dépensé: <span class="budget-info-danger">480 000,00 DZD</span></span>
+                            <span>Restant: <span class="budget-info-success">320 000,00 DZD</span></span>
                         </div>
                     </div>
-                    <!-- Ligne 3 -->
+                    <!-- Ligne 3: <50% -->
                     <div class="budget-line mb-20">
                         <div class="d-flex justify-between align-c mb-10 column-mobile">
                             <span class="fw-bold mr-10">Matériel:</span>
-                            <span>500 000,00 DZD (16,67%)</span>
+                            <span>500 000,00 DZD (35,00%)</span>
                         </div>
                         <div class="progress-bar">
-                            <div style="width: 16.67%; background: #ffc107; height: 100%;"></div>
+                            <div class="progress-bar-inner" data-percent="35" style="width: 35%; height: 100%;"></div>
                         </div>
                         <div class="d-flex justify-between mt-5 gap-10 column-mobile align-c">
-                            <span>Dépensé: <span class="budget-info-danger">100 000,00 DZD</span></span>
-                            <span>Restant: <span class="budget-info-success">400 000,00 DZD</span></span>
+                            <span>Dépensé: <span class="budget-info-danger">175 000,00 DZD</span></span>
+                            <span>Restant: <span class="budget-info-success">325 000,00 DZD</span></span>
                         </div>
                     </div>
-                    <!-- Ligne 4 -->
+                    <!-- Ligne 4: <50% -->
                     <div class="budget-line mb-20">
                         <div class="d-flex justify-between align-c mb-10 column-mobile">
                             <span class="fw-bold mr-10">Services:</span>
-                            <span>300 000,00 DZD (10,00%)</span>
+                            <span>300 000,00 DZD (20,00%)</span>
                         </div>
                         <div class="progress-bar">
-                            <div style="width: 10%; background: #17a2b8; height: 100%;"></div>
+                            <div class="progress-bar-inner" data-percent="20" style="width: 20%; height: 100%;"></div>
                         </div>
                         <div class="d-flex justify-between mt-5 gap-10 column-mobile align-c">
-                            <span>Dépensé: <span class="budget-info-danger">50 000,00 DZD</span></span>
-                            <span>Restant: <span class="budget-info-success">250 000,00 DZD</span></span>
+                            <span>Dépensé: <span class="budget-info-danger">60 000,00 DZD</span></span>
+                            <span>Restant: <span class="budget-info-success">240 000,00 DZD</span></span>
                         </div>
                     </div>
-                    <!-- Ligne 5 -->
+                    <!-- Ligne 5: <50% -->
                     <div class="budget-line mb-20">
                         <div class="d-flex justify-between align-c mb-10 column-mobile">
                             <span class="fw-bold mr-10">Maintenance:</span>
-                            <span>150 000,00 DZD (5,00%)</span>
+                            <span>150 000,00 DZD (45,00%)</span>
                         </div>
                         <div class="progress-bar">
-                            <div style="width: 5%; background: #6f42c1; height: 100%;"></div>
+                            <div class="progress-bar-inner" data-percent="45" style="width: 45%; height: 100%;"></div>
                         </div>
                         <div class="d-flex justify-between mt-5 gap-10 column-mobile align-c">
-                            <span>Dépensé: <span class="budget-info-danger">20 000,00 DZD</span></span>
-                            <span>Restant: <span class="budget-info-success">130 000,00 DZD</span></span>
+                            <span>Dépensé: <span class="budget-info-danger">67 500,00 DZD</span></span>
+                            <span>Restant: <span class="budget-info-success">82 500,00 DZD</span></span>
                         </div>
                     </div>
-                    <!-- Ligne 6 -->
+                    <!-- Ligne 6: <50% -->
                     <div class="budget-line mb-20">
                         <div class="d-flex justify-between align-c mb-10 column-mobile">
                             <span class="fw-bold mr-10">Formation:</span>
-                            <span>50 000,00 DZD (1,67%)</span>
+                            <span>50 000,00 DZD (10,00%)</span>
                         </div>
                         <div class="progress-bar">
-                            <div style="width: 1.67%; background: #fd7e14; height: 100%;"></div>
+                            <div class="progress-bar-inner" data-percent="10" style="width: 10%; height: 100%;"></div>
                         </div>
                         <div class="d-flex justify-between mt-5 gap-10 column-mobile align-c">
                             <span>Dépensé: <span class="budget-info-danger">5 000,00 DZD</span></span>

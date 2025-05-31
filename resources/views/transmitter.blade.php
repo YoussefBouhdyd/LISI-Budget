@@ -80,22 +80,22 @@
                         <form id="editTransmitterForm">
                             <div class="mb-15">
                                 <label for="edit_name">Nom de l'émetteur</label>
-                                <input type="text" id="edit_name" name="name" class="full-w p-10 rad-6 sp-border" required>
+                                <input type="text" id="edit_name" name="name" class="full-w p-10 rad-6 form-control" required>
                             </div>
                             <div class="mb-15">
                                 <label for="edit_budget">Budget</label>
-                                <input type="number" id="edit_budget" name="budget" class="full-w p-10 rad-6 sp-border" required>
+                                <input type="number" id="edit_budget" name="budget" class="full-w p-10 rad-6 form-control" required>
                             </div>
                             <div class="mb-15">
                                 <label for="edit_date">Date de création</label>
-                                <input type="date" id="edit_date" name="date" class="full-w p-10 rad-6 sp-border" required>
+                                <input type="date" id="edit_date" name="date" class="full-w p-10 rad-6 form-control" required>
                             </div>
                             <div class="mb-15">
                                 <label for="edit_profession">Profession</label>
-                                <input type="text" id="edit_profession" name="profession" class="full-w p-10 rad-6 sp-border" required>
+                                <input type="text" id="edit_profession" name="profession" class="full-w p-10 rad-6 form-control" required>
                             </div>
                             <div class="d-flex flex-end" style="gap: 10px;">
-                                <button type="button" id="cancelEditBtn" class="primary-button bg-grey rad-6 p-10 pointer">Annuler</button>
+                                <button type="button" id="cancelEditBtn" class="primary-button bg-gray rad-6 p-10 pointer">Annuler</button>
                                 <button type="submit" class="primary-button bg-blue rad-6 p-10 pointer c-white">Enregistrer les modifications</button>
                             </div>
                         </form>
@@ -110,19 +110,19 @@
                         <form>
                             <div class="mb-15">
                                 <label for="name">Nom de l'émetteur</label>
-                                <input type="text" id="name" name="name" class="full-w p-10 rad-6 sp-border" required>
+                                <input type="text" id="name" name="name" class="full-w p-10 rad-6 form-control" required>
                             </div>
                             <div class="mb-15">
                                 <label for="budget">Budget</label>
-                                <input type="number" id="budget" name="budget" class="full-w p-10 rad-6 sp-border" required>
+                                <input type="number" id="budget" name="budget" class="full-w p-10 rad-6 form-control" required>
                             </div>
                             <div class="mb-15">
                                 <label for="email">Email</label>
-                                <input type="email" id="email" name="email" class="full-w p-10 rad-6 sp-border" required>
+                                <input type="email" id="email" name="email" class="full-w p-10 rad-6 form-control" required>
                             </div>
                             <div class="mb-15">
                                 <label for="profession">Profession</label>
-                                <input type="text" id="profession" name="profession" class="full-w p-10 rad-6 sp-border" required>
+                                <input type="text" id="profession" name="profession" class="full-w p-10 rad-6 form-control" required>
                             </div>
                             <button type="submit" class="primary-button bg-blue rad-6 p-10 pointer c-white m-auto">Enregistrer</button>
                         </form>
@@ -135,7 +135,7 @@
                         <h3 class="mb-20">Confirmer la suppression</h3>
                         <p>Êtes-vous sûr de vouloir supprimer cet émetteur ?</p>
                         <div class="d-flex flex-end delete-modal-actions">
-                            <button id="cancelDeleteBtn" class="primary-button bg-grey rad-6 p-10 pointer">Annuler</button>
+                            <button id="cancelDeleteBtn" class="primary-button bg-gray rad-6 p-10 pointer">Annuler</button>
                             <button id="confirmDeleteBtn" class="primary-button bg-red c-white rad-6 p-10 pointer">Supprimer</button>
                         </div>
                     </div>

@@ -464,8 +464,8 @@
 .bg-red {
     background-color: var(--red-color);
 }
-.bg-grey {
-    background-color: var(--grey-color);
+.bg-gray {
+    background-color: var(--gray-color);
 }
 /* End Color  */
 
@@ -780,3 +780,52 @@
     cursor: pointer;
 }
 /* End State  */
+
+/* Start Form  */
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+.form-control:focus {
+    border-color: var(--blue-color);
+    outline: none;
+}
+.form-control::placeholder {
+    color: #aaa;
+}
+.form-control.error {
+    border-color: var(--red-color);
+}
+.form-control.success {
+    border-color: var(--green-color);
+}
+.form-control.warning {
+    border-color: var(--orange-color);
+}
+.form-control.info {
+    border-color: var(--blue-color);
+}
+.form-control:disabled {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+} 
+.form-control:disabled::placeholder {
+    color: #ccc;
+}
+.form-control.error::placeholder {
+    color: var(--red-color);
+}
+.form-control.success::placeholder {
+    color: var(--green-color);
+}
+.form-control.warning::placeholder {
+    color: var(--orange-color);
+}
+.form-control.info::placeholder {
+    color: var(--blue-color);
+}
+/* End Form  */

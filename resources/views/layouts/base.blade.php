@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
     <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/lisi_framework.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/framework.css') }}">
     @yield('styles')
     {{-- Favicon --}}
     {{-- Add Font  --}}
