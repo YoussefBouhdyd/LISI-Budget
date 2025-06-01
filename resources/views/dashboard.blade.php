@@ -9,87 +9,11 @@
 @section('content')
 <div class="page d-flex">
     <!-- Start Side Bar  -->
-    <div class="side-bar p-relative bg-white p-20">
-        <h1 class="logo txt-c p-relative">LISI</h1>
-        <nav>
-            <ul class="link">
-                <li class="active rad-6 tt-capital"><a href="{{ url('/admin') }}"><i class="fa-regular fa-chart-bar fa-fw"></i><span class="hide-mobile">Dashboard</span></a></li>
-                <li class="rad-6 tt-capital"><a href="{{ url('/admin-engagement') }}"><i class="fa-solid fa-file-signature fa-fw"></i><span class="hide-mobile">Engagements</span></a></li>
-                <li class="rad-6 tt-capital"><a href="{{ url('/transmitter') }}"><i class="fa-solid fa-paper-plane fa-fw"></i><span class="hide-mobile">Émetteur</span></a></li>
-                <li class="rad-6 tt-capital"><a href="{{ url('/budget') }}"><i class="fa-solid fa-wallet fa-fw"></i><span class="hide-mobile">Budget</span></a></li>
-                <li class="rad-6 tt-capital"><a href="setting.html"><i class="fa-solid fa-gear fa-fw"></i><span class="hide-mobile">Paramètre</span></a></li>
-                <li class="rad-6 tt-capital"><a href="profile.html"><i class="fa-regular fa-user fa-fw"></i><span class="hide-mobile">Profil</span></a></li>
-            </ul>
-        </nav>
-    </div>
+    @include('partials.sidebar')
     <!-- End Side Bar  -->
     <div class="content flex-1">
         <!-- Start Page header  -->
-        <div class="header d-flex p-20 flex-end align-c bg-white p-relative">
-            <div class="profile flex-between">
-                <button id="notification-btn" class="notification-btn">
-                    <i class="fa-regular fa-bell fa-lg mr-20 p-relative">
-                        <span class="notification-dot"></span>
-                    </i>
-                </button>
-                <div id="notification-box" class="notification-box">
-                    <div class="notification-header">
-                        Notifications
-                    </div>
-                    <div class="notification-content" style="padding:0;">
-                        <ul class="notification-list" id="notification-list">
-                            <li>
-                                <span class="notif-title">Nouvelle demande d'engagement</span>
-                                <span class="notif-time">il y a 2 min</span>
-                                <span class="notif-eye" title="Marquer comme lu">
-                                    <i class="fa-solid fa-eye"></i>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="notif-title">Budget mis à jour</span>
-                                <span class="notif-time">il y a 10 min</span>
-                                <span class="notif-eye" title="Marquer comme lu">
-                                    <i class="fa-solid fa-eye"></i>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="notif-title">Profil modifié avec succès</span>
-                                <span class="notif-time">il y a 1 heure</span>
-                                <span class="notif-eye" title="Marquer comme lu">
-                                    <i class="fa-solid fa-eye"></i>
-                                </span>
-                            </li>
-                        </ul>
-                    </div>
-                    </div>
-                    <script>
-                        document.addEventListener('DOMContentLoaded', function () {
-                            const btn = document.getElementById('notification-btn');
-                            const box = document.getElementById('notification-box');
-                            btn.addEventListener('click', function (e) {
-                                e.stopPropagation();
-                                box.style.display = box.style.display === 'none' || box.style.display === '' ? 'block' : 'none';
-                            });
-                            document.addEventListener('click', function () {
-                                box.style.display = 'none';
-                            });
-                            box.addEventListener('click', function(e) {
-                                e.stopPropagation();
-                            });
-
-                            // Remove notification on eye icon click
-                            document.querySelectorAll('.notif-eye').forEach(function(eye) {
-                                eye.addEventListener('click', function(e) {
-                                    e.stopPropagation();
-                                    const li = this.closest('li');
-                                    if (li) li.remove();
-                                });
-                            });
-                        });
-                    </script>
-                <a href="profile.html"><img src="{{ asset('/imgs/user-profile.jpeg') }}" alt="user profile" class="rad-half"></a>
-            </div>
-        </div>
+        @include('partials.header')
         <!-- End Page header  -->
         <h1 class="content-title">dashboard</h1>
         <!-- Start Dashboard Content -->

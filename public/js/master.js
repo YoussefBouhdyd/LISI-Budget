@@ -167,3 +167,31 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+// Notification Box
+document.addEventListener('DOMContentLoaded', function () {
+    const btn = document.getElementById('notification-btn');
+    const box = document.getElementById('notification-box');
+    btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        box.style.display = box.style.display === 'none' || box.style.display === '' ? 'block' : 'none';
+    });
+    document.addEventListener('click', function () {
+        box.style.display = 'none';
+    });
+    box.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+
+    // Remove notification on eye icon click
+    const notifEyes = document.querySelectorAll('.notif-eye');
+    if (notifEyes && notifEyes.length > 0) {
+        notifEyes.forEach(function(eye) {
+            eye.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const li = this.closest('li');
+                if (li) li.remove();
+            });
+        });
+    }
+});
