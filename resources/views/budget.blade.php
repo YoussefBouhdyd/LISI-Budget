@@ -39,7 +39,7 @@
             <div class="budget-stats bg-white p-15 rad-6">
                 <div class="d-flex s-between align-c mb-10">
                     <h2 class="m-15-0">Budget Statics</h2>
-                    <button type="button" class="primary-button bg-blue rad-6 d-flex align-c gap-5 pointer" id="editBudgetBtn">
+                    <button type="button" class="btn-primary bg-blue rad-6 d-flex align-c gap-5 pointer" id="editBudgetBtn">
                         <i class="fa-solid fa-pen"></i> <span class="hide-mobile">Modifier</span>
                     </button>
                     <!-- Modal -->
@@ -57,8 +57,8 @@
                                     <input type="text" class="form-control" id="budgetSaison" name="budgetSaison" value="2024/2025" required>
                                 </div>
                                 <div class="d-flex gap-10 mt-15">
-                                    <button type="submit" class="primary-button bg-blue rad-6 pointer">Enregistrer</button>
-                                    <button type="button" class="primary-button bg-gray rad-6 pointer" id="closeBudgetModal">Annuler</button>
+                                    <button type="submit" class="btn-primary bg-blue rad-6 pointer">Enregistrer</button>
+                                    <button type="button" class="btn-primary bg-gray rad-6 pointer" id="closeBudgetModal">Annuler</button>
                                 </div>
                             </form>
                         </div>
@@ -118,7 +118,7 @@
             <div class="lines-stats bg-white p-15 rad-6">
                 <div class="d-flex s-between align-c mb-10">
                     <h2 class="m-15-0">Lignes Budgétaires</h2>
-                    <button type="button" class="primary-button bg-blue rad-6 d-flex align-c gap-5 pointer" id="editLinesBtn">
+                    <button type="button" class="btn-primary bg-blue rad-6 d-flex align-c gap-5 pointer" id="editLinesBtn">
                         <i class="fa-solid fa-pen"></i> <span class="hide-mobile">Modifier</span>
                     </button>
                     <!-- Modal for editing budget lines -->
@@ -152,8 +152,8 @@
                                     <input type="number" step="0.01" min="0" class="form-control" id="lineFormation" name="lineFormation" value="50000" required>
                                 </div>
                                 <div class="d-flex gap-10 mt-15">
-                                    <button type="submit" class="primary-button bg-blue rad-6 pointer">Enregistrer</button>
-                                    <button type="button" class="primary-button bg-gray rad-6 pointer" id="closeLinesModal">Annuler</button>
+                                    <button type="submit" class="btn-primary bg-blue rad-6 pointer">Enregistrer</button>
+                                    <button type="button" class="btn-primary bg-gray rad-6 pointer" id="closeLinesModal">Annuler</button>
                                 </div>
                             </form>
                         </div>

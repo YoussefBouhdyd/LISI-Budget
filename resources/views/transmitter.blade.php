@@ -39,7 +39,7 @@
             <div class="projects bg-white rad-6 p-15">
                 <div class="d-flex flex-between align-c mb-10">
                     <h2 class="m-15-0">List D’émetteur</h2>
-                    <button class="btn primary-button rad-6 bg-blue pointer p-10" id="openModalBtn">
+                    <button class="btn btn-primary rad-6 bg-blue pointer p-10" id="openModalBtn">
                         <i class="fa-solid fa-plus fa-fw"></i> Ajouter un émetteur
                     </button>
                 </div>
@@ -57,7 +57,7 @@
                         <td class="p-10">2022-03-15</td>
                         <td class="p-10">Comptable</td>
                         <td class="p-10 d-flex">
-                            <button class="primary-button bg-orange c-white rad-6 p-5 pointer d-inline-flex align-c edit-btn" title="Modifier" style="border:none; min-width: 40px; gap: 5px;" 
+                            <button class="btn-primary bg-orange c-white rad-6 p-5 pointer d-inline-flex align-c edit-btn" title="Modifier" style="border:none; min-width: 40px; gap: 5px;" 
                                 data-name="Jean Dupont" 
                                 data-budget="120000" 
                                 data-date="2022-03-15" 
@@ -65,7 +65,7 @@
                                 <i class="fa-solid fa-pen"></i>
                                 <span class="hide-mobile">Modifier</span>
                             </button>
-                            <button class="primary-button bg-red c-white rad-6 p-5 pointer d-inline-flex align-c delete-btn" title="Supprimer" style="border:none; min-width: 40px; gap: 5px; margin-left: 8px;">
+                            <button class="btn-primary bg-red c-white rad-6 p-5 pointer d-inline-flex align-c delete-btn" title="Supprimer" style="border:none; min-width: 40px; gap: 5px; margin-left: 8px;">
                                 <i class="fa-solid fa-trash"></i>
                                 <span class="hide-mobile">Supprimer</span>
                             </button>
@@ -95,8 +95,8 @@
                                 <input type="text" id="edit_profession" name="profession" class="full-w p-10 rad-6 form-control" required>
                             </div>
                             <div class="d-flex flex-end" style="gap: 10px;">
-                                <button type="button" id="cancelEditBtn" class="primary-button bg-gray rad-6 p-10 pointer">Annuler</button>
-                                <button type="submit" class="primary-button bg-blue rad-6 p-10 pointer c-white">Enregistrer les modifications</button>
+                                <button type="button" id="cancelEditBtn" class="btn-primary bg-gray rad-6 p-10 pointer">Annuler</button>
+                                <button type="submit" class="btn-primary bg-blue rad-6 p-10 pointer c-white">Enregistrer les modifications</button>
                             </div>
                         </form>
                     </div>
@@ -124,7 +124,7 @@
                                 <label for="profession">Profession</label>
                                 <input type="text" id="profession" name="profession" class="full-w p-10 rad-6 form-control" required>
                             </div>
-                            <button type="submit" class="primary-button bg-blue rad-6 p-10 pointer c-white m-auto">Enregistrer</button>
+                            <button type="submit" class="btn-primary bg-blue rad-6 p-10 pointer c-white m-auto">Enregistrer</button>
                         </form>
                     </div>
                 </div>
@@ -135,8 +135,8 @@
                         <h3 class="mb-20">Confirmer la suppression</h3>
                         <p>Êtes-vous sûr de vouloir supprimer cet émetteur ?</p>
                         <div class="d-flex flex-end delete-modal-actions">
-                            <button id="cancelDeleteBtn" class="primary-button bg-gray rad-6 p-10 pointer">Annuler</button>
-                            <button id="confirmDeleteBtn" class="primary-button bg-red c-white rad-6 p-10 pointer">Supprimer</button>
+                            <button id="cancelDeleteBtn" class="btn-primary bg-gray rad-6 p-10 pointer">Annuler</button>
+                            <button id="confirmDeleteBtn" class="btn-primary bg-red c-white rad-6 p-10 pointer">Supprimer</button>
                         </div>
                     </div>
                 </div>

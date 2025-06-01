@@ -49,9 +49,9 @@
                         <td class="tt-capital">Ilyas Ouzani</td>
                         <td class="tt-capital">10 Jun 2024</td>
                         <td class="tt-capital">10 €</td>
-                        <td class="tt-capital"><span class="primary-button bg-orange"> En attente </span></td>
+                        <td class="tt-capital"><span class="btn-primary bg-orange"> En attente </span></td>
                         <td class="tt-capital">
-                            <a href="#" class="primary-button bg-blue">
+                            <a href="#" class="btn-primary bg-blue">
                                 <i class="fa-solid fa-eye mr-10"></i> Voir
                             </a>
                         </td>
@@ -60,9 +60,9 @@
                         <td class="tt-capital">Sara Benali</td>
                         <td class="tt-capital">08 Jun 2024</td>
                         <td class="tt-capital">25 €</td>
-                        <td class="tt-capital"><span class="primary-button bg-green"> Accepté </span></td>
+                        <td class="tt-capital"><span class="btn-primary bg-green"> Accepté </span></td>
                         <td class="tt-capital">
-                            <a href="#" class="primary-button bg-blue">
+                            <a href="#" class="btn-primary bg-blue">
                                 <i class="fa-solid fa-eye mr-10"></i> Voir
                             </a>
                         </td>
@@ -71,9 +71,9 @@
                         <td class="tt-capital">Mohamed El Amrani</td>
                         <td class="tt-capital">05 Jun 2024</td>
                         <td class="tt-capital">15 €</td>
-                        <td class="tt-capital"><span class="primary-button bg-red"> Refusé </span></td>
+                        <td class="tt-capital"><span class="btn-primary bg-red"> Refusé </span></td>
                         <td class="tt-capital">
-                            <a href="#" class="primary-button bg-blue">
+                            <a href="#" class="btn-primary bg-blue">
                                 <i class="fa-solid fa-eye mr-10"></i> Voir
                             </a>
                         </td>
@@ -82,9 +82,9 @@
                         <td class="tt-capital">Fatima Zahra</td>
                         <td class="tt-capital">12 Jun 2024</td>
                         <td class="tt-capital">30 €</td>
-                        <td class="tt-capital"><span class="primary-button bg-orange"> En attente </span></td>
+                        <td class="tt-capital"><span class="btn-primary bg-orange"> En attente </span></td>
                         <td class="tt-capital">
-                            <a href="#" class="primary-button bg-blue">
+                            <a href="#" class="btn-primary bg-blue">
                                 <i class="fa-solid fa-eye mr-10"></i> Voir
                             </a>
                         </td>
@@ -93,9 +93,9 @@
                         <td class="tt-capital">Youssef Haddad</td>
                         <td class="tt-capital">09 Jun 2024</td>
                         <td class="tt-capital">20 €</td>
-                        <td class="tt-capital"><span class="primary-button bg-green"> Accepté </span></td>
+                        <td class="tt-capital"><span class="btn-primary bg-green"> Accepté </span></td>
                         <td class="tt-capital">
-                            <a href="#" class="primary-button bg-blue">
+                            <a href="#" class="btn-primary bg-blue">
                                 <i class="fa-solid fa-eye mr-10"></i> Voir
                             </a>
                         </td>
