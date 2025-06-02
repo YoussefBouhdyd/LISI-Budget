@@ -2032,16 +2032,7 @@
                 "doctrine/couchdb": "~1.0@dev",
                 "elasticsearch/elasticsearch": "^7 || ^8",
                 "ext-json": "*",
-                "                        document.getElementById('editBudgetBtn').onclick = function() {
-                            document.getElementById('editBudgetModal').style.display = 'flex';
-                        };
-                        document.getElementById('closeBudgetModal').onclick = function() {
-                            document.getElementById('editBudgetModal').style.display = 'none';
-                        };
-                        // Optional: close modal when clicking outside content
-                        document.getElementById('editBudgetModal').onclick = function(e) {
-                            if (e.target === this) this.style.display = 'none';
-                        };log2/gelf-php": "^1.4.2 || ^2.0",
+                "log2/gelf-php": "^1.4.2 || ^2.0",
                 "guzzlehttp/guzzle": "^7.4.5",
                 "guzzlehttp/psr7": "^2.2",
                 "mongodb/mongodb": "^1.8",
@@ -2067,25 +2058,7 @@
                 "ext-mongodb": "Allow sending log messages to a MongoDB server (via driver)",
                 "ext-openssl": "Required to send log messages using SSL",
                 "ext-sockets": "Allow sending log messages to a Syslog server (via UDP driver)",
-                "                        document.getElementById('editBudgetBtn').onclick = function() {
-                            document.getElementById('editBudgetModal').style.display = 'flex';
-                        };
-                        document.getElementById('closeBudgetModal').onclick = function() {
-                            document.getElementById('editBudgetModal').style.display = 'none';
-                        };
-                        // Optional: close modal when clicking outside content
-                        document.getElementById('editBudgetModal').onclick = function(e) {
-                            if (e.target === this) this.style.display = 'none';
-                        };log2/gelf-php": "Allow sending log messages to a                         document.getElementById('editBudgetBtn').onclick = function() {
-                            document.getElementById('editBudgetModal').style.display = 'flex';
-                        };
-                        document.getElementById('closeBudgetModal').onclick = function() {
-                            document.getElementById('editBudgetModal').style.display = 'none';
-                        };
-                        // Optional: close modal when clicking outside content
-                        document.getElementById('editBudgetModal').onclick = function(e) {
-                            if (e.target === this) this.style.display = 'none';
-                        };Log2 server",
+                "log2/gelf-php": "Allow sending log messages to a Log2 server",
                 "mongodb/mongodb": "Allow sending log messages to a MongoDB server (via library)",
                 "php-amqplib/php-amqplib": "Allow sending log messages to an AMQP server using php-amqplib",
                 "rollbar/rollbar": "Allow sending log messages to Rollbar",
