@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: E-Intendance
+    env: php
+    buildCommand: |
+      composer install --no-dev
+      php artisan config:cache
+    startCommand: |
+      php artisan serve --host 0.0.0.0 --port 10000
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: base64:Kp8YjhArZZxI+yfu2CjhBD5M06Ax+YqQcxCAdROrt0A=
+        sync: false
