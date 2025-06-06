@@ -1,7 +1,0 @@
-services:
-  - type: web
-    name: E-Intendance
-    env: docker
-    plan: free
-    dockerfilePath: Dockerfile
-    autoDeploy: true
