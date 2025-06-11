@@ -35,6 +35,6 @@
                 </ul>
             </div>
         </div>
-        <a href="profile.html"><img src="{{ asset('/imgs/user-profile.jpeg') }}" alt="user profile" class="rad-half"></a>
+        <a href="profile.html"><img src="{{ asset('/imgs/user-profile.svg') }}" alt="user profile" class="rad-half"></a>
     </div>
 </div>

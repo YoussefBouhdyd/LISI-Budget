@@ -324,6 +324,12 @@
 .flex-1 {
     flex: 1;
 }
+.flex-2 {
+    flex: 2;
+}
+.flex-3 {
+    flex: 3;
+}
 .grow-1 {
     flex-grow: 1;
 }
@@ -699,7 +705,7 @@
 /* End Position  */
 
 /* Start Font  */
-.txt-c {
+.text-center {
     text-align: center;
 }
 .txt-l {
@@ -790,7 +796,7 @@
     .column-mobile-reverse {
         flex-direction: column-reverse;
     }
-    .txt-c-mobile {
+    .text-center-mobile {
         text-align: center;
     }
 }

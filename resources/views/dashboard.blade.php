@@ -28,9 +28,9 @@
                     <div class="image">
                         <img src="{{ asset('/imgs/welcome.png') }}" alt="welcome" class="mw-100">
                     </div>
-                    <img src="{{ asset('/imgs/user-profile.jpeg')}}" alt="user-profile" class="p-absolute rad-half mw-100">
+                    <img src="{{ asset('/imgs/user-profile.svg')}}" alt="user-profile" class="p-absolute rad-half mw-100">
                 </div>
-                <div class="sumrise d-flex s-around p-15 txt-c">
+                <div class="sumrise d-flex s-around p-15 text-center">
                     <div class="col">
                         <h4>Youssef Bouhdyd</h4>
                         <span class="tt-capital">Admin</span>

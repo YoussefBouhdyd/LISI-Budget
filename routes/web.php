@@ -26,4 +26,7 @@ Route::get('/budget', function () {
     return view('budget');
 });
 
+Route::get('/profile', function () {
+    return view('profile');
+});
 

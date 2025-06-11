@@ -1,5 +1,5 @@
 <div class="side-bar p-relative bg-white p-20">
-    <h1 class="logo txt-c p-relative">LISI</h1>
+    <h1 class="logo text-center p-relative">LISI</h1>
     <nav>
         <ul class="link">
             <li class="rad-6 tt-capital">
@@ -27,13 +27,7 @@
                 </a>
             </li>
             <li class="rad-6 tt-capital">
-                <a href="setting.html" class="{{ request()->is('setting') ? 'active' : '' }}">
-                    <i class="fa-solid fa-gear fa-fw"></i>
-                    <span class="hide-mobile">Paramètre</span>
-                </a>
-            </li>
-            <li class="rad-6 tt-capital">
-                <a href="profile.html" class="{{ request()->is('profile') ? 'active' : '' }}">
+                <a href="{{ url('/profile') }}" class="{{ request()->is('profile') ? 'active' : '' }}">
                     <i class="fa-regular fa-user fa-fw"></i>
                     <span class="hide-mobile">Profil</span>
                 </a>
