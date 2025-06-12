@@ -26,7 +26,14 @@ Route::get('/budget', function () {
     return view('budget');
 });
 
-Route::get('/profile', function () {
-    return view('profile');
+Route::get('/bon_commande', function () {
+    return view('bon_commande');
 });
 
+Route::get('/suivie_BC', function () {
+    return view('suivie_BC');
+});
+
+Route::get('/profil_emetteur', function () {
+    return view('profil_emetteur');
+});
