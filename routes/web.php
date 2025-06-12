@@ -26,14 +26,15 @@ Route::get('/budget', function () {
     return view('budget');
 });
 
-Route::get('/bon_commande', function () {
-    return view('bon_commande');
+Route::get('/purchase-order', function () {
+    return view('purchase_order');
 });
 
-Route::get('/suivie_BC', function () {
+Route::get('/order-tracking', function () {
     return view('suivie_BC');
 });
 
-Route::get('/profil_emetteur', function () {
-    return view('profil_emetteur');
+
+Route::get('/transmitter-profile', function () {
+    return view('transmitter_profile');
 });
