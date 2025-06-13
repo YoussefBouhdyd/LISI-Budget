@@ -39,7 +39,6 @@ Route::get('/order-tracking', function () {
     return view('suivie_BC');
 });
 
-
 Route::get('/transmitter-profile', function () {
     return view('profil_emetteur');
 });

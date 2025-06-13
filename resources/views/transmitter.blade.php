@@ -30,6 +30,8 @@
                     <tr class="bg-eee ">
                         <th class="p-10">Nom de l'émetteur</th>
                         <th class="p-10">Budget</th>
+                        <th class="p-10">Dépensé</th>
+                        <th class="p-10">Reste</th>
                         <th class="p-10">Date de création</th>
                         <th class="p-10">Profession</th>
                         <th class="p-10">Actions</th>
@@ -37,6 +39,8 @@
                     <tr>
                         <td class="p-10">Jean Dupont</td>
                         <td class="p-10">120,000 €</td>
+                        <td class="p-10 red-c">30,000 €</td>
+                        <td class="p-10 green-c">90,000 €</td>
                         <td class="p-10">2022-03-15</td>
                         <td class="p-10">Comptable</td>
                         <td class="p-10 d-flex">
