@@ -27,8 +27,13 @@ Route::get('/budget', function () {
 });
 
 Route::get('/purchase-order', function () {
-    return view('purchase_order');
+    return view('bon_commande');
 });
+
+Route::post('/purchase-order', function () {
+    // Ajoute ici la logique de sauvegarde ou le contrôleur
+    // Exemple : return 'Bon de commande enregistré !';
+})->name('bon_commande.store');
 
 Route::get('/order-tracking', function () {
     return view('suivie_BC');
@@ -36,5 +41,5 @@ Route::get('/order-tracking', function () {
 
 
 Route::get('/transmitter-profile', function () {
-    return view('transmitter_profile');
+    return view('profil_emetteur');
 });
