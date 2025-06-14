@@ -44,7 +44,6 @@
                             <select id="status-filter" class="modern-select">
                                 <option value="all">Tous les statuts</option>
                                 <option value="pending">En attente</option>
-                                <option value="review">En revue</option>
                                 <option value="approved">Approuvés</option>
                                 <option value="rejected">Rejetés</option>
                             </select>
@@ -86,25 +85,6 @@
                                     </button>
                                 </td>
                             </tr>
-                            
-                            <!-- Exemple de bon en revue -->
-                            <tr class="status-review">
-                                <td class="tt-capital">BC-2023-044</td>
-                                <td class="tt-capital">14/06/2023</td>
-                                <td class="tt-capital">22034 - Matériel bureau</td>
-                                <td class="tt-capital">8,765.00 DH</td>
-                                <td class="tt-capital">
-                                    <span class="status-badge review">
-                                        <i class="fas fa-search-dollar"></i> En revue
-                                    </span>
-                                </td>
-                                <td class="tt-capital">
-                                    <button class="btn-action btn-view">
-                                        <i class="fas fa-eye"></i> Consulter
-                                    </button>
-                                </td>
-                            </tr>
-                            
                             <!-- Exemple de bon approuvé -->
                             <tr class="status-approved">
                                 <td class="tt-capital">BC-2023-043</td>
@@ -151,9 +131,8 @@
 
                     <div class="table-footer">
                         <div class="summary">
-                            <span>Total: 4 bons</span>
+                            <span>Total: 3 bons</span>
                             <span class="pending-count">1 en attente</span>
-                            <span class="review-count">1 en revue</span>
                             <span class="approved-count">1 approuvé</span>
                             <span class="rejected-count">1 rejeté</span>
                         </div>
