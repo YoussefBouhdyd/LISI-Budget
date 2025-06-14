@@ -17,19 +17,16 @@
         <!-- End Page header  -->
         
         <!-- Start Header Info -->
-        <div class="bc-header-info bg-white rad-6 p-15 m-15">
-            <h1 class="content-title">
-                <i class="fas fa-user-check"></i> Mes Bons de Commande
-            </h1>
-            <div class="header-info-grid">
-                <div class="info-item">
-                    <span>Émetteur:</span>
-                    <span class="value">Jean Dupont (Service Achats)</span>
-                </div>
-                <div class="info-item">
-                    <span>Date:</span>
-                    <input type="text" id="current-date" class="modern-input" readonly>
-                </div>
+
+        <h1 class="content-title"> Mes Bons de Commande</h1>
+        <div class="header-info-grid">
+            <div class="info-item">
+                <span class="emet">Émetteur:</span>
+                <span class="value">Jean Dupont (Service Achats)</span>
+            </div>
+            <div class="info-item">
+                <span>Date:</span>
+                <input type="text" id="current-date" class="modern-input" readonly>
             </div>
         </div>
         <!-- End Header Info -->
