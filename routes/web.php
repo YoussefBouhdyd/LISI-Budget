@@ -1,6 +1,12 @@
 <?php
 
+use App\Http\Controllers\BudgetController;
+use App\Http\Controllers\DashboardController;
+use App\Models\LineBudget;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use PhpParser\Node\Expr\FuncCall;
 
 Route::get('/', function () {
     return view('home');
@@ -10,9 +16,7 @@ Route::get('/sign', function () {
     return view('sign');
 });
 
-Route::get('/admin', function () {
-    return view('dashboard');
-});
+Route::get('/admin', DashboardController::class . "@loadSummarize");
 
 Route::get('/admin-engagement', function () {
     return view('engagements');
@@ -22,8 +26,14 @@ Route::get('/transmitter', function () {
     return view('transmitter');
 });
 
-Route::get('/budget', function () {
-    return view('budget');
+Route::get('/budget', BudgetController::class . "@loadBudget")
+    ->name('budget.load');
+
+Route::post('/lineBudget' , [BudgetController::class, 'updateLineBudget'])
+    ->name('lineBudget.update');
+
+Route::get('/profile', function () {
+    return view('profile');
 });
 
 Route::get('/purchase-order', function () {

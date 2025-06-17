@@ -53,13 +53,15 @@
                             <circle cx="85" cy="85" r="80" stroke="#eee" stroke-width="14" fill="none"/>
                             <circle cx="85" cy="85" r="80" stroke="#dc3545" stroke-width="14" fill="none"
                                 stroke-dasharray="502"
-                                stroke-dashoffset="{{ 502 - (502 * 25 / 100) }}"
+                                stroke-dashoffset="{{ 502 - (502 * ($budget['amount'] ? ($totalSpend * 100 / $budget['amount']) : 0) / 100) }}"
                                 stroke-linecap="round"
                             />
                         </svg>
-                        <div class="budget-progress-percent">25,00%</div>
+                        <div class="budget-progress-percent">
+                            {{ $budget['amount'] ? number_format(($totalSpend * 100 / $budget['amount']), 2) : '0.00' }}%
+                        </div>
                     </div>
-                    <div class="fw-bold mt-10 budget-total-amount">10 000 000,00 DZD </div>
+                    <div class="fw-bold mt-10 budget-total-amount">{{ $budget['amount'] }} DH </div>
                     <div class="budget-total-label">Budget Total</div>
                 </div>
             </div>
@@ -170,60 +172,17 @@
                 <h2 class="m-15-0">Lignes Budgétaire</h2>
                 <div class="lines-stats">
                     <div class="budget-lines-list">
-                        <div class="budget-line mb-20">
-                            <div class="d-flex justify-between align-c mb-10 column-mobile">
-                                <span class="fw-bold mr-10">Fonctionnement:</span>
+                        @foreach ($budgetLines as $budgetLine)
+                            <div class="budget-line mb-20">
+                                <div class="d-flex justify-between align-c mb-10 column-mobile">
+                                    <span class="fw-bold mr-10">{{ $budgetLine['name']}}:</span>
+                                </div>
+                                <div class="progress-bar p-relative">
+                                    <div class="progress-bar-inner" data-percent="{{ $budgetLine['amount'] ? $budgetLine['spend'] * 100 / $budgetLine['amount'] : 0 }}" style="width: {{$budgetLine['amount'] ? $budgetLine['spend'] * 100 / $budgetLine['amount'] : 0}}%; height: 100%;border-radius:0.375rem;"></div>
+                                    <span class="tooltip" style="left: {{$budgetLine['amount'] ? $budgetLine['spend'] * 100 / $budgetLine['amount'] : 0}}%">{{$budgetLine['amount'] ? $budgetLine['spend'] * 100 / $budgetLine['amount'] : 0}}%</span>
+                                </div>
                             </div>
-                            <div class="progress-bar p-relative">
-                                <div class="progress-bar-inner" data-percent="85" style="width: 85%; height: 100%;"></div>
-                                <span class="tooltip" style="left: 85%">85%</span>
-                            </div>
-                        </div>
-                        <div class="budget-line mb-20">
-                            <div class="d-flex justify-between align-c mb-10 column-mobile">
-                                <span class="fw-bold mr-10">Investissement:</span>
-                            </div>
-                            <div class="progress-bar p-relative">
-                                <div class="progress-bar-inner" data-percent="60" style="width: 60%; height: 100%;"></div>
-                                <span class="tooltip" style="left: 60%">60%</span>
-                            </div>
-                        </div>
-                        <div class="budget-line mb-20">
-                            <div class="d-flex justify-between align-c mb-10 column-mobile">
-                                <span class="fw-bold mr-10">Recherche:</span>
-                            </div>
-                            <div class="progress-bar p-relative">
-                                <div class="progress-bar-inner" data-percent="40" style="width: 40%; height: 100%;"></div>
-                                <span class="tooltip" style="left: 40%">40%</span>
-                            </div>
-                        </div>
-                        <div class="budget-line mb-20">
-                            <div class="d-flex justify-between align-c mb-10 column-mobile">
-                                <span class="fw-bold mr-10">Formation:</span>
-                            </div>
-                            <div class="progress-bar p-relative">
-                                <div class="progress-bar-inner" data-percent="72" style="width: 72%; height: 100%;"></div>
-                                <span class="tooltip" style="left: 72%">72%</span>
-                            </div>
-                        </div>
-                        <div class="budget-line mb-20">
-                            <div class="d-flex justify-between align-c mb-10 column-mobile">
-                                <span class="fw-bold mr-10">Maintenance:</span>
-                            </div>
-                            <div class="progress-bar p-relative">
-                                <div class="progress-bar-inner" data-percent="95" style="width: 95%; height: 100%;"></div>
-                                <span class="tooltip" style="left: 95%">95%</span>
-                            </div>
-                        </div>
-                        <div class="budget-line mb-20">
-                            <div class="d-flex justify-between align-c mb-10 column-mobile">
-                                <span class="fw-bold mr-10">Développement:</span>
-                            </div>
-                            <div class="progress-bar p-relative">
-                                <div class="progress-bar-inner" data-percent="15" style="width: 15%; height: 100%;"></div>
-                                <span class="tooltip" style="left: 15%">15%</span>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

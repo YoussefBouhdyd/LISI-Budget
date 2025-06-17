@@ -33,11 +33,11 @@
                                 @csrf
                                 <div class="mb-10">
                                     <label for="budgetAmount" class="fw-bold">Montant du budget</label>
-                                    <input type="number" step="0.01" min="0" class="form-control" id="budgetAmount" name="budgetAmount" value="10000000" required>
+                                    <input type="number" step="0.01" min="0" class="form-control" id="budgetAmount" name="budgetAmount" value="{{ number_format($budget['amount'],2) }}" required>
                                 </div>
                                 <div class="mb-10">
                                     <label for="budgetSaison" class="fw-bold">Saison</label>
-                                    <input type="text" class="form-control" id="budgetSaison" name="budgetSaison" value="2024/2025" required>
+                                    <input type="text" class="form-control" id="budgetSaison" name="budgetSaison" value="{{ $budget['season'] }}" required>
                                 </div>
                                 <div class="d-flex gap-10 mt-15">
                                     <button type="submit" class="btn-primary bg-blue rad-6 pointer">Enregistrer</button>
@@ -55,16 +55,16 @@
                                 <circle cx="85" cy="85" r="80" stroke="#eee" stroke-width="14" fill="none"/>
                                 <circle cx="85" cy="85" r="80" stroke="#dc3545" stroke-width="14" fill="none"
                                     stroke-dasharray="502"
-                                    stroke-dashoffset="{{ 502 - (502 * 25 / 100) }}"
+                                    stroke-dashoffset="{{ 502 - (502 * ($budget['amount'] ? ($totalSpend * 100 / $budget['amount']) : 0) / 100) }}"
                                     stroke-linecap="round"
                                 />
                             </svg>
                             <div class="budget-progress-percent">
-                                25,00%
+                                {{ $budget['amount'] ? number_format(($totalSpend * 100 / $budget['amount']),2) : 0 }}%
                             </div>
                         </div>
                         <div class="fw-bold mt-10 budget-total-amount">
-                            10 000 000,00 DZD
+                            {{ number_format($budget['amount'],2) }} DH 
                         </div>
                         <div class="budget-total-label">Budget Total</div>
                     </div>
@@ -73,27 +73,27 @@
                     <div class="budget-info d-flex flex-column justify-center">
                         <div class="d-flex justify-between budget-info-row">
                             <span class="fw-bold budget-info-label">Budget Total:</span>
-                            <span class="budget-info-value">10 000 000,00 DZD</span>
+                            <span class="budget-info-value">{{ number_format($budget['amount'],2) }} DH</span>
                         </div>
                         <div class="d-flex justify-between budget-info-row">
                             <span class="fw-bold budget-info-label">Dépensé:</span>
-                            <span class="budget-info-value budget-info-danger">2 500 000,00 DZD</span>
+                            <span class="budget-info-value budget-info-danger">{{ number_format($totalSpend) }} DH</span>
                         </div>
                         <div class="d-flex justify-between budget-info-row">
                             <span class="fw-bold budget-info-label">% du budget:</span>
-                            <span class="budget-info-value budget-info-danger">25,00%</span>
+                            <span class="budget-info-value budget-info-danger">{{ $budget['amount'] ? (number_format($totalSpend * 100 / $budget['amount'],2)) : 0 }}%</span>
                         </div>
                         <div class="d-flex justify-between budget-info-row">
                             <span class="fw-bold budget-info-label">Saison:</span>
-                            <span class="budget-info-value">2024/2025</span>
+                            <span class="budget-info-value">{{ $budget['season'] }}</span>
                         </div>
                         <div class="d-flex justify-between budget-info-row">
                             <span class="fw-bold budget-info-label">Date d'ajout:</span>
-                            <span class="budget-info-value">01/07/2024</span>
+                            <span class="budget-info-value">{{ $budget['created_at'] }}</span>
                         </div>
                         <div class="d-flex justify-between budget-info-row">
                             <span class="fw-bold budget-info-label">Dernière modification:</span>
-                            <span class="budget-info-value">15/07/2024</span>
+                            <span class="budget-info-value">{{ $budget['updated_at'] }}</span>
                         </div>
                     </div>
                 </div>
@@ -108,32 +108,14 @@
                     <div id="editLinesModal" class="modal-overlay" style="display:none;">
                         <div class="modal-content bg-white p-20 rad-6" style="min-width:350px; max-width:95vw;">
                             <h3 class="mb-15">Modifier les lignes budgétaires</h3>
-                            <form id="linesEditForm" method="POST" action="#">
+                            <form id="linesEditForm" method="POST" action="{{ url('/lineBudget') }}">
                                 @csrf
-                                <div class="mb-10">
-                                    <label class="fw-bold" for="lineFonctionnement">Fonctionnement</label>
-                                    <input type="number" step="0.01" min="0" class="form-control" id="lineFonctionnement" name="lineFonctionnement" value="1200000" required>
-                                </div>
-                                <div class="mb-10">
-                                    <label class="fw-bold" for="lineInvestissement">Investissement</label>
-                                    <input type="number" step="0.01" min="0" class="form-control" id="lineInvestissement" name="lineInvestissement" value="800000" required>
-                                </div>
-                                <div class="mb-10">
-                                    <label class="fw-bold" for="lineMateriel">Matériel</label>
-                                    <input type="number" step="0.01" min="0" class="form-control" id="lineMateriel" name="lineMateriel" value="500000" required>
-                                </div>
-                                <div class="mb-10">
-                                    <label class="fw-bold" for="lineServices">Services</label>
-                                    <input type="number" step="0.01" min="0" class="form-control" id="lineServices" name="lineServices" value="300000" required>
-                                </div>
-                                <div class="mb-10">
-                                    <label class="fw-bold" for="lineMaintenance">Maintenance</label>
-                                    <input type="number" step="0.01" min="0" class="form-control" id="lineMaintenance" name="lineMaintenance" value="150000" required>
-                                </div>
-                                <div class="mb-10">
-                                    <label class="fw-bold" for="lineFormation">Formation</label>
-                                    <input type="number" step="0.01" min="0" class="form-control" id="lineFormation" name="lineFormation" value="50000" required>
-                                </div>
+                                @foreach ($budgetLines as $budgetLine)
+                                    <div class="mb-10">
+                                        <label class="fw-bold" for="{{ $budgetLine['name'] }}">{{ $budgetLine['name'] }}</label>
+                                        <input type="number" step="0.01" min="0" class="form-control" id="{{ $budgetLine['name'] }}" name="{{ $budgetLine['id'] }}" value="{{ $budgetLine['amount'] }}" required>
+                                    </div>
+                                @endforeach
                                 <div class="d-flex gap-10 mt-15">
                                     <button type="submit" class="btn-primary bg-blue rad-6 pointer">Enregistrer</button>
                                     <button type="button" class="btn-primary bg-gray rad-6 pointer" id="closeLinesModal">Annuler</button>
@@ -143,90 +125,21 @@
                     </div>
                 </div>
                 <div class="budget-lines-list">
-                    <!-- Ligne 1: >80% -->
-                    <div class="budget-line mb-20">
-                        <div class="d-flex justify-between align-c mb-10 column-mobile">
-                            <span class="fw-bold mr-10">Fonctionnement:</span>
-                            <span>1 200 000,00 DZD (85,00%)</span>
+                    @foreach ($budgetLines as $budgetLine)
+                        <div class="budget-line mb-20">
+                            <div class="d-flex justify-between align-c mb-10 column-mobile">
+                                <span class="fw-bold mr-10">{{ $budgetLine['name']}}:</span>
+                                <span>{{ $budgetLine['amount'] }} DH ({{$budgetLine['amount'] ? number_format(($budgetLine['spend'] * 100) / $budgetLine['amount'],2) : 0}}%)</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-bar-inner" data-percent="{{$budgetLine['amount'] ? ($budgetLine['spend'] * 100) / $budgetLine['amount'] : 0 }}" style="width: {{$budgetLine['amount'] ? ($budgetLine['spend'] * 100) / $budgetLine['amount'] : 0}}%;height: 100%;border-radius:0.375rem;"></div>
+                            </div>
+                            <div class="d-flex justify-between mt-5 gap-10 column-mobile align-c">
+                                <span>Dépensé: <span class="budget-info-danger">{{ $budgetLine['spend'] }} DH</span></span>
+                                <span>Restant: <span class="budget-info-success">{{ $budgetLine['amount'] - $budgetLine['spend'] }} DH</span></span>
+                            </div>
                         </div>
-                        <div class="progress-bar">
-                            <div class="progress-bar-inner" data-percent="85" style="width: 85%; height: 100%;"></div>
-                        </div>
-                        <div class="d-flex justify-between mt-5 gap-10 column-mobile align-c">
-                            <span>Dépensé: <span class="budget-info-danger">1 020 000,00 DZD</span></span>
-                            <span>Restant: <span class="budget-info-success">180 000,00 DZD</span></span>
-                        </div>
-                    </div>
-                    <!-- Ligne 2: >50% -->
-                    <div class="budget-line mb-20">
-                        <div class="d-flex justify-between align-c mb-10 column-mobile">
-                            <span class="fw-bold mr-10">Investissement:</span>
-                            <span>800 000,00 DZD (60,00%)</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-bar-inner" data-percent="60" style="width: 60%; height: 100%;"></div>
-                        </div>
-                        <div class="d-flex justify-between mt-5 gap-10 column-mobile align-c">
-                            <span>Dépensé: <span class="budget-info-danger">480 000,00 DZD</span></span>
-                            <span>Restant: <span class="budget-info-success">320 000,00 DZD</span></span>
-                        </div>
-                    </div>
-                    <!-- Ligne 3: <50% -->
-                    <div class="budget-line mb-20">
-                        <div class="d-flex justify-between align-c mb-10 column-mobile">
-                            <span class="fw-bold mr-10">Matériel:</span>
-                            <span>500 000,00 DZD (35,00%)</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-bar-inner" data-percent="35" style="width: 35%; height: 100%;"></div>
-                        </div>
-                        <div class="d-flex justify-between mt-5 gap-10 column-mobile align-c">
-                            <span>Dépensé: <span class="budget-info-danger">175 000,00 DZD</span></span>
-                            <span>Restant: <span class="budget-info-success">325 000,00 DZD</span></span>
-                        </div>
-                    </div>
-                    <!-- Ligne 4: <50% -->
-                    <div class="budget-line mb-20">
-                        <div class="d-flex justify-between align-c mb-10 column-mobile">
-                            <span class="fw-bold mr-10">Services:</span>
-                            <span>300 000,00 DZD (20,00%)</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-bar-inner" data-percent="20" style="width: 20%; height: 100%;"></div>
-                        </div>
-                        <div class="d-flex justify-between mt-5 gap-10 column-mobile align-c">
-                            <span>Dépensé: <span class="budget-info-danger">60 000,00 DZD</span></span>
-                            <span>Restant: <span class="budget-info-success">240 000,00 DZD</span></span>
-                        </div>
-                    </div>
-                    <!-- Ligne 5: <50% -->
-                    <div class="budget-line mb-20">
-                        <div class="d-flex justify-between align-c mb-10 column-mobile">
-                            <span class="fw-bold mr-10">Maintenance:</span>
-                            <span>150 000,00 DZD (45,00%)</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-bar-inner" data-percent="45" style="width: 45%; height: 100%;"></div>
-                        </div>
-                        <div class="d-flex justify-between mt-5 gap-10 column-mobile align-c">
-                            <span>Dépensé: <span class="budget-info-danger">67 500,00 DZD</span></span>
-                            <span>Restant: <span class="budget-info-success">82 500,00 DZD</span></span>
-                        </div>
-                    </div>
-                    <!-- Ligne 6: <50% -->
-                    <div class="budget-line mb-20">
-                        <div class="d-flex justify-between align-c mb-10 column-mobile">
-                            <span class="fw-bold mr-10">Formation:</span>
-                            <span>50 000,00 DZD (10,00%)</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-bar-inner" data-percent="10" style="width: 10%; height: 100%;"></div>
-                        </div>
-                        <div class="d-flex justify-between mt-5 gap-10 column-mobile align-c">
-                            <span>Dépensé: <span class="budget-info-danger">5 000,00 DZD</span></span>
-                            <span>Restant: <span class="budget-info-success">45 000,00 DZD</span></span>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

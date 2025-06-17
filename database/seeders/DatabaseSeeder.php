@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Budget;
+use App\Models\LineBudget;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -18,6 +20,34 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+        ]);
+
+        // Seed Line Budgets Table
+
+        LineBudget::factory()->create([
+            'name' => 'Fonctionnement',
+        ]);
+        LineBudget::factory()->create([
+            'name' => 'Investissement',
+        ]);
+        LineBudget::factory()->create([
+            'name' => 'Matériel',
+        ]);
+        LineBudget::factory()->create([
+            'name' => 'Maintenance',
+        ]);
+        LineBudget::factory()->create([
+            'name' => 'Services',
+        ]);
+        LineBudget::factory()->create([
+            'name' => 'Formation',
+        ]);
+
+        // Seed Budgets Table
+
+        Budget::factory()->create([
+            'amount' => 0,
+            'season' => '2024/2025',
         ]);
     }
 }
