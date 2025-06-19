@@ -1,3 +1,4 @@
+const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 // Transmitter Modal
 
 const openModalBtn = document.getElementById('openModalBtn');
@@ -40,15 +41,27 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
         confirmDeleteBtn.onclick = function() {
-            // Here you should trigger the actual deletion (e.g., submit a form or send AJAX)
-            // For demo, just hide the modal
-            deleteModal.style.display = 'none';
-            // Example: remove the row from the table (for demo only)
-            if(deleteAction) {
-                let row = deleteAction.closest('tr');
-                if(row) row.remove();
-            }
-            deleteAction = null;
+            const transmitterId = deleteAction.dataset.id;
+            const request = new XMLHttpRequest();
+            request.open('DELETE','remove-transmitter');
+            request.setRequestHeader('Content-Type', 'application/json');
+            request.setRequestHeader('X-CSRF-Token', csrfToken);
+            request.send(JSON.stringify({ id: transmitterId }));
+            request.onreadystatechange = function() {
+                if (request.readyState === XMLHttpRequest.DONE) {
+                    if (request.status === 200) {
+                        deleteModal.style.display = 'none';
+                        deleteAction = null;
+                        location.reload();
+                    } else {
+                        // Handle error case
+                        console.error('Error deleting transmitter:', request.responseText);
+                        alert('Error deleting transmitter. Please try again.');
+                        deleteModal.style.display = 'none';
+                        deleteAction = null;
+                    }
+                }
+            };
         };
 
         window.onclick = function(event) {
@@ -69,13 +82,15 @@ if (editBtns && editBtns.length > 0) {
         btn.addEventListener('click', function() {
             const nameInput = document.getElementById('edit_name');
             const budgetInput = document.getElementById('edit_budget');
-            const dateInput = document.getElementById('edit_date');
             const professionInput = document.getElementById('edit_profession');
+            const emailInput = document.getElementById('edit_email');
+            const idInput = document.getElementById('edit_id');
             const modal = document.getElementById('editTransmitterModal');
+            if (idInput) idInput.value = this.dataset.id || '';
             if (nameInput) nameInput.value = this.dataset.name || '';
             if (budgetInput) budgetInput.value = this.dataset.budget || '';
-            if (dateInput) dateInput.value = this.dataset.date || '';
             if (professionInput) professionInput.value = this.dataset.profession || '';
+            if (emailInput) emailInput.value = this.dataset.email || '';
             if (modal) modal.style.display = 'block';
         });
     });

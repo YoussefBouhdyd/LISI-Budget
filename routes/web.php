@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TransmitterController;
 use App\Models\LineBudget;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,14 +23,22 @@ Route::get('/admin-engagement', function () {
     return view('engagements');
 });
 
-Route::get('/transmitter', function () {
-    return view('transmitter');
-});
+Route::get('/transmitter', TransmitterController::class . "@loadTransmitters")
+    ->name('transmitter.load');
+
+Route::post('/add-transmitter',TransmitterController::class . "@createNewTransmitter")
+    ->name('transmitter.create');
+
+Route::delete('/remove-transmitter', TransmitterController::class . "@deleteTransmitter")
+    ->name('transmitter.delete');
+
+Route::post('/update-transmitter', TransmitterController::class . "@updateTransmitter")
+    ->name('transmitter.update');
 
 Route::get('/budget', BudgetController::class . "@loadBudget")
     ->name('budget.load');
 
-Route::post('/lineBudget' , [BudgetController::class, 'updateLineBudget'])
+Route::post('/lineBudget' , BudgetController::class . '@updateLineBudget')
     ->name('lineBudget.update');
 
 Route::get('/profile', function () {

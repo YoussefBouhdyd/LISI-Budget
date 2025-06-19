@@ -708,3 +708,38 @@
     gap: 1rem;
     margin-bottom: 1.5rem;
 }
+
+/* Flash Message Styling  */
+.custom-alert {
+    padding: 16px 40px 16px 16px;
+    border-radius: 6px;
+    font-size: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    position: relative;
+    transition: opacity 0.3s;
+    margin-bottom: 20px;
+}
+.alert-success.custom-alert {
+    background: #e6f9ed;
+    color: #207544;
+    border: 1px solid #b6e6c9;
+}
+.alert-danger.custom-alert {
+    background: #ffeaea;
+    color: #b91c1c;
+    border: 1px solid #f5c2c7;
+}
+.close-alert {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s;
+    line-height: 1;
+}
+.close-alert:hover {
+    color: #333;
+}
