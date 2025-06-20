@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name')->unique();
-            $table->decimal('amount',5,2)->default(0);
-            $table->decimal('spend',5,2)->default(0);
         });
     }
 
