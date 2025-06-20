@@ -3,6 +3,7 @@
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TransmitterController;
+use App\Http\Controllers\UserBudgetController;
 use App\Models\LineBudget;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,6 +17,8 @@ Route::get('/', function () {
 Route::get('/sign', function () {
     return view('sign');
 });
+
+// Admin Routes
 
 Route::get('/admin', DashboardController::class . "@loadSummarize");
 
@@ -44,6 +47,11 @@ Route::post('/lineBudget' , BudgetController::class . '@updateLineBudget')
 Route::get('/profile', function () {
     return view('profile');
 });
+
+// User Routes
+
+Route::get('/my-budget', UserBudgetController::class . "@loadUserBudget")
+    ->name('userBudget.load');
 
 Route::get('/purchase-order', function () {
     return view('bon_commande');

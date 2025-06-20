@@ -9,6 +9,12 @@
                 </a>
             </li>
             <li class="rad-6 tt-capital">
+                <a href="{{ url('/my-budget') }}" class="{{ request()->is('my-budget') ? 'active' : '' }}">
+                    <i class="fa-solid fa-piggy-bank fa-fw"></i>
+                    <span class="hide-mobile">Mon Budget</span>
+                </a>
+            </li>
+            <li class="rad-6 tt-capital">
                 <a href="{{ url('/order-tracking') }}" class="{{ request()->is('order-tracking') ? 'active' : '' }}">
                     <i class="fa-solid fa-list fa-fw"></i>
                     <span class="hide-mobile">Suivi BC</span>

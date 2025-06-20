@@ -24,12 +24,12 @@
                     <div class="info-item">
                         <label class="d-block mb-5 fw-bold">N° BC:</label>
                         <input type="text" id="bc-number" value="BC-2023-001" readonly 
-                               class="p-10 rad-6 border-ccc w-fit bg-eee">
+                            class="p-10 rad-6 border-ccc w-fit bg-eee">
                     </div>
                     <div class="info-item">
                         <label class="d-block mb-5 fw-bold">Date:</label>
                         <input type="text" id="date" readonly 
-                               class="p-10 rad-6 border-ccc w-fit bg-eee">
+                            class="p-10 rad-6 border-ccc w-fit bg-eee">
                     </div>
                 </div>
 
@@ -91,14 +91,14 @@
                                     Désignation
                                 </label>
                                 <input type="text" id="item-name" placeholder="Nom de l'article" 
-                                       class="p-10 rad-6 border-ccc w-full">
+                                    class="p-10 rad-6 border-ccc w-full">
                             </div>
                             <div class="form-group flex-1">
                                 <label for="item-qty" class="d-block mb-5 fw-bold">
                                     Quantité
                                 </label>
                                 <input type="number" id="item-qty" min="1" value="1" 
-                                       class="p-10 rad-6 border-ccc w-full">
+                                    class="p-10 rad-6 border-ccc w-full">
                             </div>
                         </div>
                         
@@ -108,14 +108,14 @@
                                     Prix unitaire (DH)
                                 </label>
                                 <input type="number" id="item-price" min="0" step="0.01" 
-                                       placeholder="0.00" class="p-10 rad-6 border-ccc w-full">
+                                    placeholder="0.00" class="p-10 rad-6 border-ccc w-full">
                             </div>
                             <div class="form-group flex-1">
                                 <label for="item-total" class="d-block mb-5 fw-bold">
                                     Total (DH)
                                 </label>
                                 <input type="text" id="item-total" value="0.00" readonly 
-                                       class="p-10 rad-6 border-ccc w-full bg-eee">
+                                    class="p-10 rad-6 border-ccc w-full bg-eee">
                             </div>
                         </div>
                         
