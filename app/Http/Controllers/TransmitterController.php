@@ -18,9 +18,13 @@ class TransmitterController extends Controller
         $newTransmitter->name = $request['name'];
         $newTransmitter->email = $request['email'];
         $newTransmitter->budget = $request['budget'];
-        $newTransmitter->password = "Yoissef";
+        // we should generate a random password then send it to the user via email
+        $newTransmitter->password = "Youssef";
         $newTransmitter->profession = $request['profession'];
         $newTransmitter->save();
+
+        // Budget Line Proposal
+        
 
         return redirect('/transmitter')->with('success', 'Émetteur créé avec succès');
     }

@@ -2,6 +2,7 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/framework.css') }}">
 @endsection
 
 @section('title', 'Engagements')
@@ -9,43 +10,19 @@
 @section('content')
 <div class="page d-flex">
     <!-- Start Side Bar  -->
-    @include('partials.sidebar')
+    @include('partials.sidebar_emetteur')
     <!-- End Side Bar  -->
     <div class="content flex-1">
         <!-- Start Page header  -->
         @include('partials.header')
         <!-- End Page header  -->
         <h1 class="content-title">Budget</h1>
-
+        
         <!-- Start Budget Content -->
         <div class="section-content p-15 d-flex gap-10 column-mobile">
             <div class="budget-stats bg-white p-15 rad-6">
                 <div class="d-flex s-between align-c mb-10">
                     <h2 class="m-15-0">Budget Statics</h2>
-                    <button type="button" class="btn-primary bg-blue rad-6 d-flex align-c gap-5 pointer" id="editBudgetBtn">
-                        <i class="fa-solid fa-pen"></i> <span class="hide-mobile">Modifier</span>
-                    </button>
-                    <!-- Modal -->
-                    <div id="editBudgetModal" class="modal-overlay" style="display:none;">
-                        <div class="modal-content bg-white p-20 rad-6" style="min-width:300px; max-width:90vw;">
-                            <h3 class="mb-15">Modifier le budget</h3>
-                            <form id="budgetEditForm" method="POST" action="#">
-                                @csrf
-                                <div class="mb-10">
-                                    <label for="budgetAmount" class="fw-bold">Montant du budget</label>
-                                    <input type="number" step="0.01" min="0" class="form-control" id="budgetAmount" name="budgetAmount" value="{{ number_format($budget['amount'],2) }}" required>
-                                </div>
-                                <div class="mb-10">
-                                    <label for="budgetSaison" class="fw-bold">Saison</label>
-                                    <input type="text" class="form-control" id="budgetSaison" name="budgetSaison" value="{{ $budget['season'] }}" required>
-                                </div>
-                                <div class="d-flex gap-10 mt-15">
-                                    <button type="submit" class="btn-primary bg-blue rad-6 pointer">Enregistrer</button>
-                                    <button type="button" class="btn-primary bg-gray rad-6 pointer" id="closeBudgetModal">Annuler</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                 </div>
                 <div class="d-flex align-c mb-10 budget-summary-row flex-column">
                     <!-- Circular Progress Bar on the left, bigger -->
@@ -55,16 +32,16 @@
                                 <circle cx="85" cy="85" r="80" stroke="#eee" stroke-width="14" fill="none"/>
                                 <circle cx="85" cy="85" r="80" stroke="#dc3545" stroke-width="14" fill="none"
                                     stroke-dasharray="502"
-                                    stroke-dashoffset="{{ 502 - (502 * ($budget['amount'] ? ($totalSpend * 100 / $budget['amount']) : 0) / 100) }}"
+                                    stroke-dashoffset="{{ 502 - (502 * ($userData['budget'] ? ($totalSpend * 100 / $userData['budget']) : 0) / 100) }}"
                                     stroke-linecap="round"
                                 />
                             </svg>
                             <div class="budget-progress-percent">
-                                {{ $budget['amount'] ? number_format(($totalSpend * 100 / $budget['amount']),2) : 0 }}%
+                                {{ $userData['budget'] ? number_format(($totalSpend * 100 / $userData['budget']),2) : 0 }}%
                             </div>
                         </div>
                         <div class="fw-bold mt-10 budget-total-amount">
-                            {{ number_format($budget['amount'],2) }} DH 
+                            {{ number_format($userData['budget'],2) }} DH 
                         </div>
                         <div class="budget-total-label">Budget Total</div>
                     </div>
@@ -73,7 +50,7 @@
                     <div class="budget-info d-flex flex-column justify-center">
                         <div class="d-flex justify-between budget-info-row">
                             <span class="fw-bold budget-info-label">Budget Total:</span>
-                            <span class="budget-info-value">{{ number_format($budget['amount'],2) }} DH</span>
+                            <span class="budget-info-value">{{ number_format($userData['budget'],2) }} DH</span>
                         </div>
                         <div class="d-flex justify-between budget-info-row">
                             <span class="fw-bold budget-info-label">Dépensé:</span>
@@ -81,19 +58,15 @@
                         </div>
                         <div class="d-flex justify-between budget-info-row">
                             <span class="fw-bold budget-info-label">% du budget:</span>
-                            <span class="budget-info-value budget-info-danger">{{ $budget['amount'] ? (number_format($totalSpend * 100 / $budget['amount'],2)) : 0 }}%</span>
-                        </div>
-                        <div class="d-flex justify-between budget-info-row">
-                            <span class="fw-bold budget-info-label">Saison:</span>
-                            <span class="budget-info-value">{{ $budget['season'] }}</span>
+                            <span class="budget-info-value budget-info-danger">{{ $userData['budget'] ? (number_format($totalSpend * 100 / $userData['budget'],2)) : 0 }}%</span>
                         </div>
                         <div class="d-flex justify-between budget-info-row">
                             <span class="fw-bold budget-info-label">Date d'ajout:</span>
-                            <span class="budget-info-value">{{ $budget['created_at'] }}</span>
+                            <span class="budget-info-value">{{ $userData['created_at'] }}</span>
                         </div>
                         <div class="d-flex justify-between budget-info-row">
                             <span class="fw-bold budget-info-label">Dernière modification:</span>
-                            <span class="budget-info-value">{{ $budget['updated_at'] }}</span>
+                            <span class="budget-info-value">{{ $userData['updated_at'] }}</span>
                         </div>
                     </div>
                 </div>
@@ -101,42 +74,20 @@
             <div class="lines-stats bg-white p-15 rad-6">
                 <div class="d-flex s-between align-c mb-10">
                     <h2 class="m-15-0">Lignes Budgétaires</h2>
-                    <button type="button" class="btn-primary bg-blue rad-6 d-flex align-c gap-5 pointer" id="editLinesBtn">
-                        <i class="fa-solid fa-pen"></i> <span class="hide-mobile">Modifier</span>
-                    </button>
-                    <!-- Modal for editing budget lines -->
-                    <div id="editLinesModal" class="modal-overlay" style="display:none;">
-                        <div class="modal-content bg-white p-20 rad-6" style="min-width:350px; max-width:95vw;">
-                            <h3 class="mb-15">Modifier les lignes budgétaires</h3>
-                            <form id="linesEditForm" method="POST" action="{{ url('/lineBudget') }}">
-                                @csrf
-                                @foreach ($budgetLines as $budgetLine)
-                                    <div class="mb-10">
-                                        <label class="fw-bold" for="{{ $budgetLine['name'] }}">{{ $budgetLine['name'] }}</label>
-                                        <input type="number" step="0.01" min="0" class="form-control" id="{{ $budgetLine['name'] }}" name="{{ $budgetLine['id'] }}" value="{{ $budgetLine['amount'] }}" required>
-                                    </div>
-                                @endforeach
-                                <div class="d-flex gap-10 mt-15">
-                                    <button type="submit" class="btn-primary bg-blue rad-6 pointer">Enregistrer</button>
-                                    <button type="button" class="btn-primary bg-gray rad-6 pointer" id="closeLinesModal">Annuler</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                 </div>
                 <div class="budget-lines-list">
                     @foreach ($budgetLines as $budgetLine)
                         <div class="budget-line mb-20">
                             <div class="d-flex justify-between align-c mb-10 column-mobile">
-                                <span class="fw-bold mr-10">{{ $budgetLine['name']}}:</span>
-                                <span>{{ $budgetLine['amount'] }} DH ({{$budgetLine['amount'] ? number_format(($budgetLine['spend'] * 100) / $budgetLine['amount'],2) : 0}}%)</span>
+                                <span class="fw-bold mr-10">{{ $budgetLine->budgetLine['name'] }}:</span>
+                                <span>{{ $budgetLine['proposed_amount'] }} DH ({{$budgetLine['proposed_amount'] ? number_format(($budgetLine['spend'] * 100) / $budgetLine['proposed_amount'],2) : 0}}%)</span>
                             </div>
                             <div class="progress-bar">
-                                <div class="progress-bar-inner" data-percent="{{$budgetLine['amount'] ? ($budgetLine['spend'] * 100) / $budgetLine['amount'] : 0 }}" style="width: {{$budgetLine['amount'] ? ($budgetLine['spend'] * 100) / $budgetLine['amount'] : 0}}%;height: 100%;border-radius:0.375rem;"></div>
+                                <div class="progress-bar-inner" data-percent="{{$budgetLine['proposed_amount'] ? ($budgetLine['spend'] * 100) / $budgetLine['proposed_amount'] : 0 }}" style="width: {{$budgetLine['proposed_amount'] ? ($budgetLine['spend'] * 100) / $budgetLine['proposed_amount'] : 0}}%;height: 100%;border-radius:0.375rem;"></div>
                             </div>
                             <div class="d-flex justify-between mt-5 gap-10 column-mobile align-c">
                                 <span>Dépensé: <span class="budget-info-danger">{{ $budgetLine['spend'] }} DH</span></span>
-                                <span>Restant: <span class="budget-info-success">{{ $budgetLine['amount'] - $budgetLine['spend'] }} DH</span></span>
+                                <span>Restant: <span class="budget-info-success">{{ $budgetLine['proposed_amount'] - $budgetLine['spend'] }} DH</span></span>
                             </div>
                         </div>
                     @endforeach
@@ -144,6 +95,75 @@
             </div>
         </div>
         <!-- End Budget Content  -->
+
+                {{-- Start Budget Line Proposition  --}}
+        <div class="section-content p-15">
+            <div class="projects bg-white rad-6 p-15">
+                <div class="orders-header">
+                    <h2 class="m-15-0">Proposition De Ligne Budgétaire</h2>
+                </div>
+                
+                <div class="orders-table">
+                    <table class="full-w txt-l">
+                        <thead>
+                            <tr class="bg-eee">
+                                <th class="p-10">Line Budgétaire</th>
+                                <th class="p-10">Montant Proposé</th>
+                                <th class="p-10">Statut</th>
+                                <th class="p-10">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Exemple de bon en attente -->
+                            @foreach ($budgetLines as $budgetLine)
+                                <tr class="budget-line-prop">
+                                    <td class="tt-capital">{{ $budgetLine->budgetLine['name'] }}</td>
+                                    <td class="tt-capital"><input class="p-10 rad-6 border" type="number" value="{{$budgetLine['proposed_amount']}}" {{$budgetLine['status'] == 'approved' || $budgetLine['is_validated'] ? "disabled" : ""}}> DH</td>
+                                    <td class="tt-capital">
+                                        @if ($budgetLine['status'] == 'pending')
+                                            <span class="status-badge pending">
+                                                <i class="fas fa-clock"></i> En attente
+                                            </span>
+                                        @elseif ($budgetLine['status'] == 'approved')
+                                            <span class="status-badge approved">
+                                                <i class="fas fa-check-circle"></i> Approuvé
+                                            </span>
+                                        @else
+                                            <span class="status-badge rejected">
+                                                <i class="fas fa-times-circle"></i> Rejeté
+                                            </span>
+                                        @endif
+                                        
+                                    </td>
+                                    <td class="tt-capital">
+                                        @if ($budgetLine['is_validated'] == 1)
+                                            <button class="btn-action btn-generate bg-gray" disabled>
+                                                <i class="fas fa-check"></i> Valider
+                                            </button>
+                                        @else
+                                            <button data-line-id="{{$budgetLine['id']}}" class="validate-btn btn-action btn-generate">
+                                                <i class="fas fa-check"></i> Valider
+                                            </button>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+    
+                    <div class="table-footer">
+                        <div class="summary">
+                            <span>Total: 3 bons</span>
+                            <span class="pending-count">1 en attente</span>
+                            <span class="approved-count">1 approuvé</span>
+                            <span class="rejected-count">1 rejeté</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- End Budget Line Proposition  --}}
     </div>
 </div>
+<script src="{{ asset('js/my_budget.js') }}"></script>
 @endsection

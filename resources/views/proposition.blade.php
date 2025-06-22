@@ -1,0 +1,106 @@
+@extends('layouts.base')
+
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/framework.css') }}">
+@endsection
+
+@section('title', 'Proposition')
+
+@section('content')
+<div class="page d-flex">
+    <!-- Start Side Bar  -->
+    @include('partials.sidebar')
+    <!-- End Side Bar  -->
+    <div class="content flex-1">
+        <!-- Start Page header  -->
+        @include('partials.header')
+        <!-- End Page header  -->
+        <h1 class="content-title">Proposition</h1>
+        
+        <!-- Start Proposition Content -->
+        <div class="section-content p-15">
+            <div class="projects bg-white rad-6 p-15">
+                <div class="orders-header">
+                    <h2 class="m-15-0">Proposition D’émetteur</h2>
+                    
+                    <!-- Filters integrated with the table header -->
+                    <div class="filters-integrated">
+                        <div class="filter-group">
+                            <label for="status-filter">Statut:</label>
+                            <select id="status-filter" class="modern-select">
+                                <option value="all">Tous les statuts</option>
+                                <option value="pending">En attente</option>
+                                <option value="approved">Approuvés</option>
+                                <option value="rejected">Rejetés</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="orders-table">
+                    <table class="full-w txt-l">
+                        <thead>
+                            <tr class="bg-eee">
+                                <th class="p-10">Émetteur</th>
+                                <th class="p-10">Date De Modification</th>
+                                <th class="p-10">Ligne Budgétaire</th>
+                                <th class="p-10">Montant Proposé</th>
+                                <th class="p-10">Statut</th>
+                                <th class="p-10">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($propositions as $proposition)
+                                <tr class="status">
+                                    <td class="tt-capital">{{$proposition->user->name}}</td>
+                                    <td class="tt-capital">{{$proposition->updated_at}}</td>
+                                    <td class="tt-capital">{{$proposition->budgetLine->name}}</td>
+                                    <td class="tt-capital">{{$proposition->proposed_amount}} DH</td>
+                                    <td class="tt-capital">
+                                        @if ($proposition->status === 'approved')
+                                            <span class="status-badge approved">
+                                                <i class="fas fa-check"></i> Approuvé
+                                            </span>
+                                        @elseif ($proposition->status === 'rejected')
+                                            <span class="status-badge rejected">
+                                                <i class="fas fa-times"></i> Rejeté
+                                            </span>
+                                        @else
+                                            <span class="status-badge pending">
+                                                <i class="fas fa-clock"></i> En attente
+                                            </span>
+                                        @endif
+                                    </td>
+                                    <td class="tt-capital">
+                                        <button class="confirme btn-primary btn-action">
+                                            <i class="fas fa-check"></i> Accepté
+                                        </button>
+                                        <button class="edit btn-action btn-view">
+                                            <i class="fas fa-eye"></i> Modifier
+                                        </button>
+                                        <button class="reject btn-action btn-view">
+                                            <i class="fas fa-eye"></i> Rejeté
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
+                    <div class="table-footer">
+                        <div class="summary">
+                            <span>Total: 3 bons</span>
+                            <span class="pending-count">1 en attente</span>
+                            <span class="approved-count">1 approuvé</span>
+                            <span class="rejected-count">1 rejeté</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Budget Content  -->
+    </div>
+</div>
+<script src="{{ asset('js/my_budget.js') }}"></script>
+@endsection

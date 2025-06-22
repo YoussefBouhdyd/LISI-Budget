@@ -110,6 +110,10 @@
     border-bottom: 0.0625rem solid #eee;
 }
 
+.border {
+    border: 0.0625rem solid #eee;
+}
+
 /* switch button  */
 .switch-btn {
     align-self: flex-end;

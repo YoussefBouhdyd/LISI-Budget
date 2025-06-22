@@ -16,7 +16,9 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('budget_line_id')->constrained()->onDelete('cascade');
             $table->enum('status',['pending','approved','rejected'])->default('pending');
-            $table->decimal('proposed_amount', 12, 2);
+            $table->boolean('is_validated')->default(false);
+            $table->decimal('proposed_amount', 12, 2)->default(0.00);
+            $table->decimal('spend', 12, 2)->default(0.00);
             $table->timestamps();
         });
     }

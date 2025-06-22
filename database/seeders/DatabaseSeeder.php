@@ -25,22 +25,40 @@ class DatabaseSeeder extends Seeder
         // Seed Line Budgets Table
 
         LineBudget::factory()->create([
-            'name' => 'Fonctionnement',
+            'name' => "Frais de participation et d'inscription aux colloques",
         ]);
         LineBudget::factory()->create([
-            'name' => 'Investissement',
+            'name' => "Achats de petit outillage et petit équipement",
         ]);
         LineBudget::factory()->create([
-            'name' => 'Matériel',
+            'name' => "Achat de fournitures informatiques",
         ]);
         LineBudget::factory()->create([
-            'name' => 'Maintenance',
+            'name' => "Achat de fournitures de bureau, papeterie et imprimés",
         ]);
         LineBudget::factory()->create([
-            'name' => 'Services',
+            'name' => "Achat de matières premières",
         ]);
         LineBudget::factory()->create([
-            'name' => 'Formation',
+            'name' => "Frais de transport du personnel et des étudiants à l'étranger",
+        ]);
+        LineBudget::factory()->create([
+            'name' => "Indemnités de déplacement à l'intérieur du Royaume",
+        ]);
+        LineBudget::factory()->create([
+            'name' => "Indemnités kilométriques",
+        ]);
+        LineBudget::factory()->create([
+            'name' => "Indemnités de mission à l'étranger",
+        ]);
+        LineBudget::factory()->create([
+            'name' => "Achat de carburants",
+        ]);
+        LineBudget::factory()->create([
+            'name' => "Achat de matériel scientifique",
+        ]);
+        LineBudget::factory()->create([
+            'name' => "Achat de matériel informatique",
         ]);
 
         // Seed Budgets Table

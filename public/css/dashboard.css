@@ -483,6 +483,13 @@
         padding-bottom: 0.625rem;
     }
 }
+
+.budget-lines-list {
+    max-height: 40rem;
+    overflow-y: scroll;
+    padding-right: 1.5rem;
+}
+
 /* End Budget Styling  */
 
 /* Start Edit Model Styling  */

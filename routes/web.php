@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\propositionController;
 use App\Http\Controllers\TransmitterController;
 use App\Http\Controllers\UserBudgetController;
 use App\Models\LineBudget;
@@ -52,6 +53,11 @@ Route::get('/profile', function () {
 
 Route::get('/my-budget', UserBudgetController::class . "@loadUserBudget")
     ->name('userBudget.load');
+
+Route::post('/propose-line',UserBudgetController::class . "@proposBudgetLine");
+
+Route::get('/proposition', propositionController::class . "@loadPendingProposition")
+    ->name('proposition.load');
 
 Route::get('/purchase-order', function () {
     return view('bon_commande');

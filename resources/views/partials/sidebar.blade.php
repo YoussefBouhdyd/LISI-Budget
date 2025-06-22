@@ -27,6 +27,12 @@
                 </a>
             </li>
             <li class="rad-6 tt-capital">
+                <a href="{{ url('/proposition') }}" class="{{ request()->is('proposition*') ? 'active' : '' }}">
+                    <i class="fa-solid fa-code-commit fa-fw"></i>
+                    <span class="hide-mobile">Proposition</span>
+                </a>
+            </li>
+            <li class="rad-6 tt-capital">
                 <a href="{{ url('/profile') }}" class="{{ request()->is('profile') ? 'active' : '' }}">
                     <i class="fa-regular fa-user fa-fw"></i>
                     <span class="hide-mobile">Profil</span>
