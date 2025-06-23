@@ -56,7 +56,7 @@
                                     <td class="tt-capital">{{$proposition->user->name}}</td>
                                     <td class="tt-capital">{{$proposition->updated_at}}</td>
                                     <td class="tt-capital">{{$proposition->budgetLine->name}}</td>
-                                    <td class="tt-capital">{{$proposition->proposed_amount}} DH</td>
+                                    <td class="tt-capital d-flex align-c gap-5"><input class="p-10 rad-6 border" type="number" value="{{$proposition['proposed_amount']}}" {{$proposition['status'] == 'approved' || $proposition['is_validated'] ? "disabled" : ""}}> DH</td>
                                     <td class="tt-capital">
                                         @if ($proposition->status === 'approved')
                                             <span class="status-badge approved">
@@ -72,15 +72,15 @@
                                             </span>
                                         @endif
                                     </td>
-                                    <td class="tt-capital">
-                                        <button class="confirme btn-primary btn-action">
-                                            <i class="fas fa-check"></i> Accepté
+                                    <td class="tt-capital d-flex align-c gap-5">
+                                        <button class="accept-propo-btn btn-primary bg-green pointer" title="Accepter" data-id="{{$proposition->id}}">
+                                            <i class="fas fa-check"></i>
                                         </button>
-                                        <button class="edit btn-action btn-view">
-                                            <i class="fas fa-eye"></i> Modifier
+                                        <button class="btn-primary bg-orange pointer" title="Modifier">
+                                            <i class="fas fa-edit"></i>
                                         </button>
-                                        <button class="reject btn-action btn-view">
-                                            <i class="fas fa-eye"></i> Rejeté
+                                        <button class="btn-primary bg-red pointer" title="Rejeter">
+                                            <i class="fas fa-times"></i>
                                         </button>
                                     </td>
                                 </tr>
@@ -102,5 +102,5 @@
         <!-- End Budget Content  -->
     </div>
 </div>
-<script src="{{ asset('js/my_budget.js') }}"></script>
+<script src="{{ asset('js/proposition.js') }}"></script>
 @endsection

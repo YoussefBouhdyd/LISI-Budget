@@ -58,6 +58,9 @@ Route::post('/propose-line',UserBudgetController::class . "@proposBudgetLine");
 
 Route::get('/proposition', propositionController::class . "@loadPendingProposition")
     ->name('proposition.load');
+    
+Route::post('/confirm-proposition', propositionController::class . "@confirmProposition")
+    ->name('proposition.confirm');
 
 Route::get('/purchase-order', function () {
     return view('bon_commande');
