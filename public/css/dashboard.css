@@ -750,3 +750,24 @@
 .close-alert:hover {
     color: #333;
 }
+
+.status-filters {
+    margin-top: 5px;
+}
+.status-filter-btn {
+    display: inline-block;
+    padding: 6px 16px;
+    border: none;
+    border-radius: 6px;
+    background: #f3f3f3;
+    color: #333;
+    cursor: pointer;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+}
+.status-filter-btn.active,
+.status-filter-btn:hover {
+    background: #007bff;
+    color: #fff;
+}

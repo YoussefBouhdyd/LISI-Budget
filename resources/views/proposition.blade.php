@@ -27,13 +27,11 @@
                     <!-- Filters integrated with the table header -->
                     <div class="filters-integrated">
                         <div class="filter-group">
-                            <label for="status-filter">Statut:</label>
-                            <select id="status-filter" class="modern-select">
-                                <option value="all">Tous les statuts</option>
-                                <option value="pending">En attente</option>
-                                <option value="approved">Approuvés</option>
-                                <option value="rejected">Rejetés</option>
-                            </select>
+                            <div class="status-filters d-flex gap-10">
+                                <a href="{{ route('proposition.load',['status' => 'pending']) }}" class="status-filter-btn{{ request('status') == 'pending' ? ' active' : '' }}">En attente</a>
+                                <a href="{{ route('proposition.load',['status' => 'approved']) }}" class="status-filter-btn{{ request('status') == 'approved' ? ' active' : '' }}">Approuvés</a>
+                                <a href="{{ route('proposition.load',['status' => 'rejected']) }}" class="status-filter-btn{{ request('status') == 'rejected' ? ' active' : '' }}">Rejetés</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -51,7 +49,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($propositions as $proposition)
+                            @forelse ($propositions as $proposition)
                                 <tr class="status">
                                     <td class="tt-capital">{{$proposition->user->name}}</td>
                                     <td class="tt-capital">{{$proposition->updated_at}}</td>
@@ -84,18 +82,13 @@
                                         </button>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="6" class="c-777">Aucune proposition trouvée.</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
-
-                    <div class="table-footer">
-                        <div class="summary">
-                            <span>Total: 3 bons</span>
-                            <span class="pending-count">1 en attente</span>
-                            <span class="approved-count">1 approuvé</span>
-                            <span class="rejected-count">1 rejeté</span>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
