@@ -56,8 +56,10 @@ Route::get('/my-budget', UserBudgetController::class . "@loadUserBudget")
 
 Route::post('/propose-line',UserBudgetController::class . "@proposBudgetLine");
 
-Route::get('/proposition', propositionController::class . "@loadPendingProposition")
-    ->name('proposition.load');
+Route::get('/proposition/{status?}', [propositionController::class, "loadPendingProposition"])
+    ->name('proposition.load')
+    ->where('status', 'pending|approved|rejected')
+    ->defaults('status', 'pending');
     
 Route::post('/confirm-proposition', propositionController::class . "@confirmProposition")
     ->name('proposition.confirm');

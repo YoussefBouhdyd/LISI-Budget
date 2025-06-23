@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class propositionController extends Controller
 {
-    function loadPendingProposition()
+    function loadPendingProposition($status = 'pending')
     {
-        $propositions = LineBudgetProposal::where('status', 'pending')->where("is_validated",'1')->get();
+        $propositions = LineBudgetProposal::where('status', $status)->where("is_validated",'1')->get();
         return view("proposition")->with('propositions', $propositions);
     }
 

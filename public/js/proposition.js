@@ -16,24 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 })
             })
             .then(response => response.json())
-            .then(data => {
-                // Show a simple popup message
-                const msg = document.createElement('div');
-                msg.textContent = 'Proposition acceptée !';
-                msg.style.position = 'fixed';
-                msg.style.top = '20px';
-                msg.style.left = '50%';
-                msg.style.transform = 'translateX(-50%)';
-                msg.style.background = '#4caf50';
-                msg.style.color = '#fff';
-                msg.style.padding = '12px 24px';
-                msg.style.borderRadius = '6px';
-                msg.style.boxShadow = '0 2px 8px rgba(0,0,0,0.2)';
-                msg.style.zIndex = '9999';
-                document.body.appendChild(msg);
-                setTimeout(() => {
-                    msg.remove();
-                }, 2000);
+            .then(_ => {    
+                window.location.reload();            
+                showPopupMessage('Proposition acceptée !', true);
             })
             .catch(error => {
                 alert('Erreur lors de l\'envoi');

@@ -213,3 +213,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Send Budget Line Proposition
 
+// Generale Component
+// Show a general popup message
+function showPopupMessage(message, success = true, options = {}) {
+    const msg = document.createElement('div');
+    msg.textContent = message;
+    msg.style.position = 'fixed';
+    msg.style.top = options.top || '20px';
+    msg.style.left = '50%';
+    msg.style.transform = 'translateX(-50%)';
+    msg.style.background = options.background || (success ? '#4caf50' : '#f44336');
+    msg.style.color = options.color || '#fff';
+    msg.style.padding = options.padding || '12px 24px';
+    msg.style.borderRadius = options.borderRadius || '6px';
+    msg.style.boxShadow = options.boxShadow || '0 2px 8px rgba(0,0,0,0.2)';
+    msg.style.zIndex = options.zIndex || '9999';
+    document.body.appendChild(msg);
+    setTimeout(() => {
+        msg.remove();
+    }, options.duration || 2000);
+}
