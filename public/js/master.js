@@ -211,7 +211,21 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-// Send Budget Line Proposition
+// User box 
+
+document.addEventListener('DOMContentLoaded', function () {
+    const profileBtn = document.getElementById('profile-btn');
+    const profileBox = document.getElementById('profile-box');
+    if (profileBtn && profileBox) {
+        document.addEventListener('click', function (e) {
+            if (profileBtn.contains(e.target)) {
+                profileBox.style.display = profileBox.style.display === 'block' ? 'none' : 'block';
+            } else if (!profileBox.contains(e.target)) {
+                profileBox.style.display = 'none';
+            }
+        });
+    }
+});
 
 // Generale Component
 // Show a general popup message

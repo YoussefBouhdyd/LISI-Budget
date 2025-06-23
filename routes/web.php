@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\propositionController;
@@ -13,10 +14,6 @@ use PhpParser\Node\Expr\FuncCall;
 
 Route::get('/', function () {
     return view('home');
-});
-
-Route::get('/sign', function () {
-    return view('sign');
 });
 
 // Admin Routes
@@ -52,7 +49,8 @@ Route::get('/profile', function () {
 // User Routes
 
 Route::get('/my-budget', UserBudgetController::class . "@loadUserBudget")
-    ->name('userBudget.load');
+    ->name('userBudget.load')
+    ->middleware('auth');
 
 Route::post('/propose-line',UserBudgetController::class . "@proposBudgetLine");
 
@@ -80,3 +78,16 @@ Route::get('/order-tracking', function () {
 Route::get('/transmitter-profile', function () {
     return view('profil_emetteur');
 });
+
+// Authentication Routes
+
+
+Route::get('/login', AuthController::class . "@loadSignIn")
+    ->name('auth.login.form');
+
+Route::post('/login', AuthController::class . "@loginIn")
+    ->name('auth.login');
+
+Route::post('/logout', AuthController::class . "@logout")
+    ->name('auth.logout')
+    ->middleware('auth');

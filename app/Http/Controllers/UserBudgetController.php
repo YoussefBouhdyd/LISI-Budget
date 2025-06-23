@@ -11,7 +11,7 @@ class UserBudgetController extends Controller
 {
     public function loadUserBudget(Request $request)
     {
-        $user = User::find(2);
+        $user = auth()->user();
         $totalSpend = $user->budgetProposals->sum('spend');
         $budgetLinesProposals = $user->budgetProposals;
         return view('my_budget')

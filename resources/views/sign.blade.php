@@ -17,9 +17,17 @@
     <div class="logo-LISI">
         <img src="https://images.seeklogo.com/logo-png/35/1/lisi-logo-png_seeklogo-357728.png" alt="Logo LIST" />
     </div>
-    <form action="{{url('check')}}" method="POST" autocomplete="off">
-        <input type="text" name="username" placeholder="Username" />
-        <input type="password" name="password" placeholder="********" />
+    <form action="{{ route('auth.login') }}" method="POST" autocomplete="off">
+        @if($errors->any())
+            <div style="color:red;">
+                @foreach($errors->all() as $error)
+                    <p>{{ $error }}</p>
+                @endforeach
+            </div>
+        @endif
+        @csrf
+        <input type="text" name="email" placeholder="Email" required/>
+        <input type="password" name="password" placeholder="********" required/>
         <button type="submit">CONNEXION</button>
     </form>
     <div class="links">

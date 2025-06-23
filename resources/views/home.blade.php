@@ -15,7 +15,7 @@
             <!-- the links  -->
             <ul class="main-links">
                 <li ><a href="#">Caractéristique  </a></li>
-                <li class="sign-btn"><a href="{{ url('sign') }}">Connexion <i class="fa fa-user"></i></a></li>
+                <li class="sign-btn"><a href="{{ route('auth.login.form') }}">Connexion <i class="fa fa-user"></i></a></li>
             </ul>
         </div>
     </header>

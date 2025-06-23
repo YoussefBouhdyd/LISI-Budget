@@ -35,6 +35,20 @@
                 </ul>
             </div>
         </div>
-        <a href="profile.html"><img src="{{ asset('/imgs/user-profile.svg') }}" alt="user profile" class="rad-half"></a>
+        <button id="profile-btn" class="profile-btn profile-btn-style pointer">
+            <img src="{{ asset('/imgs/user-profile.svg') }}" alt="user profile" class="rad-half">
+        </button>
+        <div id="profile-box" class="profile-box profile-box-style">
+            <div class="profile-box-header">
+            <div class="profile-box-name">{{ Auth::user()->name }}</div>
+            <div class="profile-box-email">{{ Auth::user()->email }}</div>
+            </div>
+            <form method="POST" action="{{ route('auth.logout') }}" class="profile-box-form">
+            @csrf
+            <button type="submit" class="profile-box-logout-btn">
+                Se déconnecter
+            </button>
+            </form>
+        </div>
     </div>
 </div>

@@ -771,3 +771,44 @@
     background: #007bff;
     color: #fff;
 }
+
+/* User Box  */
+.profile-btn-style {
+    background: none;
+    border: none;
+    padding: 0;
+}
+.profile-box-style {
+    display: none;
+    position: absolute;
+    right: 1rem;
+    top: 4.5rem; /* 60px */
+    background: #fff;
+    box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.1); /* 2px 8px */
+    border-radius: 0.5rem; /* 8px */
+    min-width: 13.75rem; /* 220px */
+    z-index: 100;
+}
+.profile-box-header {
+    padding: 1rem; /* 16px */
+    border-bottom: 1px solid #eee;
+}
+.profile-box-name {
+    font-weight: bold;
+}
+.profile-box-email {
+    font-size: 0.95em;
+    color: #666;
+}
+.profile-box-form {
+    margin: 0;
+}
+.profile-box-logout-btn {
+    width: 100%;
+    padding: 0.75rem; /* 12px */
+    background: var(--red-color);
+    color: #fff;
+    border: none;
+    border-radius: 0 0 0.5rem 0.5rem; /* 8px */
+    cursor: pointer;
+}
