@@ -80,7 +80,11 @@
                         <div class="budget-line mb-20">
                             <div class="d-flex justify-between align-c mb-10 column-mobile">
                                 <span class="fw-bold mr-10">{{ $budgetLine->budgetLine['name'] }}:</span>
-                                <span>{{ $budgetLine['proposed_amount'] }} DH ({{$budgetLine['proposed_amount'] ? number_format(($budgetLine['spend'] * 100) / $budgetLine['proposed_amount'],2) : 0}}%)</span>
+                                @if ($budgetLine['status'] == 'approved')
+                                    <span>{{ $budgetLine['proposed_amount'] }} DH ({{ $budgetLine['proposed_amount'] ? number_format(($budgetLine['spend'] * 100) / $budgetLine['proposed_amount'], 2) : 0 }}%)</span>
+                                @else
+                                    <span>0 DH (0%)</span>
+                                @endif
                             </div>
                             <div class="progress-bar">
                                 <div class="progress-bar-inner" data-percent="{{$budgetLine['proposed_amount'] ? ($budgetLine['spend'] * 100) / $budgetLine['proposed_amount'] : 0 }}" style="width: {{$budgetLine['proposed_amount'] ? ($budgetLine['spend'] * 100) / $budgetLine['proposed_amount'] : 0}}%;height: 100%;border-radius:0.375rem;"></div>

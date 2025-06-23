@@ -77,7 +77,7 @@
                                         <button class="btn-primary bg-orange pointer" title="Modifier">
                                             <i class="fas fa-edit"></i>
                                         </button>
-                                        <button class="btn-primary bg-red pointer" title="Rejeter">
+                                        <button class="reject-propo-btn btn-primary bg-red pointer" title="Rejeter" data-id="{{$proposition->id}}">
                                             <i class="fas fa-times"></i>
                                         </button>
                                     </td>

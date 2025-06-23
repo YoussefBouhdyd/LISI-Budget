@@ -10,7 +10,7 @@
             </li>
             <li class="rad-6 tt-capital">
                 <a href="{{ url('/admin-engagement') }}" class="{{ request()->is('admin-engagement*') ? 'active' : '' }}">
-                    <i class="fa-solid fa-file-signature fa-fw"></i>
+                    <i class="fa-solid fa-cart-shopping fa-fw"></i>
                     <span class="hide-mobile">Engagements</span>
                 </a>
             </li>

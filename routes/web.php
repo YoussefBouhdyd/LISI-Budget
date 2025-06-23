@@ -3,7 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\propositionController;
+use App\Http\Controllers\PropositionController;
 use App\Http\Controllers\TransmitterController;
 use App\Http\Controllers\UserBudgetController;
 use App\Models\LineBudget;
@@ -54,13 +54,16 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/propose-line', UserBudgetController::class . "@proposBudgetLine");
 
-    Route::get('/proposition/{status?}', [propositionController::class, "loadPendingProposition"])
+    Route::get('/proposition/{status?}', [PropositionController::class, "loadPendingProposition"])
         ->name('proposition.load')
         ->where('status', 'pending|approved|rejected')
         ->defaults('status', 'pending');
 
-    Route::post('/confirm-proposition', propositionController::class . "@confirmProposition")
+    Route::post('/confirm-proposition', PropositionController::class . "@confirmProposition")
         ->name('proposition.confirm');
+    
+    Route::post('/reject-proposition', PropositionController::class . "@rejectProposition")
+        ->name('proposition.reject');
 
     Route::get('/purchase-order', function () {
         return view('bon_commande');

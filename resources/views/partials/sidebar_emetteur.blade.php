@@ -10,8 +10,8 @@
             </li>
             <li class="rad-6 tt-capital">
                 <a href="{{ url('/my-budget') }}" class="{{ request()->is('my-budget') ? 'active' : '' }}">
-                    <i class="fa-solid fa-piggy-bank fa-fw"></i>
-                    <span class="hide-mobile">Mon Budget</span>
+                    <i class="fa-solid fa-wallet fa-fw"></i>
+                    <span class="hide-mobile">Budget</span>
                 </a>
             </li>
             <li class="rad-6 tt-capital">

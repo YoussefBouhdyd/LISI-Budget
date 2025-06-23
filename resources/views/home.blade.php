@@ -14,7 +14,6 @@
             <h1>LISI</h1>
             <!-- the links  -->
             <ul class="main-links">
-                <li ><a href="#">Caractéristique  </a></li>
                 <li class="sign-btn"><a href="{{ route('login') }}">Connexion <i class="fa fa-user"></i></a></li>
             </ul>
         </div>
@@ -33,8 +32,5 @@
                 </p>
             </div>
         </div>
-        <a class="to-down" href="#Articles">
-            <i class="fas fa-angle-double-down fa-2x"></i>
-        </a>
     </div>
 @endsection

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\LineBudgetProposal;
 use Illuminate\Http\Request;
 
-class propositionController extends Controller
+class PropositionController extends Controller
 {
     function loadPendingProposition($status = 'pending')
     {
@@ -23,6 +23,21 @@ class propositionController extends Controller
             $proposition->save();
 
             return response()->json(['message' => 'Proposition confirmée avec succès.']);
+        }
+
+        return response()->json(['message' => 'Proposition non trouvée.'], 404);
+    }
+
+    function rejectProposition(Request $request)
+    {
+        $id = $request->input('id');
+
+        $proposition = LineBudgetProposal::find($id);
+        if ($proposition) {
+            $proposition->status = 'rejected';
+            $proposition->save();
+
+            return response()->json(['message' => 'Proposition rejetée avec succès.']);
         }
 
         return response()->json(['message' => 'Proposition non trouvée.'], 404);
