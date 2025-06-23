@@ -52,7 +52,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (request.status === 200) {
                         deleteModal.style.display = 'none';
                         deleteAction = null;
-                        location.reload();
+                        showPopupMessage('Émetteur supprimé avec succès !', true);
+                        setTimeout(() => {
+                            location.reload();
+                        }, 500);
                     } else {
                         // Handle error case
                         console.error('Error deleting transmitter:', request.responseText);
@@ -245,5 +248,5 @@ function showPopupMessage(message, success = true, options = {}) {
     document.body.appendChild(msg);
     setTimeout(() => {
         msg.remove();
-    }, options.duration || 2000);
+    }, options.duration || 500);
 }

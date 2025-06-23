@@ -18,72 +18,72 @@ Route::get('/', function () {
 
 // Admin Routes
 
-Route::get('/admin', DashboardController::class . "@loadSummarize");
+Route::middleware('auth')->group(function () {
+    Route::get('/admin', DashboardController::class . "@loadSummarize");
 
-Route::get('/admin-engagement', function () {
-    return view('engagements');
-});
+    Route::get('/admin-engagement', function () {
+        return view('engagements');
+    });
 
-Route::get('/transmitter', TransmitterController::class . "@loadTransmitters")
-    ->name('transmitter.load');
+    Route::get('/transmitter', TransmitterController::class . "@loadTransmitters")
+        ->name('transmitter.load');
 
-Route::post('/add-transmitter',TransmitterController::class . "@createNewTransmitter")
-    ->name('transmitter.create');
+    Route::post('/add-transmitter', TransmitterController::class . "@createNewTransmitter")
+        ->name('transmitter.create');
 
-Route::delete('/remove-transmitter', TransmitterController::class . "@deleteTransmitter")
-    ->name('transmitter.delete');
+    Route::delete('/remove-transmitter', TransmitterController::class . "@deleteTransmitter")
+        ->name('transmitter.delete');
 
-Route::post('/update-transmitter', TransmitterController::class . "@updateTransmitter")
-    ->name('transmitter.update');
+    Route::post('/update-transmitter', TransmitterController::class . "@updateTransmitter")
+        ->name('transmitter.update');
 
-Route::get('/budget', BudgetController::class . "@loadBudget")
-    ->name('budget.load');
+    Route::get('/budget', BudgetController::class . "@loadBudget")
+        ->name('budget.load');
 
-Route::post('/lineBudget' , BudgetController::class . '@updateLineBudget')
-    ->name('lineBudget.update');
+    Route::post('/lineBudget', BudgetController::class . '@updateLineBudget')
+        ->name('lineBudget.update');
 
-Route::get('/profile', function () {
-    return view('profile');
-});
+    Route::get('/profile', function () {
+        return view('profile');
+    });
 
-// User Routes
+    // User Routes
 
-Route::get('/my-budget', UserBudgetController::class . "@loadUserBudget")
-    ->name('userBudget.load')
-    ->middleware('auth');
+    Route::get('/my-budget', UserBudgetController::class . "@loadUserBudget")
+        ->name('userBudget.load');
 
-Route::post('/propose-line',UserBudgetController::class . "@proposBudgetLine");
+    Route::post('/propose-line', UserBudgetController::class . "@proposBudgetLine");
 
-Route::get('/proposition/{status?}', [propositionController::class, "loadPendingProposition"])
-    ->name('proposition.load')
-    ->where('status', 'pending|approved|rejected')
-    ->defaults('status', 'pending');
-    
-Route::post('/confirm-proposition', propositionController::class . "@confirmProposition")
-    ->name('proposition.confirm');
+    Route::get('/proposition/{status?}', [propositionController::class, "loadPendingProposition"])
+        ->name('proposition.load')
+        ->where('status', 'pending|approved|rejected')
+        ->defaults('status', 'pending');
 
-Route::get('/purchase-order', function () {
-    return view('bon_commande');
-});
+    Route::post('/confirm-proposition', propositionController::class . "@confirmProposition")
+        ->name('proposition.confirm');
 
-Route::post('/purchase-order', function () {
-    // Ajoute ici la logique de sauvegarde ou le contrôleur
-    // Exemple : return 'Bon de commande enregistré !';
-})->name('bon_commande.store');
+    Route::get('/purchase-order', function () {
+        return view('bon_commande');
+    });
 
-Route::get('/order-tracking', function () {
-    return view('suivie_BC');
-});
+    Route::post('/purchase-order', function () {
+        // Ajoute ici la logique de sauvegarde ou le contrôleur
+        // Exemple : return 'Bon de commande enregistré !';
+    })->name('bon_commande.store');
 
-Route::get('/transmitter-profile', function () {
-    return view('profil_emetteur');
+    Route::get('/order-tracking', function () {
+        return view('suivie_BC');
+    });
+
+    Route::get('/transmitter-profile', function () {
+        return view('profil_emetteur');
+    });
 });
 
 // Authentication Routes
 
-
 Route::get('/login', AuthController::class . "@loadSignIn")
-    ->name('auth.login.form');
+    ->name('login');
 
 Route::post('/login', AuthController::class . "@loginIn")
     ->name('auth.login');

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendPasswordMail;
+Use Illuminate\Support\Str;
 
 class TransmitterController extends Controller
 {
@@ -14,19 +17,29 @@ class TransmitterController extends Controller
     }
 
     public function createNewTransmitter (Request $request) {
-        $newTransmitter = new User();
-        $newTransmitter->name = $request['name'];
-        $newTransmitter->email = $request['email'];
-        $newTransmitter->budget = $request['budget'];
-        // we should generate a random password then send it to the user via email
-        $newTransmitter->password = "Youssef";
-        $newTransmitter->profession = $request['profession'];
-        $newTransmitter->save();
+        try {
+            $newTransmitter = new User();
+            $newTransmitter->name = $request['name'];
+            $newTransmitter->email = $request['email'];
+            $newTransmitter->budget = $request['budget'];
+            $password = Str::random(10);
+            $newTransmitter->password = $password;
+            $newTransmitter->profession = $request['profession'];
 
-        // Budget Line Proposal
-        
+            try {
+                Mail::to($request->email)->send(new SendPasswordMail($password));
+            } catch (\Exception $e) {
+                return redirect('/transmitter')->with('error', 'Erreur lors de l\'envoi de l\'email: ' . $e->getMessage());
+            }
 
-        return redirect('/transmitter')->with('success', 'Émetteur créé avec succès');
+            $newTransmitter->save();
+
+            // Budget Line Proposal
+
+            return redirect('/transmitter')->with('success', 'Émetteur créé avec succès');
+        } catch (\Exception $e) {
+            return redirect('/transmitter')->with('error', 'Erreur lors de la création de l\'émetteur: ' . $e->getMessage());
+        }
     }
 
     public function deleteTransmitter(Request $request) {
@@ -35,7 +48,7 @@ class TransmitterController extends Controller
 
         if ($transmitter) {
             $transmitter->delete();
-            return response()->json(['message' => 'Transmitter deleted successfully']);
+            return response()->json(['message' => 'Émetteur supprimé avec succès']);
         }
 
         return response()->json(['error' => 'Transmitter not found'], 404);

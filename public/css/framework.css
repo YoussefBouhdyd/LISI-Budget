@@ -91,6 +91,15 @@
     }
 }
 /* Buttons  */
+.no-hover:hover,
+.no-hover:focus,
+.no-hover:active {
+    background-color: #ccc !important;
+    color: white !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+}
 .btn-primary {
     padding: 0.3125rem 0.625rem;
     color: #fff;

@@ -14,7 +14,10 @@ document.querySelectorAll(".validate-btn").forEach(btn => {
             request.onreadystatechange = function() {
                 if (request.readyState === XMLHttpRequest.DONE) {
                     if (request.status === 200) {
-                        location.reload();
+                        showPopupMessage('Valeur proposée avec succès !', true);
+                        setTimeout(() => {
+                            location.reload();
+                        }, 500);
                     } else {
                         // Handle error case
                         console.error('Error in proposing a value:', request.responseText);

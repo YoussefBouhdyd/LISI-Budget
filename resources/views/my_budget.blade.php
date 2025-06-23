@@ -137,7 +137,7 @@
                                     </td>
                                     <td class="tt-capital">
                                         @if ($budgetLine['is_validated'] == 1)
-                                            <button class="btn-action btn-generate bg-gray" disabled>
+                                            <button class="btn-action bg-gray c-white no-hover" disabled>
                                                 <i class="fas fa-check"></i> Valider
                                             </button>
                                         @else
@@ -153,10 +153,10 @@
     
                     <div class="table-footer">
                         <div class="summary">
-                            <span>Total: 3 bons</span>
-                            <span class="pending-count">1 en attente</span>
-                            <span class="approved-count">1 approuvé</span>
-                            <span class="rejected-count">1 rejeté</span>
+                            <span>Total: {{ $budgetLines->count() }} bons</span>
+                            <span class="pending-count">{{ $budgetLines->where('status', 'pending')->count() }} en attente</span>
+                            <span class="approved-count">{{ $budgetLines->where('status', 'approved')->count() }} approuvé</span>
+                            <span class="rejected-count">{{ $budgetLines->where('status', 'rejected')->count() }} rejeté</span>
                         </div>
                     </div>
                 </div>
