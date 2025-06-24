@@ -4,8 +4,8 @@
         <ul class="link">
             <li class="rad-6 tt-capital">
                 <a href="{{ url('/purchase-order') }}" class="{{ request()->is('purchase-order') ? 'active' : '' }}">
-                    <i class="fa-solid fa-file-invoice fa-fw"></i>
-                    <span class="hide-mobile">Bon de commande</span>
+                    <i class="fa-solid fa-cart-shopping fa-fw"></i>
+                    <span class="hide-mobile">Engagements</span>
                 </a>
             </li>
             <li class="rad-6 tt-capital">
@@ -17,7 +17,7 @@
             <li class="rad-6 tt-capital">
                 <a href="{{ url('/order-tracking') }}" class="{{ request()->is('order-tracking') ? 'active' : '' }}">
                     <i class="fa-solid fa-list fa-fw"></i>
-                    <span class="hide-mobile">Suivi BC</span>
+                    <span class="hide-mobile">Suivi Engagements</span>
                 </a>
             </li>
             <li class="rad-6 tt-capital">
