@@ -101,24 +101,22 @@
             <div class="lines-stats bg-white p-15 rad-6">
                 <div class="d-flex s-between align-c mb-10">
                     <h2 class="m-15-0">Lignes Budgétaires</h2>
-                    <button type="button" class="btn-primary bg-blue rad-6 d-flex align-c gap-5 pointer" id="editLinesBtn">
-                        <i class="fa-solid fa-pen"></i> <span class="hide-mobile">Modifier</span>
+                    <button type="button" class="btn-primary bg-blue rad-6 d-flex align-c gap-5 pointer" id="addLineBtn">
+                        <i class="fa-solid fa-plus"></i> <span class="hide-mobile">Ajouter</span>
                     </button>
-                    <!-- Modal for editing budget lines -->
-                    <div id="editLinesModal" class="modal-overlay" style="display:none;">
+                    <!-- Modal for adding new budget line -->
+                    <div id="addLineModal" class="modal-overlay" style="display:none;">
                         <div class="modal-content bg-white p-20 rad-6" style="min-width:350px; max-width:95vw;">
-                            <h3 class="mb-15">Modifier les lignes budgétaires</h3>
-                            <form id="linesEditForm" method="POST" action="{{ url('/lineBudget') }}">
+                            <h3 class="mb-15">Ajouter une nouvelle ligne budgétaire</h3>
+                            <form id="addLineForm" method="POST" action="{{ url('/lineBudget/add') }}">
                                 @csrf
-                                @foreach ($budgetLines as $budgetLine)
-                                    <div class="mb-10">
-                                        <label class="fw-bold" for="{{ $budgetLine['name'] }}">{{ $budgetLine['name'] }}</label>
-                                        <input type="number" step="0.01" min="0" class="form-control" id="{{ $budgetLine['name'] }}" name="{{ $budgetLine['id'] }}" value="{{ $budgetLine['amount'] }}" required>
-                                    </div>
-                                @endforeach
+                                <div class="mb-10">
+                                    <label class="fw-bold" for="lineName">Nom de la ligne</label>
+                                    <input type="text" class="form-control" id="lineName" name="name" required>
+                                </div>
                                 <div class="d-flex gap-10 mt-15">
-                                    <button type="submit" class="btn-primary bg-blue rad-6 pointer">Enregistrer</button>
-                                    <button type="button" class="btn-primary bg-gray rad-6 pointer" id="closeLinesModal">Annuler</button>
+                                    <button type="submit" class="btn-primary bg-blue rad-6 pointer">Ajouter</button>
+                                    <button type="button" class="btn-primary bg-gray rad-6 pointer" id="closeAddLineModal">Annuler</button>
                                 </div>
                             </form>
                         </div>

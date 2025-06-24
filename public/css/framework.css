@@ -123,6 +123,10 @@
     border: 0.0625rem solid #eee;
 }
 
+.border-danger {
+    border: 0.0625rem solid var(--red-color);
+}
+
 /* switch button  */
 .switch-btn {
     align-self: flex-end;

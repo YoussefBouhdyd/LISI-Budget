@@ -61,6 +61,10 @@
                             <span class="budget-info-value budget-info-danger">{{ $userData['budget'] ? (number_format($totalSpend * 100 / $userData['budget'],2)) : 0 }}%</span>
                         </div>
                         <div class="d-flex justify-between budget-info-row">
+                            <span class="fw-bold budget-info-label">Budget non spécifié à une ligne :</span>
+                            <span class="budget-info-value green-c">{{ $userData['budget'] - $totalApproved }} DH</span>
+                        </div>
+                        <div class="d-flex justify-between budget-info-row">
                             <span class="fw-bold budget-info-label">Date d'ajout:</span>
                             <span class="budget-info-value">{{ $userData['created_at'] }}</span>
                         </div>
@@ -100,7 +104,7 @@
         </div>
         <!-- End Budget Content  -->
 
-                {{-- Start Budget Line Proposition  --}}
+        {{-- Start Budget Line Proposition  --}}
         <div class="section-content p-15">
             <div class="projects bg-white rad-6 p-15">
                 <div class="orders-header">
@@ -122,7 +126,15 @@
                             @foreach ($budgetLines as $budgetLine)
                                 <tr class="budget-line-prop">
                                     <td class="tt-capital">{{ $budgetLine->budgetLine['name'] }}</td>
-                                    <td class="tt-capital"><input class="p-10 rad-6 border" type="number" value="{{$budgetLine['proposed_amount']}}" {{$budgetLine['status'] == 'approved' || $budgetLine['is_validated'] ? "disabled" : ""}}> DH</td>
+                                    <td class="tt-capital">
+                                        <input 
+                                            class="p-10 rad-6 border proposed-amount-input" 
+                                            type="number" 
+                                            value="{{$budgetLine['proposed_amount']}}" 
+                                            {{$budgetLine['status'] == 'approved' || $budgetLine['is_validated'] ? "disabled" : ""}}
+                                            data-max="{{ $userData['budget'] - $totalApproved }}"
+                                        > DH
+                                    </td>
                                     <td class="tt-capital">
                                         @if ($budgetLine['status'] == 'pending')
                                             <span class="status-badge pending">
@@ -137,7 +149,6 @@
                                                 <i class="fas fa-times-circle"></i> Rejeté
                                             </span>
                                         @endif
-                                        
                                     </td>
                                     <td class="tt-capital">
                                         @if ($budgetLine['is_validated'] == 1)
@@ -145,7 +156,10 @@
                                                 <i class="fas fa-check"></i> Valider
                                             </button>
                                         @else
-                                            <button data-line-id="{{$budgetLine['id']}}" class="validate-btn btn-action btn-generate">
+                                            <button 
+                                                data-line-id="{{$budgetLine['id']}}" 
+                                                class="validate-btn btn-action btn-generate"
+                                            >
                                                 <i class="fas fa-check"></i> Valider
                                             </button>
                                         @endif

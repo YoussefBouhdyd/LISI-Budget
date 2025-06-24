@@ -23,7 +23,7 @@
             <li class="rad-6 tt-capital">
                 <a href="{{ url('/transmitter-profile') }}" class="{{ request()->is('transmitter-profile') ? 'active' : '' }}">
                     <i class="fa-regular fa-user fa-fw"></i>
-                    <span class="hide-mobile">Profil émetteur</span>
+                    <span class="hide-mobile">Profil</span>
                 </a>
             </li>
         </ul>

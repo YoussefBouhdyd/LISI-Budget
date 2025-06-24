@@ -158,29 +158,27 @@ if (editBudgetModal) {
     };
 }
 
-// Edit Line budget Model 
-document.addEventListener('DOMContentLoaded', function () {
-    const editLinesBtn = document.getElementById('editLinesBtn');
-    const editLinesModal = document.getElementById('editLinesModal');
-    const closeLinesModal = document.getElementById('closeLinesModal');
+// Adding Line budget Model 
+document.addEventListener('DOMContentLoaded', function() {
+    const addLineBtn = document.getElementById('addLineBtn');
+    const addLineModal = document.getElementById('addLineModal');
+    const closeAddLineModal = document.getElementById('closeAddLineModal');
 
-    if (editLinesBtn && editLinesModal) {
-        editLinesBtn.addEventListener('click', function () {
-            editLinesModal.style.display = 'block';
+    if (addLineBtn && addLineModal) {
+        addLineBtn.addEventListener('click', function() {
+            addLineModal.style.display = 'block';
         });
     }
-
-    if (closeLinesModal && editLinesModal) {
-        closeLinesModal.addEventListener('click', function () {
-            editLinesModal.style.display = 'none';
+    if (closeAddLineModal && addLineModal) {
+        closeAddLineModal.addEventListener('click', function() {
+            addLineModal.style.display = 'none';
         });
     }
-
-    // Optional: close modal when clicking outside content
-    if (editLinesModal) {
-        editLinesModal.addEventListener('click', function (e) {
-            if (e.target === editLinesModal) {
-                editLinesModal.style.display = 'none';
+    // Optional: close modal when clicking outside modal-content
+    if (addLineModal) {
+        addLineModal.addEventListener('click', function(e) {
+            if (e.target === addLineModal) {
+                addLineModal.style.display = 'none';
             }
         });
     }

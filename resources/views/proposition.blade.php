@@ -71,15 +71,19 @@
                                         @endif
                                     </td>
                                     <td class="tt-capital d-flex align-c gap-5">
-                                        <button class="accept-propo-btn btn-primary bg-green pointer" title="Accepter" data-id="{{$proposition->id}}">
-                                            <i class="fas fa-check"></i>
-                                        </button>
-                                        <button class="btn-primary bg-orange pointer" title="Modifier">
+                                        @if (request('status') !== 'approved')
+                                            <button class="accept-propo-btn btn-primary bg-green pointer" title="Accepter" data-id="{{$proposition->id}}">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                        @endif
+                                        <button class="edit-propo-btn btn-primary bg-orange pointer" title="Modifier">
                                             <i class="fas fa-edit"></i>
                                         </button>
-                                        <button class="reject-propo-btn btn-primary bg-red pointer" title="Rejeter" data-id="{{$proposition->id}}">
-                                            <i class="fas fa-times"></i>
-                                        </button>
+                                        @if (request('status') !== 'rejected')
+                                            <button class="reject-propo-btn btn-primary bg-red pointer" title="Rejeter" data-id="{{$proposition->id}}">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        @endif
                                     </td>
                                 </tr>
                             @empty

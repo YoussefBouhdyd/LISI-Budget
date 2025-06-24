@@ -17,14 +17,12 @@ class BudgetController extends Controller
             ->with('totalSpend',LineBudget::sum('spend'));
     }
 
-    public function updateLineBudget (Request $request) {
-        foreach ($request->all() as $key => $value) {
-            if ($key === "_token") continue;
-            $lineBudget = LineBudget::find((int) $key);
-            $lineBudget->amount = $value;
-            $lineBudget->save();
-        }
-        return redirect('budget');
+    public function addBudgetLine(Request $request) {
+        $budgetLine = new LineBudget();
+        $budgetLine->name = $request->input('name');
+        $budgetLine->save();
+
+        return redirect()->back()->with('success', 'Budget line added successfully.');
     }
 
 }
