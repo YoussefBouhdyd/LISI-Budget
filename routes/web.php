@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\NeedExpressionController;
 use App\Http\Controllers\PropositionController;
 use App\Http\Controllers\TransmitterController;
 use App\Http\Controllers\UserBudgetController;
@@ -65,9 +66,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/reject-proposition', PropositionController::class . "@rejectProposition")
         ->name('proposition.reject');
 
-    Route::get('/need_expression', function () {
-        return view('need_expression');
-    });
+    Route::get('/need_expression', NeedExpressionController::class . "@loadNeedExpression")->name('need_expression.load');
 
     Route::get('/order-tracking', function () {
         return view('suivie_BC');

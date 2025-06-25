@@ -17,50 +17,59 @@
             <h1 class="content-title mb-20">
                 Engagement
             </h1>
-                <!-- Budget Line Section -->
+            <!-- Budget Line Section -->
             <section class="budget-line bg-white rad-6 p-15 mb-10">
                 <h2 class="m-15-0">Ligne Budgétaire </h2>
                 
                 <div class="form-group mb-20">
-                    <label for="budget-select" class="d-block mb-10 fw-bold">
+                    <label for="budget-select" class="d-block pl-5 mb-10 fw-bold c-777">
                         Sélectionner une ligne budgétaire:
                     </label>
-                    <select id="budget-select" class="p-10 rad-6 border-ccc w-full">
+                    <select id="budget-select" class="p-10 rad-6 border full-w mb-10">
                         <option value="">-- Choisir une ligne --</option>
-                        <option value="22033">22033 - Achat fournitures informatiques</option>
-                        <option value="22034">22034 - Achat matériel bureau</option>
-                        <option value="22035">22035 - Frais de maintenance</option>
+                        @foreach($approvedBudgetLines as $line)
+                            <option 
+                                value="{{ $line->id }}"
+                                data-code="{{ $line->budgetLine->code ?? '' }}"
+                                data-dotation="{{ number_format($line->proposed_amount, 2) }}"
+                                data-engaged="{{ number_format($line->spend, 2) }}"
+                                data-balance="{{ number_format($line->proposed_amount - $line->spend, 2) }}"
+                            >
+                                {{ $line->budgetLine->name}}
+                            </option>
+                        @endforeach
                     </select>
-                </div>
-                
-                <div class="budget-details">
-                    <div class="table-responsive">
-                        <table class="table full-w">
-                            <thead>
-                                <tr class="bg-eee">
-                                    <th class="p-15 txt-l fw-bold">Code</th>
-                                    <th class="p-15 txt-l fw-bold">Dotation</th>
-                                    <th class="p-15 txt-l fw-bold">Engagé</th>
-                                    <th class="p-15 txt-l fw-bold">Reliquat</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="p-15 fw-bold" id="budget-code">-</td>
-                                    <td class="p-15" id="budget-dotation">0.00 DH</td>
-                                    <td class="p-15" id="budget-engaged">0.00 DH</td>
-                                    <td class="p-15" id="budget-balance">0.00 DH</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="budget-details">
+                        <div class="table-responsive">
+                            <table class="table full-w">
+                                <thead>
+                                    <tr class="bg-eee">
+                                        <th class="p-15 txt-l fw-bold">Code</th>
+                                        <th class="p-15 txt-l fw-bold">Dotation</th>
+                                        <th class="p-15 txt-l fw-bold">Engagé</th>
+                                        <th class="p-15 txt-l fw-bold">Reliquat</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="p-15 fw-bold" id="budget-code">-</td>
+                                        <td class="p-15" id="budget-dotation">0.00 DH</td>
+                                        <td class="p-15" id="budget-engaged">0.00 DH</td>
+                                        <td class="p-15" id="budget-balance">0.00 DH</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <!-- Items Section -->
-            <section class="items-section mb-30">
-                <h2 class="m-15-0">Besoins </h2>
-                
+            <section class="items-section bg-white rad-6 p-15 mb-10">
+                <h2 class="m-15-0">Besoins </h2> 
+                <p class="mb-10 pl-5 c-777">
+                    Veuillez écrire ici votre besoin.
+                </p>
                 <!-- Add Item Form -->
                 <div class="add-item-form p-20 bg-f9 rad-6 mb-20">
                     <div class="form-row d-flex mb-15" style="gap: 20px;">
@@ -69,14 +78,14 @@
                                 Désignation
                             </label>
                             <input type="text" id="item-name" placeholder="Nom de l'article" 
-                                class="p-10 rad-6 border-ccc w-full">
+                                class="p-10 rad-6 border-ccc full-w">
                         </div>
                         <div class="form-group flex-1">
                             <label for="item-qty" class="d-block mb-5 fw-bold">
                                 Quantité
                             </label>
                             <input type="number" id="item-qty" min="1" value="1" 
-                                class="p-10 rad-6 border-ccc w-full">
+                                class="p-10 rad-6 border-ccc full-w">
                         </div>
                     </div>
                     
@@ -86,14 +95,14 @@
                                 Prix unitaire (DH)
                             </label>
                             <input type="number" id="item-price" min="0" step="0.01" 
-                                placeholder="0.00" class="p-10 rad-6 border-ccc w-full">
+                                placeholder="0.00" class="p-10 rad-6 border-ccc full-w">
                         </div>
                         <div class="form-group flex-1">
                             <label for="item-total" class="d-block mb-5 fw-bold">
                                 Total (DH)
                             </label>
                             <input type="text" id="item-total" value="0.00" readonly 
-                                class="p-10 rad-6 border-ccc w-full bg-eee">
+                                class="p-10 rad-6 border-ccc full-w bg-eee">
                         </div>
                     </div>
                     
@@ -159,5 +168,5 @@
     </div>
 </div>
 
-<script src="{{ asset('js/bon_commande.js') }}"></script>
+<script src="{{ asset('js/need_expression.js') }}"></script>
 @endsection

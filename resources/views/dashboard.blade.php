@@ -23,7 +23,7 @@
                 <div class="head d-flex s-between p-15 bg-eee p-relative" >
                     <div class="greeting">
                         <h2 class="m-15-0">Welcome</h2>
-                        <span>Youssef</span>
+                        <span>{{ Auth::user()->name }}</span>
                     </div>
                     <div class="image">
                         <img src="{{ asset('/imgs/welcome.png') }}" alt="welcome" class="mw-100">
@@ -32,13 +32,15 @@
                 </div>
                 <div class="sumrise d-flex s-around p-15 text-center">
                     <div class="col">
-                        <h4>Youssef Bouhdyd</h4>
-                        <span class="tt-capital">Admin</span>
+                        <h4>{{ Auth::user()->name }}</h4>
+                        <span class="tt-capital">{{ Auth::user()->role }}</span>
                     </div>
-                    <div class="col">
-                        <h4>Enseignement</h4>
-                        <span class="tt-capital">Profession</span>
-                    </div>
+                    @if (Auth::user()->role !== 'admin')
+                        <div class="col">
+                            <h4>{{ Auth::user()->profession}}</h4>
+                            <span class="tt-capital">Profession</span>
+                        </div>
+                    @endif
                 </div>
             </div>
             <!-- End Welcome  -->

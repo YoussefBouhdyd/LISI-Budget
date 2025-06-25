@@ -62,7 +62,7 @@
                         </div>
                         <div class="d-flex justify-between budget-info-row">
                             <span class="fw-bold budget-info-label">Budget non spécifié à une ligne :</span>
-                            <span class="budget-info-value green-c">{{ $userData['budget'] - $totalApproved }} DH</span>
+                            <span class="budget-info-value green-c">{{ $userData['budget'] - $totalValidated }} DH</span>
                         </div>
                         <div class="d-flex justify-between budget-info-row">
                             <span class="fw-bold budget-info-label">Date d'ajout:</span>
@@ -132,7 +132,7 @@
                                             type="number" 
                                             value="{{$budgetLine['proposed_amount']}}" 
                                             {{$budgetLine['status'] == 'approved' || $budgetLine['is_validated'] ? "disabled" : ""}}
-                                            data-max="{{ $userData['budget'] - $totalApproved }}"
+                                            data-max="{{ $userData['budget'] - $totalValidated }}"
                                         > DH
                                     </td>
                                     <td class="tt-capital">

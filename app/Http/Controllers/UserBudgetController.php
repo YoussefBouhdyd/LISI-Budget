@@ -14,12 +14,12 @@ class UserBudgetController extends Controller
         $user = auth()->user();
         $totalSpend = $user->budgetProposals->sum('spend');
         $budgetLinesProposals = $user->budgetProposals;
-        $totalApproved = $budgetLinesProposals->where('status','approved')->sum('proposed_amount');
+        $totalValidated = $budgetLinesProposals->where('is_validated',true)->sum('proposed_amount');
         return view('my_budget')
                 ->with('userData',$user)
                 ->with('totalSpend',$totalSpend)
                 ->with('budgetLines',$budgetLinesProposals)
-                ->with('totalApproved',$totalApproved);
+                ->with('totalValidated',$totalValidated);
     }
 
     public function proposBudgetLine(Request $request)
