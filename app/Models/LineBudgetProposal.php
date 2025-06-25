@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\LineBudget;
+use App\Models\Engagement;
 
 class LineBudgetProposal extends Model
 {
@@ -16,5 +17,10 @@ class LineBudgetProposal extends Model
     public function budgetLine()
     {   
         return $this->belongsTo(LineBudget::class);
+    }
+
+    public function engagements()
+    {
+        return $this->hasMany(Engagement::class);
     }
 }

@@ -63,8 +63,13 @@
                     </div>
                 </div>
             </section>
+            {{-- <script>
+                // Access the select element
+                const budgetSelect = document.getElementById('budget-select');
+                budgetSelect.options[budgetSelect.selectedIndex].dataset.balance;
+            </script> --}}
 
-            <!-- Items Section -->
+            <!-- Need Section -->
             <section class="items-section bg-white rad-6 p-15 mb-10">
                 <h2 class="m-15-0">Besoins </h2> 
                 <p class="mb-10 pl-5 c-777">
@@ -72,13 +77,12 @@
                 </p>
                 <!-- Add Item Form -->
                 <div class="add-item-form p-20 bg-f9 rad-6 mb-20">
-                    <div class="form-row d-flex mb-15" style="gap: 20px;">
+                    <div class="form-row d-flex mb-15 gap-20">
                         <div class="form-group flex-1">
                             <label for="item-name" class="d-block mb-5 fw-bold">
-                                Désignation
+                                Nature du Besoin
                             </label>
-                            <input type="text" id="item-name" placeholder="Nom de l'article" 
-                                class="p-10 rad-6 border-ccc full-w">
+                            <input type="text" id="item-name" placeholder="Nature" class="p-10 rad-6 border-ccc full-w">
                         </div>
                         <div class="form-group flex-1">
                             <label for="item-qty" class="d-block mb-5 fw-bold">
@@ -88,11 +92,20 @@
                                 class="p-10 rad-6 border-ccc full-w">
                         </div>
                     </div>
+
+                    <div class="form-row d-flex mb-15 gap-20">
+                        <div class="form-group flex-1">
+                            <label for="item-description" class="d-block mb-5 fw-bold">
+                                Description
+                            </label>
+                            <input type="text" id="item-description" placeholder="Description" class="p-10 rad-6 border-ccc full-w">
+                        </div>
+                    </div>
                     
-                    <div class="form-row d-flex mb-15" style="gap: 20px;">
+                    <div class="form-row d-flex mb-15 gap-20">
                         <div class="form-group flex-1">
                             <label for="item-price" class="d-block mb-5 fw-bold">
-                                Prix unitaire (DH)
+                                Prix Unitaire Estimé (DH)
                             </label>
                             <input type="number" id="item-price" min="0" step="0.01" 
                                 placeholder="0.00" class="p-10 rad-6 border-ccc full-w">
@@ -101,18 +114,14 @@
                             <label for="item-total" class="d-block mb-5 fw-bold">
                                 Total (DH)
                             </label>
-                            <input type="text" id="item-total" value="0.00" readonly 
-                                class="p-10 rad-6 border-ccc full-w bg-eee">
+                            <input type="text" id="item-total" value="0.00" readonly class="p-10 rad-6 border-ccc full-w bg-eee">
+                            <div id="add-item-error" class="red-c fs-14 mt-5 fw-bold" style="display: none;"></div>
                         </div>
                     </div>
                     
-                    <div class="form-actions d-flex flex-end" style="gap: 10px;">
-                        <button id="add-item-btn" class="btn btn-primary rad-6 bg-blue c-white p-10 pointer">
+                    <div class="form-actions d-flex flex-end gap-5">
+                        <button id="add-item-btn" class="btn btn-primary rad-6 bg-blue c-white p-10 pointer d-flex gap-5">
                             <i class="fas fa-plus-circle mr-5"></i> Ajouter Article
-                        </button>
-                        <button id="cancel-edit-btn" class="btn btn-secondary rad-6 bg-gray c-white p-10 pointer" 
-                                style="display:none;">
-                            <i class="fas fa-times mr-5"></i> Annuler
                         </button>
                     </div>
                 </div>

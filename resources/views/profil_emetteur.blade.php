@@ -96,7 +96,7 @@
                             <!-- Statistics Section -->
                             <div class="stats-container">
                                 <h3 class="mb-20 d-flex align-c">
-                                    <i class="fas fa-chart-pie c-orange mr-10"></i> 
+                                    <i class="fas fa-chart-pie orange-c mr-10"></i> 
                                     <span>Mes Statistiques</span>
                                 </h3>
                                 <div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
@@ -120,7 +120,7 @@
                                     </div>
                                     <div class="stat-card bg-f9 p-20 rad-6 d-flex align-c" style="gap: 15px;">
                                         <div class="stat-icon">
-                                            <i class="fas fa-clock c-orange fs-24"></i>
+                                            <i class="fas fa-clock orange-c fs-24"></i>
                                         </div>
                                         <div class="stat-info">
                                             <span class="stat-value d-block fw-bold fs-18">3</span>
