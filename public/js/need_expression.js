@@ -68,7 +68,7 @@ function updateBalance(finalTotal) {
     const newBalance = currentDotation - finalTotal;
     budgetBalanceElem.textContent = newBalance.toFixed(2) + ' DH';
 
-    // Disable all item fields if balance is 0 or less, enable otherwise
+    // Disable all item fields if balance < 0
     const itemFields = [
         document.getElementById('item-name'),
         document.getElementById('item-qty'),
