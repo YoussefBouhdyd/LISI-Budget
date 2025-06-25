@@ -23,7 +23,7 @@
                 
                 <div class="form-group mb-20">
                     <label for="budget-select" class="d-block pl-5 mb-10 fw-bold c-777">
-                        Sélectionner une ligne budgétaire:
+                        Sélectionner une ligne budgétaire <span class="red-c fs-18 fw-bold">*</span>
                     </label>
                     <select id="budget-select" class="p-10 rad-6 border full-w mb-10">
                         <option value="">-- Choisir une ligne --</option>
@@ -68,7 +68,7 @@
             <section class="items-section bg-white rad-6 p-15 mb-10">
                 <h2 class="m-15-0">Besoins </h2> 
                 <p class="mb-10 pl-5 c-777">
-                    Veuillez écrire ici votre besoin.
+                    Veuillez écrire ici votre besoin <span class="red-c fs-18 fw-bold">*</span>
                 </p>
                 <!-- Add Item Form -->
                 <div class="add-item-form p-20 bg-f9 rad-6 mb-20">
@@ -135,7 +135,7 @@
                             </tr>
                         </thead>
                         <tbody id="items-table-body">
-                            <!-- Contenu dynamique -->
+                            <!-- Dynamic rows will be added here -->
                         </tbody>
                     </table>
                 </div>
@@ -145,17 +145,13 @@
                     <span class="fw-bold fs-18">TOTAL :</span>
                     <span id="final-total" class="fw-bold fs-18">0.00 DH</span>
                 </div>
+                <!-- Footer Actions -->
+                <footer class="footer-actions d-flex flex-end pt-20 gap-15 border-top">
+                    <button id="submit-order-btn" class="btn btn-primary rad-6 bg-green c-white p-12 pointer  d-flex gap-10 p-10">
+                        Valider le Proposition <i class="fas fa-check"></i>
+                    </button>
+                </footer>
             </section>
-                
-            <!-- Footer Actions -->
-            <footer class="footer-actions d-flex flex-end pt-20" style="gap: 15px; border-top: 1px solid #eee;">
-                <button id="save-draft-btn" class="btn btn-secondary rad-6 bg-gray c-white p-12 pointer">
-                    <i class="fas fa-save mr-5"></i> Enregistrer Brouillon
-                </button>
-                <button id="submit-order-btn" class="btn btn-primary rad-6 bg-green c-white p-12 pointer">
-                    <i class="fas fa-paper-plane mr-5"></i> Valider le Bon de Commande
-                </button>
-            </footer>
             </div>
         </div>
     </div>

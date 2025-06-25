@@ -142,6 +142,10 @@
     border-bottom: 0.0625rem solid #eee;
 }
 
+.border-top {
+    border-top: 0.0625rem solid #eee;
+}
+
 .border {
     border: 0.0625rem solid #eee;
 }
