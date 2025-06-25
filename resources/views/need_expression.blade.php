@@ -147,7 +147,7 @@
                 </div>
                 <!-- Footer Actions -->
                 <footer class="footer-actions d-flex flex-end pt-20 gap-15 border-top">
-                    <button id="submit-order-btn" class="btn btn-primary rad-6 bg-green c-white p-12 pointer  d-flex gap-10 p-10">
+                    <button id="sumbit-need-propostion" class="btn btn-primary rad-6 bg-green c-white p-12 pointer d-flex gap-10 p-10">
                         Valider le Proposition <i class="fas fa-check"></i>
                     </button>
                 </footer>

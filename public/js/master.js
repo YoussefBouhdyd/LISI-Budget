@@ -246,5 +246,5 @@ function showPopupMessage(message, success = true, options = {}) {
     document.body.appendChild(msg);
     setTimeout(() => {
         msg.remove();
-    }, options.duration || 500);
+    }, options.duration || 2500);
 }

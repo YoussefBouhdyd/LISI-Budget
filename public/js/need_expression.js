@@ -168,6 +168,12 @@ document.getElementById('add-item-btn').addEventListener('click', function() {
             </button>
         </td>
     `;
+    // Store data as attributes for later submission
+    tr.dataset.name = name;
+    tr.dataset.description = description;
+    tr.dataset.price = price;
+    tr.dataset.qty = qty;
+    tr.dataset.total = total;
 
     tbody.appendChild(tr);
 
@@ -201,3 +207,32 @@ function updateTotals() {
 
     updateBalance(finalTotal);
 };
+
+
+document.getElementById('sumbit-need-propostion').addEventListener('click', function(event) {
+    event.preventDefault();
+    const items = [];
+    document.querySelectorAll('#items-table-body tr').forEach(tr => {
+        items.push({
+            name: tr.dataset.name,
+            description: tr.dataset.description,
+            price: parseFloat(tr.dataset.price),
+            qty: parseInt(tr.dataset.qty),
+            total: parseFloat(tr.dataset.total)
+        });
+    });
+
+    if (items.length === 0) {
+        showPopupMessage('Veuillez ajouter au moins un besoin avant de soumettre.', false);
+        return;
+    }
+
+    const budgetId = document.getElementById('budget-select').value;
+    if (!budgetId) {
+        showPopupMessage('Veuillez sélectionner un budget avant de soumettre.', false);
+        return;
+    }
+
+    // Save To DataBase 
+    
+});
