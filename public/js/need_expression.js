@@ -67,6 +67,20 @@ function updateBalance(finalTotal) {
     const currentDotation = getBudgetDotation();
     const newBalance = currentDotation - finalTotal;
     budgetBalanceElem.textContent = newBalance.toFixed(2) + ' DH';
+
+    // Disable all item fields if balance is 0 or less, enable otherwise
+    const itemFields = [
+        document.getElementById('item-name'),
+        document.getElementById('item-qty'),
+        document.getElementById('item-description'),
+        document.getElementById('item-price'),
+        document.getElementById('item-total'),
+        document.getElementById('add-item-btn')
+    ];
+    const shouldDisable = newBalance <= 0;
+    itemFields.forEach(field => {
+        if (field) field.disabled = shouldDisable;
+    });
 }
 
 function getItemTotal() {
