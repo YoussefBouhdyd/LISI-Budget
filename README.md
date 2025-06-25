@@ -34,6 +34,13 @@ php artisan serve
 
 Access the app at `http://localhost:8000`.
 
+You can log in as an admin using the following credentials:
+
+```
+email: bachari@lisi-budget.com
+password: password
+```
+
 ## Contributing
 
 1. Fork the repository
