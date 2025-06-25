@@ -1,3 +1,29 @@
+// Make sure that the user selects a budget before enabling item fields
+document.addEventListener('DOMContentLoaded', function () {
+    const budgetSelect = document.getElementById('budget-select');
+    const itemFields = [
+        document.getElementById('item-name'),
+        document.getElementById('item-qty'),
+        document.getElementById('item-description'),
+        document.getElementById('item-price'),
+        document.getElementById('item-total'),
+        document.getElementById('add-item-btn')
+    ];
+
+    function setItemFieldsDisabled(disabled) {
+        itemFields.forEach(field => {
+            if (field) field.disabled = disabled;
+        });
+    }
+
+    // Initially disable fields
+    setItemFieldsDisabled(true);
+
+    budgetSelect.addEventListener('change', function () {
+        setItemFieldsDisabled(!budgetSelect.value);
+    });
+});
+
 document.addEventListener('DOMContentLoaded', function() {
     const select = document.getElementById('budget-select');
     select.addEventListener('change', function() {
@@ -22,15 +48,25 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-/**
- * Validates that the item total does not exceed the selected budget balance and updates the add button state accordingly.
- */
+
+// Validates that the item total does not exceed the selected budget balance and updates the add button state accordingly.
+
 function getSelectedBalance() {
-    const budgetSelect = document.getElementById('budget-select');
-    const selected = budgetSelect.options[budgetSelect.selectedIndex];
-    let balance = selected ? selected.dataset.balance : "0";
-    balance = parseFloat((balance || "0").replace(/[\s,]/g, ''));
-    return isNaN(balance) ? 0 : balance;
+    const balanceText = document.getElementById('budget-balance').textContent.replace(/,/g, '');
+    return Number.parseFloat(balanceText);
+}
+
+function getBudgetDotation() {
+    const dotationText = document.getElementById('budget-dotation').textContent.replace(/,/g, '');
+    return Number.parseFloat(dotationText);
+}
+
+function updateBalance(finalTotal) {
+    const budgetBalanceElem = document.getElementById('budget-balance');
+    if (!budgetBalanceElem) return;
+    const currentDotation = getBudgetDotation();
+    const newBalance = currentDotation - finalTotal;
+    budgetBalanceElem.textContent = newBalance.toFixed(2) + ' DH';
 }
 
 function getItemTotal() {
@@ -81,3 +117,73 @@ document.addEventListener('DOMContentLoaded', function() {
     recalculateItemTotal();
     updateAddButtonState();
 });
+
+
+// Function to handle the click event of the "Add Item" button
+
+// Add item to table
+document.getElementById('add-item-btn').addEventListener('click', function() {
+    const name = document.getElementById('item-name').value.trim();
+    const description = document.getElementById('item-description').value.trim();
+    const qty = parseFloat(document.getElementById('item-qty').value);
+    const price = parseFloat(document.getElementById('item-price').value);
+    const total = (qty * price).toFixed(2);
+
+    const errorDiv = document.getElementById('add-item-error');
+    errorDiv.style.display = 'none';
+    errorDiv.textContent = '';
+
+    if (!name || !description || isNaN(qty) || qty < 1 || isNaN(price) || price < 0) {
+        errorDiv.textContent = 'Veuillez remplir tous les champs correctement.';
+        errorDiv.style.display = 'block';
+        return;
+    }
+
+    const tbody = document.getElementById('items-table-body');
+    const tr = document.createElement('tr');
+
+    tr.innerHTML = `
+        <td class="p-15">${name}</td>
+        <td class="p-15">${description}</td>
+        <td class="p-15">${price.toFixed(2)}</td>
+        <td class="p-15">${qty}</td>
+        <td class="p-15">${total}</td>
+        <td class="p-15">
+            <button type="button" class="btn btn-danger rad-6 bg-red c-white p-5 pointer btn-remove-item">
+                <i class="fas fa-trash"></i>
+            </button>
+        </td>
+    `;
+
+    tbody.appendChild(tr);
+
+    // Clear form
+    document.getElementById('item-name').value = '';
+    document.getElementById('item-description').value = '';
+    document.getElementById('item-qty').value = 1;
+    document.getElementById('item-price').value = '';
+    document.getElementById('item-total').value = '0.00';
+
+    updateTotals();
+
+    // Remove item event
+    tr.querySelector('.btn-remove-item').addEventListener('click', function() {
+        tr.remove();
+        updateTotals();
+    });
+});
+
+// Update totals section
+function updateTotals() {
+    let finalTotal = 0;
+    document.querySelectorAll('#items-table-body tr').forEach(tr => {
+        const totalCell = tr.children[4];
+        if (totalCell) {
+            finalTotal += parseFloat(totalCell.textContent) || 0;
+        }
+    });
+    
+    document.getElementById('final-total').textContent = finalTotal.toFixed(2) + ' DH';
+
+    updateBalance(finalTotal);
+};

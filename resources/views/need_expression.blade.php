@@ -63,11 +63,6 @@
                     </div>
                 </div>
             </section>
-            {{-- <script>
-                // Access the select element
-                const budgetSelect = document.getElementById('budget-select');
-                budgetSelect.options[budgetSelect.selectedIndex].dataset.balance;
-            </script> --}}
 
             <!-- Need Section -->
             <section class="items-section bg-white rad-6 p-15 mb-10">
@@ -82,14 +77,14 @@
                             <label for="item-name" class="d-block mb-5 fw-bold">
                                 Nature du Besoin
                             </label>
-                            <input type="text" id="item-name" placeholder="Nature" class="p-10 rad-6 border-ccc full-w">
+                            <input type="text" id="item-name" placeholder="Nature" class="p-10 rad-6 border-ccc full-w" disabled>
                         </div>
                         <div class="form-group flex-1">
                             <label for="item-qty" class="d-block mb-5 fw-bold">
                                 Quantité
                             </label>
                             <input type="number" id="item-qty" min="1" value="1" 
-                                class="p-10 rad-6 border-ccc full-w">
+                                class="p-10 rad-6 border-ccc full-w" disabled>
                         </div>
                     </div>
 
@@ -98,7 +93,7 @@
                             <label for="item-description" class="d-block mb-5 fw-bold">
                                 Description
                             </label>
-                            <input type="text" id="item-description" placeholder="Description" class="p-10 rad-6 border-ccc full-w">
+                            <input type="text" id="item-description" placeholder="Description" class="p-10 rad-6 border-ccc full-w" disabled>
                         </div>
                     </div>
                     
@@ -108,19 +103,19 @@
                                 Prix Unitaire Estimé (DH)
                             </label>
                             <input type="number" id="item-price" min="0" step="0.01" 
-                                placeholder="0.00" class="p-10 rad-6 border-ccc full-w">
+                                placeholder="0.00" class="p-10 rad-6 border-ccc full-w" disabled>
                         </div>
                         <div class="form-group flex-1">
                             <label for="item-total" class="d-block mb-5 fw-bold">
                                 Total (DH)
                             </label>
-                            <input type="text" id="item-total" value="0.00" readonly class="p-10 rad-6 border-ccc full-w bg-eee">
+                            <input type="text" id="item-total" value="0.00" readonly class="p-10 rad-6 border-ccc full-w bg-eee" disabled>
                             <div id="add-item-error" class="red-c fs-14 mt-5 fw-bold" style="display: none;"></div>
                         </div>
                     </div>
                     
                     <div class="form-actions d-flex flex-end gap-5">
-                        <button id="add-item-btn" class="btn btn-primary rad-6 bg-blue c-white p-10 pointer d-flex gap-5">
+                        <button id="add-item-btn" type="button" class="btn btn-primary rad-6 bg-blue c-white p-10 pointer d-flex gap-5" disabled>
                             <i class="fas fa-plus-circle mr-5"></i> Ajouter Article
                         </button>
                     </div>
@@ -131,11 +126,12 @@
                     <table class="table full-w">
                         <thead>
                             <tr class="bg-eee">
-                                <th class="p-15 txt-l fw-bold">Désignation</th>
-                                <th class="p-15 txt-l fw-bold">Qté</th>
-                                <th class="p-15 txt-l fw-bold">P.U. (DH)</th>
+                                <th class="p-15 txt-l fw-bold">Nature</th>
+                                <th class="p-15 txt-l fw-bold">Description</th>
+                                <th class="p-15 txt-l fw-bold">Prix Unitaire Estimé (DH)</th>
+                                <th class="p-15 txt-l fw-bold">Quantité</th>
                                 <th class="p-15 txt-l fw-bold">Total (DH)</th>
-                                <th class="p-15 txt-l fw-bold">Actions</th>
+                                <th class="p-15 txt-l fw-bold">Supprimer</th>
                             </tr>
                         </thead>
                         <tbody id="items-table-body">
@@ -145,21 +141,9 @@
                 </div>
                 
                 <!-- Totals Section -->
-                <div class="totals-section mt-30 p-20 bg-f9 rad-6">
-                    <div class="totals-grid">
-                        <div class="total-row d-flex flex-between mb-10">
-                            <span class="fw-bold">Total HT:</span>
-                            <span id="total-ht" class="fw-bold">0.00 DH</span>
-                        </div>
-                        <div class="total-row d-flex flex-between mb-10">
-                            <span class="fw-bold">TVA (20%):</span>
-                            <span id="total-tva" class="fw-bold">0.00 DH</span>
-                        </div>
-                        <div class="total-row grand-total d-flex flex-between p-10 bg-blue c-white rad-6">
-                            <span class="fw-bold fs-18">TOTAL TTC:</span>
-                            <span id="total-ttc" class="fw-bold fs-18">0.00 DH</span>
-                        </div>
-                    </div>
+                <div class="total-row grand-total fit-content gap-20 ml-auto mt-20 d-flex flex-between p-10 bg-blue c-white rad-6">
+                    <span class="fw-bold fs-18">TOTAL :</span>
+                    <span id="final-total" class="fw-bold fs-18">0.00 DH</span>
                 </div>
             </section>
                 
