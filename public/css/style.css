@@ -23,10 +23,6 @@ input {
     border: none;
 }
 
-.highlight {
-    color: var(--decoration-color);
-}
-
 ul {
     list-style: none;
     padding: 0;

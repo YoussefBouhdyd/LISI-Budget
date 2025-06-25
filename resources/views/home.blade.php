@@ -11,7 +11,11 @@
     <header>
         <div class="container">
             <!-- the logo -->
-            <h1>LISI</h1>
+            <div class="logo">
+                <a href="{{ route('home') }}">
+                    <img src="{{ asset('imgs/icon.png') }}" alt="E-Intendance Logo">
+                </a>
+            </div>
             <!-- the links  -->
             <ul class="main-links">
                 <li class="sign-btn"><a href="{{ route('login') }}">Connexion <i class="fa fa-user"></i></a></li>
@@ -24,7 +28,7 @@
         <div class="container">
             <img src="{{ asset('imgs/deco1.webp') }}" alt="image">
             <div class="text">
-                <h1>Gérez Facilement le Budget de <span class="highlight">LISI</span></h1>
+                <h1>Gérez Facilement le Budget de <span class="highlight-red">LISI</span></h1>
                 <p>
                     Bienvenue sur E-Intendance, la plateforme dédiée à la gestion des budgets de LISI. 
                     Notre objectif est de simplifier la gestion financière de l'entreprise en offrant des outils 

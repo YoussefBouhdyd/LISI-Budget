@@ -47,15 +47,8 @@ header .container {
     }
 }
 
-header h1{
-    height: 60px;
-    font-size: 30px;
-    letter-spacing: .5px;
-    color: var(--primary-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    letter-spacing: 3px;
+header .logo img{
+    max-width: 6.25rem;
 }
 
 header .main-links{
@@ -116,6 +109,8 @@ header .main-links > li.sign-btn i {
     clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
     z-index: -1;
 }
+
+/* Remove this if you don't make a user manual  */
 .landing .to-down {
     position: absolute;
     bottom: 30px;
@@ -133,6 +128,8 @@ header .main-links > li.sign-btn i {
         transform: translateY(10px);
     }
 }
+/*-------------------------------------*/
+
 .landing .container {
     display: flex;
     align-items: center;

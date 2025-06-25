@@ -448,6 +448,23 @@
 /* Start box  */
 
 /* Start Color  */
+
+.highlight-red {
+    color: var(--red-color);
+}
+
+.highlight-blue {
+    color: var(--blue-color);
+}
+
+.highlight-green {
+    color: var(--green-color);
+}
+
+.highlight-orange {
+    color: var(--orange-color);
+}
+
 .c-white {
     color: #fff;
 }

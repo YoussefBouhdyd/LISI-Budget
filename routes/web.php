@@ -14,7 +14,7 @@ use PhpParser\Node\Expr\FuncCall;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 // Admin Routes
 
@@ -65,14 +65,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/reject-proposition', PropositionController::class . "@rejectProposition")
         ->name('proposition.reject');
 
-    Route::get('/purchase-order', function () {
-        return view('bon_commande');
+    Route::get('/need_expression', function () {
+        return view('need_expression');
     });
-
-    Route::post('/purchase-order', function () {
-        // Ajoute ici la logique de sauvegarde ou le contrôleur
-        // Exemple : return 'Bon de commande enregistré !';
-    })->name('bon_commande.store');
 
     Route::get('/order-tracking', function () {
         return view('suivie_BC');
