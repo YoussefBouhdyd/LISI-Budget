@@ -40,7 +40,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/reject-proposition', PropositionController::class . "@rejectProposition")->name('proposition.reject');
 
     // Need Expression
-    Route::get('/need_expression', NeedExpressionController::class . "@loadNeedExpression")->name('need_expression.load');
+    Route::get('/need_expression', NeedExpressionController::class . "@loadNeedExpressionForm")->name('need_expression.load');
+    Route::get('/track-expression/{status?}', NeedExpressionController::class . "@trackNeedExpression")
+        ->name('need_expression.user')
+        ->where('status', 'pending|approved|rejected')
+        ->defaults('status', 'pending');
     Route::post('/submit-need-proposition', NeedExpressionController::class . "@storeNeedExpression")->name('need_expression.store');
     Route::get('/need-expression-admin/{status?}', NeedExpressionController::class . "@loadNeedExpressionAdmin")
         ->name('need_expression.admin')

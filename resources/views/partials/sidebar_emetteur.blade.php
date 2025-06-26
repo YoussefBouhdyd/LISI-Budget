@@ -9,15 +9,15 @@
                 </a>
             </li>
             <li class="rad-6 tt-capital">
-                <a href="{{ url('/my-budget') }}" class="{{ request()->is('my-budget') ? 'active' : '' }}">
-                    <i class="fa-solid fa-wallet fa-fw"></i>
-                    <span class="hide-mobile">Budget</span>
+                <a href="{{ url('/order-tracking') }}" class="{{ request()->is('order-tracking') ? 'active' : '' }}">
+                    <i class="fa-solid fa-list-check fa-fw"></i>
+                    <span class="hide-mobile">Suivi Engagements</span>
                 </a>
             </li>
             <li class="rad-6 tt-capital">
-                <a href="{{ url('/order-tracking') }}" class="{{ request()->is('order-tracking') ? 'active' : '' }}">
-                    <i class="fa-solid fa-list fa-fw"></i>
-                    <span class="hide-mobile">Suivi Engagements</span>
+                <a href="{{ url('/my-budget') }}" class="{{ request()->is('my-budget') ? 'active' : '' }}">
+                    <i class="fa-solid fa-wallet fa-fw"></i>
+                    <span class="hide-mobile">Budget</span>
                 </a>
             </li>
             <li class="rad-6 tt-capital">

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class NeedExpressionController extends Controller
 {
-    public function loadNeedExpression()
+    public function loadNeedExpressionForm()
     {   
         $approvedBudgetLines = auth()->user()
             ->budgetProposals()
@@ -19,6 +19,19 @@ class NeedExpressionController extends Controller
             'approvedBudgetLines' => $approvedBudgetLines,
         ]);
 
+    }
+
+    public function trackNeedExpression($status = 'pending')
+    {
+        $engagements = Engagement::where('status', $status)
+            ->whereHas('lineBudgetProposal', function ($query) {
+                $query->where('user_id', auth()->id());
+            })
+            ->get();
+
+        return view('track_expression', [
+            'engagements' => $engagements,
+        ]);
     }
 
     public function storeNeedExpression(Request $request)
