@@ -11,4 +11,9 @@ class Engagement extends Model
     {
         return $this->hasMany(Need::class);
     }
+
+    public function lineBudgetProposal()
+    {
+        return $this->belongsTo(LineBudgetProposal::class);
+    }
 }

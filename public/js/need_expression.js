@@ -241,8 +241,14 @@ document
                 description: tr.dataset.description,
                 price: parseFloat(tr.dataset.price),
                 qty: parseInt(tr.dataset.qty),
+                total: parseFloat(tr.dataset.total),
             });
         });
+
+        const finalTotal = items.reduce(
+            (sum, item) => sum + item.total,
+            0
+        );
 
         if (items.length === 0) {
             showPopupMessage(
@@ -273,7 +279,6 @@ document
                         `Besoin soumis avec succès !`,
                         true,
                     );
-                    console.log(xhr.responseText);
                 } else {
                     showPopupMessage(
                         `Erreur lors de la soumission du besoin. Veuillez réessayer.`,
@@ -285,5 +290,6 @@ document
         xhr.send(JSON.stringify({
             budgetId: budgetId,
             items: items,
+            finalTotal: finalTotal.toFixed(2),
         }));
     });

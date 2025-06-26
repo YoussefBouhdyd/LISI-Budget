@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Engagement;
+use App\Models\LineBudgetProposal;
 use Illuminate\Http\Request;
 
 class NeedExpressionController extends Controller
@@ -23,6 +24,9 @@ class NeedExpressionController extends Controller
     public function storeNeedExpression(Request $request)
     {   
         try {
+            $budgetLine = LineBudgetProposal::findOrFail($request->input('budgetId'));
+            $budgetLine->spend = $request->input('finalTotal');
+            $budgetLine->save();
             $budgetId =  $request->input('budgetId');
             $needs = $request->input('items');
             $engagement = new Engagement();
@@ -42,5 +46,15 @@ class NeedExpressionController extends Controller
             return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
         }
 
+    }
+
+    public function loadNeedExpressionAdmin()
+    {
+        $engagements = Engagement::where('status', 'pending')
+            ->get();
+
+        return view('engagements', [
+            'engagements' => $engagements,
+        ]);
     }
 }

@@ -20,70 +20,50 @@
         <div class="section-content p-15">
             <div class="projects bg-white rad-6 p-15">
                 <h2 class="m-15-0">Engagements</h2>
-                <table class="full-w txt-l">
-                    <tr class="bg-eee ">
-                        <th class="p-10">Émetteur</th>
-                        <th class="p-10">Modifier le</th>
-                        <th class="p-10">Prix</th>
-                        <th class="p-10">Statut</th>
-                        <th class="p-10">Détails</th>
-                    </tr>
-                    <tr>
-                        <td class="tt-capital">Ilyas Ouzani</td>
-                        <td class="tt-capital">10 Jun 2024</td>
-                        <td class="tt-capital">10 DH</td>
-                        <td class="tt-capital"><span class="btn-primary bg-orange"> En attente </span></td>
-                        <td class="tt-capital">
-                            <a href="#" class="btn-primary bg-blue">
-                                <i class="fa-solid fa-eye mr-10"></i> Voir
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="tt-capital">Sara Benali</td>
-                        <td class="tt-capital">08 Jun 2024</td>
-                        <td class="tt-capital">25 DH</td>
-                        <td class="tt-capital"><span class="btn-primary bg-green"> Accepté </span></td>
-                        <td class="tt-capital">
-                            <a href="#" class="btn-primary bg-blue">
-                                <i class="fa-solid fa-eye mr-10"></i> Voir
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="tt-capital">Mohamed El Amrani</td>
-                        <td class="tt-capital">05 Jun 2024</td>
-                        <td class="tt-capital">15 DH</td>
-                        <td class="tt-capital"><span class="btn-primary bg-red"> Refusé </span></td>
-                        <td class="tt-capital">
-                            <a href="#" class="btn-primary bg-blue">
-                                <i class="fa-solid fa-eye mr-10"></i> Voir
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="tt-capital">Fatima Zahra</td>
-                        <td class="tt-capital">12 Jun 2024</td>
-                        <td class="tt-capital">30 DH</td>
-                        <td class="tt-capital"><span class="btn-primary bg-orange"> En attente </span></td>
-                        <td class="tt-capital">
-                            <a href="#" class="btn-primary bg-blue">
-                                <i class="fa-solid fa-eye mr-10"></i> Voir
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="tt-capital">Youssef Haddad</td>
-                        <td class="tt-capital">09 Jun 2024</td>
-                        <td class="tt-capital">20 DH</td>
-                        <td class="tt-capital"><span class="btn-primary bg-green"> Accepté </span></td>
-                        <td class="tt-capital">
-                            <a href="#" class="btn-primary bg-blue">
-                                <i class="fa-solid fa-eye mr-10"></i> Voir
-                            </a>
-                        </td>
-                    </tr>
-                </table>
+                <div class="orders-table">
+                    <table class="full-w txt-l">
+                        <thead>
+                            <tr class="bg-eee">
+                                <th class="p-10">Émetteur</th>
+                                <th class="p-10">Ligne Budgétaire</th>
+                                <th class="p-10">Total Estimé</th>
+                                <th class="p-10">Statut</th>
+                                <th class="p-10">Operation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($engagements as $engagement)
+                                <tr class="status">
+                                    <td class="tt-capital">{{$engagement->lineBudgetProposal->user->name}}</td>
+                                    <td class="tt-capital">{{$engagement->lineBudgetProposal->budgetLine->name}}</td>
+                                    <td class="tt-capital">{{$engagement->needs->sum('estimated_amount')}}</td>
+                                    <td class="tt-capital">
+                                        @if ($engagement->status === 'approved')
+                                            <span class="status-badge approved">
+                                                <i class="fas fa-check"></i> Approuvé
+                                            </span>
+                                        @elseif ($engagement->status === 'rejected')
+                                            <span class="status-badge rejected">
+                                                <i class="fas fa-times"></i> Rejeté
+                                            </span>
+                                        @else
+                                            <span class="status-badge pending">
+                                                <i class="fas fa-clock"></i> En attente
+                                            </span>
+                                        @endif
+                                    </td>
+                                    <td class="tt-capital d-flex align-c gap-5">
+                                        test
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="6" class="c-777">Aucune proposition trouvée.</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <!-- End Engagements Content  -->

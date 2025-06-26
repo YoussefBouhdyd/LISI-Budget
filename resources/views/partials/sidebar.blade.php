@@ -9,13 +9,13 @@
                 </a>
             </li>
             <li class="rad-6 tt-capital">
-                <a href="{{ url('/admin-engagement') }}" class="{{ request()->is('admin-engagement*') ? 'active' : '' }}">
+                <a href="{{ route('need_expression.admin') }}" class="{{ request()->is('admin-engagement*') ? 'active' : '' }}">
                     <i class="fa-solid fa-cart-shopping fa-fw"></i>
                     <span class="hide-mobile">Engagements</span>
                 </a>
             </li>
             <li class="rad-6 tt-capital">
-                <a href="{{ url('/transmitter') }}" class="{{ request()->is('transmitter*') ? 'active' : '' }}">
+                <a href="{{ route('transmitter.load') }}" class="{{ request()->is('transmitter*') ? 'active' : '' }}">
                     <i class="fa-solid fa-paper-plane fa-fw"></i>
                     <span class="hide-mobile">Émetteur</span>
                 </a>
