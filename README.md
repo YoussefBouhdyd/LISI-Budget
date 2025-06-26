@@ -41,6 +41,13 @@ email: bachari@lisi-budget.com
 password: password
 ```
 
+You can log in as a user using the following credentials:
+
+```
+email: Transmitter@lisi-budget.com
+password: password
+```
+
 ## Contributing
 
 1. Fork the repository
