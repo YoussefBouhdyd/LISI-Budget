@@ -1,17 +1,17 @@
 // Make sure that the user selects a budget before enabling item fields
-document.addEventListener('DOMContentLoaded', function () {
-    const budgetSelect = document.getElementById('budget-select');
+document.addEventListener("DOMContentLoaded", function () {
+    const budgetSelect = document.getElementById("budget-select");
     const itemFields = [
-        document.getElementById('item-name'),
-        document.getElementById('item-qty'),
-        document.getElementById('item-description'),
-        document.getElementById('item-price'),
-        document.getElementById('item-total'),
-        document.getElementById('add-item-btn')
+        document.getElementById("item-name"),
+        document.getElementById("item-qty"),
+        document.getElementById("item-description"),
+        document.getElementById("item-price"),
+        document.getElementById("item-total"),
+        document.getElementById("add-item-btn"),
     ];
 
     function setItemFieldsDisabled(disabled) {
-        itemFields.forEach(field => {
+        itemFields.forEach((field) => {
             if (field) field.disabled = disabled;
         });
     }
@@ -19,110 +19,123 @@ document.addEventListener('DOMContentLoaded', function () {
     // Initially disable fields
     setItemFieldsDisabled(true);
 
-    budgetSelect.addEventListener('change', function () {
+    budgetSelect.addEventListener("change", function () {
         setItemFieldsDisabled(!budgetSelect.value);
     });
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const select = document.getElementById('budget-select');
-    select.addEventListener('change', function() {
+document.addEventListener("DOMContentLoaded", function () {
+    const select = document.getElementById("budget-select");
+    select.addEventListener("change", function () {
         const selected = select.options[select.selectedIndex];
-        document.getElementById('budget-code').textContent = selected.dataset.code || '-';
-        document.getElementById('budget-dotation').textContent = (selected.dataset.dotation || '0.00') + ' DH';
-        document.getElementById('budget-engaged').textContent = (selected.dataset.engaged || '0.00') + ' DH';
-        document.getElementById('budget-balance').textContent = (selected.dataset.balance || '0.00') + ' DH';
+        document.getElementById("budget-code").textContent =
+            selected.dataset.code || "-";
+        document.getElementById("budget-dotation").textContent =
+            (selected.dataset.dotation || "0.00") + " DH";
+        document.getElementById("budget-engaged").textContent =
+            (selected.dataset.engaged || "0.00") + " DH";
+        document.getElementById("budget-balance").textContent =
+            (selected.dataset.balance || "0.00") + " DH";
     });
 });
 
 // Automatically Calculate the total amount
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
     function updateTotal() {
-        const qty = parseFloat(document.getElementById('item-qty').value) || 0;
-        const price = parseFloat(document.getElementById('item-price').value) || 0;
+        const qty = parseFloat(document.getElementById("item-qty").value) || 0;
+        const price =
+            parseFloat(document.getElementById("item-price").value) || 0;
         const total = qty * price;
-        document.getElementById('item-total').value = total.toFixed(2) + ' DH';
+        document.getElementById("item-total").value = total.toFixed(2) + " DH";
     }
-    document.getElementById('item-qty').addEventListener('input', updateTotal);
-    document.getElementById('item-price').addEventListener('input', updateTotal);
+    document.getElementById("item-qty").addEventListener("input", updateTotal);
+    document
+        .getElementById("item-price")
+        .addEventListener("input", updateTotal);
 });
-
-
 
 // Validates that the item total does not exceed the selected budget balance and updates the add button state accordingly.
 
 function getSelectedBalance() {
-    const balanceText = document.getElementById('budget-balance').textContent.replace(/,/g, '');
+    const balanceText = document
+        .getElementById("budget-balance")
+        .textContent.replace(/,/g, "");
     return Number.parseFloat(balanceText);
 }
 
 function getBudgetDotation() {
-    const dotationText = document.getElementById('budget-dotation').textContent.replace(/,/g, '');
+    const dotationText = document
+        .getElementById("budget-dotation")
+        .textContent.replace(/,/g, "");
     return Number.parseFloat(dotationText);
 }
 
 function updateBalance(finalTotal) {
-    const budgetBalanceElem = document.getElementById('budget-balance');
+    const budgetBalanceElem = document.getElementById("budget-balance");
     if (!budgetBalanceElem) return;
     const currentDotation = getBudgetDotation();
     const newBalance = currentDotation - finalTotal;
-    budgetBalanceElem.textContent = newBalance.toFixed(2) + ' DH';
+    budgetBalanceElem.textContent = newBalance.toFixed(2) + " DH";
 
     // Disable all item fields if balance < 0
     const itemFields = [
-        document.getElementById('item-name'),
-        document.getElementById('item-qty'),
-        document.getElementById('item-description'),
-        document.getElementById('item-price'),
-        document.getElementById('item-total'),
-        document.getElementById('add-item-btn')
+        document.getElementById("item-name"),
+        document.getElementById("item-qty"),
+        document.getElementById("item-description"),
+        document.getElementById("item-price"),
+        document.getElementById("item-total"),
+        document.getElementById("add-item-btn"),
     ];
     const shouldDisable = newBalance <= 0;
-    itemFields.forEach(field => {
+    itemFields.forEach((field) => {
         if (field) field.disabled = shouldDisable;
     });
 }
 
 function getItemTotal() {
-    const itemTotalElem = document.getElementById('item-total');
+    const itemTotalElem = document.getElementById("item-total");
     if (!itemTotalElem) return 0;
-    let val = itemTotalElem.value.replace(/[^\d.,]/g, '').replace(',', '.');
+    let val = itemTotalElem.value.replace(/[^\d.,]/g, "").replace(",", ".");
     return parseFloat(val) || 0;
 }
 
 function updateAddButtonState() {
-    const addBtn = document.getElementById('add-item-btn');
+    const addBtn = document.getElementById("add-item-btn");
     const reliquat = getSelectedBalance();
     const itemTotal = getItemTotal();
-    const errorDiv = document.getElementById('add-item-error');
+    const errorDiv = document.getElementById("add-item-error");
     if (itemTotal > reliquat && reliquat > 0) {
         addBtn.disabled = true;
-        addBtn.classList.add('disabled');
-        errorDiv.textContent = "Le total de besoin dépasse le reliquat disponible (" + reliquat.toFixed(2) + " DH) !";
+        addBtn.classList.add("disabled");
+        errorDiv.textContent =
+            "Le total de besoin dépasse le reliquat disponible (" +
+            reliquat.toFixed(2) +
+            " DH) !";
         errorDiv.style.display = "block";
     } else {
         addBtn.disabled = false;
-        addBtn.classList.remove('disabled');
+        addBtn.classList.remove("disabled");
         errorDiv.textContent = "";
         errorDiv.style.display = "none";
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const budgetSelect = document.getElementById('budget-select');
+document.addEventListener("DOMContentLoaded", function () {
+    const budgetSelect = document.getElementById("budget-select");
     if (budgetSelect) {
-        budgetSelect.addEventListener('change', updateAddButtonState);
+        budgetSelect.addEventListener("change", updateAddButtonState);
     }
     function recalculateItemTotal() {
-        const qty = parseFloat(document.getElementById('item-qty').value) || 0;
-        const price = parseFloat(document.getElementById('item-price').value) || 0;
+        const qty = parseFloat(document.getElementById("item-qty").value) || 0;
+        const price =
+            parseFloat(document.getElementById("item-price").value) || 0;
         const total = qty * price;
-        document.getElementById('item-total').value = total.toFixed(2);
+        document.getElementById("item-total").value = total.toFixed(2);
     }
-    ['item-qty', 'item-price'].forEach(id => {
+    ["item-qty", "item-price"].forEach((id) => {
         const el = document.getElementById(id);
         if (el) {
-            el.addEventListener('input', function() {
+            el.addEventListener("input", function () {
                 recalculateItemTotal();
                 updateAddButtonState();
             });
@@ -132,29 +145,37 @@ document.addEventListener('DOMContentLoaded', function() {
     updateAddButtonState();
 });
 
-
 // Function to handle the click event of the "Add Item" button
 
 // Add item to table
-document.getElementById('add-item-btn').addEventListener('click', function() {
-    const name = document.getElementById('item-name').value.trim();
-    const description = document.getElementById('item-description').value.trim();
-    const qty = parseFloat(document.getElementById('item-qty').value);
-    const price = parseFloat(document.getElementById('item-price').value);
+document.getElementById("add-item-btn").addEventListener("click", function () {
+    const name = document.getElementById("item-name").value.trim();
+    const description = document
+        .getElementById("item-description")
+        .value.trim();
+    const qty = parseFloat(document.getElementById("item-qty").value);
+    const price = parseFloat(document.getElementById("item-price").value);
     const total = (qty * price).toFixed(2);
 
-    const errorDiv = document.getElementById('add-item-error');
-    errorDiv.style.display = 'none';
-    errorDiv.textContent = '';
+    const errorDiv = document.getElementById("add-item-error");
+    errorDiv.style.display = "none";
+    errorDiv.textContent = "";
 
-    if (!name || !description || isNaN(qty) || qty < 1 || isNaN(price) || price < 0) {
-        errorDiv.textContent = 'Veuillez remplir tous les champs correctement.';
-        errorDiv.style.display = 'block';
+    if (
+        !name ||
+        !description ||
+        isNaN(qty) ||
+        qty < 1 ||
+        isNaN(price) ||
+        price < 0
+    ) {
+        errorDiv.textContent = "Veuillez remplir tous les champs correctement.";
+        errorDiv.style.display = "block";
         return;
     }
 
-    const tbody = document.getElementById('items-table-body');
-    const tr = document.createElement('tr');
+    const tbody = document.getElementById("items-table-body");
+    const tr = document.createElement("tr");
 
     tr.innerHTML = `
         <td class="p-15">${name}</td>
@@ -178,16 +199,16 @@ document.getElementById('add-item-btn').addEventListener('click', function() {
     tbody.appendChild(tr);
 
     // Clear form
-    document.getElementById('item-name').value = '';
-    document.getElementById('item-description').value = '';
-    document.getElementById('item-qty').value = 1;
-    document.getElementById('item-price').value = '';
-    document.getElementById('item-total').value = '0.00';
+    document.getElementById("item-name").value = "";
+    document.getElementById("item-description").value = "";
+    document.getElementById("item-qty").value = 1;
+    document.getElementById("item-price").value = "";
+    document.getElementById("item-total").value = "0.00";
 
     updateTotals();
 
     // Remove item event
-    tr.querySelector('.btn-remove-item').addEventListener('click', function() {
+    tr.querySelector(".btn-remove-item").addEventListener("click", function () {
         tr.remove();
         updateTotals();
     });
@@ -196,43 +217,73 @@ document.getElementById('add-item-btn').addEventListener('click', function() {
 // Update totals section
 function updateTotals() {
     let finalTotal = 0;
-    document.querySelectorAll('#items-table-body tr').forEach(tr => {
+    document.querySelectorAll("#items-table-body tr").forEach((tr) => {
         const totalCell = tr.children[4];
         if (totalCell) {
             finalTotal += parseFloat(totalCell.textContent) || 0;
         }
     });
-    
-    document.getElementById('final-total').textContent = finalTotal.toFixed(2) + ' DH';
+
+    document.getElementById("final-total").textContent =
+        finalTotal.toFixed(2) + " DH";
 
     updateBalance(finalTotal);
-};
+}
 
-
-document.getElementById('sumbit-need-propostion').addEventListener('click', function(event) {
-    event.preventDefault();
-    const items = [];
-    document.querySelectorAll('#items-table-body tr').forEach(tr => {
-        items.push({
-            name: tr.dataset.name,
-            description: tr.dataset.description,
-            price: parseFloat(tr.dataset.price),
-            qty: parseInt(tr.dataset.qty),
-            total: parseFloat(tr.dataset.total)
+document
+    .getElementById("submit-need-proposition")
+    .addEventListener("click", function (event) {
+        event.preventDefault();
+        const items = [];
+        document.querySelectorAll("#items-table-body tr").forEach((tr) => {
+            items.push({
+                name: tr.dataset.name,
+                description: tr.dataset.description,
+                price: parseFloat(tr.dataset.price),
+                qty: parseInt(tr.dataset.qty),
+            });
         });
+
+        if (items.length === 0) {
+            showPopupMessage(
+                "Veuillez ajouter au moins un besoin avant de soumettre.",
+                false
+            );
+            return;
+        }
+
+        const budgetId = document.getElementById("budget-select").value;
+        if (!budgetId) {
+            showPopupMessage(
+                "Veuillez sélectionner un budget avant de soumettre.",
+                false
+            );
+            return;
+        }
+
+        // Save Ajax request to submit the need proposition
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "/submit-need-proposition", true);
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhr.setRequestHeader("X-CSRF-Token", csrfToken);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    showPopupMessage(
+                        `Besoin soumis avec succès !`,
+                        true,
+                    );
+                    console.log(xhr.responseText);
+                } else {
+                    showPopupMessage(
+                        `Erreur lors de la soumission du besoin. Veuillez réessayer.`,
+                        false
+                    );
+                }
+            }
+        }
+        xhr.send(JSON.stringify({
+            budgetId: budgetId,
+            items: items,
+        }));
     });
-
-    if (items.length === 0) {
-        showPopupMessage('Veuillez ajouter au moins un besoin avant de soumettre.', false);
-        return;
-    }
-
-    const budgetId = document.getElementById('budget-select').value;
-    if (!budgetId) {
-        showPopupMessage('Veuillez sélectionner un budget avant de soumettre.', false);
-        return;
-    }
-
-    // Save To DataBase 
-    
-});

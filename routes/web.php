@@ -68,6 +68,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/need_expression', NeedExpressionController::class . "@loadNeedExpression")->name('need_expression.load');
 
+    Route::post('/submit-need-proposition', NeedExpressionController::class . "@storeNeedExpression")
+        ->name('need_expression.store');
+
     Route::get('/order-tracking', function () {
         return view('suivie_BC');
     });
