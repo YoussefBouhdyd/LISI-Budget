@@ -22,9 +22,7 @@
         <div class="section-content p-15">
             <div class="projects bg-white rad-6 p-15">
                 <div class="orders-header">
-                    <h2 class="m-15-0">Proposition D’émetteur</h2>
-                    
-                    <!-- Filters integrated with the table header -->
+                    <h2 class="m-15-0">Proposition D’émetteur</h2>        
                     <div class="filters-integrated">
                         <div class="filter-group">
                             <div class="status-filters d-flex gap-10">

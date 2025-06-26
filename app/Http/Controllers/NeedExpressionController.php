@@ -48,13 +48,37 @@ class NeedExpressionController extends Controller
 
     }
 
-    public function loadNeedExpressionAdmin()
+    public function loadNeedExpressionAdmin($status = 'pending')
     {
-        $engagements = Engagement::where('status', 'pending')
+        $engagements = Engagement::where('status', $status)
             ->get();
 
         return view('engagements', [
             'engagements' => $engagements,
         ]);
+    }
+
+    public function approveNeedExpression(Request $request)
+    {
+        try {
+            $engagement = Engagement::findOrFail($request->input('id'));
+            $engagement->status = 'approved';
+            $engagement->save();
+            return response()->json(['success' => true, 'message' => 'Need expression approved successfully.']);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+        }
+    }
+
+    public function rejectNeedExpression(Request $request)
+    {
+        try {
+            $engagement = Engagement::findOrFail($request->input('id'));
+            $engagement->status = 'rejected';
+            $engagement->save();
+            return response()->json(['success' => true, 'message' => 'Need expression rejected successfully.']);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+        }
     }
 }

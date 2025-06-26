@@ -42,7 +42,12 @@ Route::middleware('auth')->group(function () {
     // Need Expression
     Route::get('/need_expression', NeedExpressionController::class . "@loadNeedExpression")->name('need_expression.load');
     Route::post('/submit-need-proposition', NeedExpressionController::class . "@storeNeedExpression")->name('need_expression.store');
-    Route::get('/need-expression-admin', NeedExpressionController::class . "@loadNeedExpressionAdmin")->name('need_expression.admin');
+    Route::get('/need-expression-admin/{status?}', NeedExpressionController::class . "@loadNeedExpressionAdmin")
+        ->name('need_expression.admin')
+        ->where('status', 'pending|approved|rejected')
+        ->defaults('status', 'pending');
+    Route::post('/approve-need-expression', NeedExpressionController::class . "@approveNeedExpression")->name('need_expression.approve');
+    Route::post('/reject-need-expression', NeedExpressionController::class . "@rejectNeedExpression")->name('need_expression.reject');
 
     // Transmitter
     Route::get('/transmitter', TransmitterController::class . "@loadTransmitters")->name('transmitter.load');

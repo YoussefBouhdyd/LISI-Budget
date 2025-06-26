@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
         btn.addEventListener('click', function(e) {
             const propositionId = btn.getAttribute('data-id');
 
-            // Send AJAX request
+            
             fetch('/confirm-proposition', {
                 method: 'POST',
                 headers: {
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         btn.addEventListener('click', function(e) {
             const propositionId = btn.getAttribute('data-id');
 
-            // Send AJAX request
+            
             fetch('/reject-proposition', {
                 method: 'POST',
                 headers: {
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const newValue = prompt("Entrez la nouvelle valeur pour la proposition :");
 
             if (newValue !== null) {
-                // Send AJAX request
+                
                 fetch('/modify-proposition', {
                     method: 'POST',
                     headers: {

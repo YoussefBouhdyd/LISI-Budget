@@ -19,7 +19,18 @@
         <!-- Start Engagements Content -->
         <div class="section-content p-15">
             <div class="projects bg-white rad-6 p-15">
-                <h2 class="m-15-0">Engagements</h2>
+                <div class="orders-header">
+                    <h2 class="m-15-0">Les Engagements Proposés</h2>
+                    <div class="filters-integrated">
+                        <div class="filter-group">
+                            <div class="status-filters d-flex gap-10">
+                                <a href="{{ route('need_expression.admin',['status' => 'pending']) }}" class="status-filter-btn{{ request('status') == 'pending' ? ' active' : '' }}">En attente</a>
+                                <a href="{{ route('need_expression.admin',['status' => 'approved']) }}" class="status-filter-btn{{ request('status') == 'approved' ? ' active' : '' }}">Approuvés</a>
+                                <a href="{{ route('need_expression.admin',['status' => 'rejected']) }}" class="status-filter-btn{{ request('status') == 'rejected' ? ' active' : '' }}">Rejetés</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="orders-table">
                     <table class="full-w txt-l">
                         <thead>
@@ -52,8 +63,20 @@
                                             </span>
                                         @endif
                                     </td>
-                                    <td class="tt-capital d-flex align-c gap-5">
-                                        test
+                                    <td class="tt-capital">
+                                        @if (request('status') !== 'approved')
+                                        <button class="accept-need-btn btn-primary bg-green pointer" title="Accepter" data-id="{{ $engagement->id }}">
+                                            <i class="fas fa-check"></i>
+                                        </button>        
+                                        @endif
+                                        @if (request('status') !== 'rejected')
+                                            <button class="reject-need-btn btn-primary bg-red pointer" title="Rejeter" data-id="{{ $engagement->id }}" >
+                                                <i class="fas fa-times"></i>
+                                            </button> 
+                                        @endif
+                                        <button class="view-need-btn btn-primary bg-blue pointer" title="Voir les détails" data-id="{{ $engagement->id }}">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
                                     </td>
                                 </tr>
                             @empty
@@ -69,4 +92,5 @@
         <!-- End Engagements Content  -->
     </div>
 </div>
+<script src="{{ asset('js/need_expression_admin.js') }}"></script>
 @endsection
