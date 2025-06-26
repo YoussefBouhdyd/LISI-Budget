@@ -48,6 +48,10 @@ Route::middleware('auth')->group(function () {
         return view('profile');
     });
 
+    // Change Password Routes
+    Route::get('/change-password', [AuthController::class, 'showChangePasswordForm'])->name('password.change.form');
+    Route::post('/change-password', [AuthController::class, 'changePassword'])->name('password.change');
+
     // User Routes
 
     Route::get('/my-budget', UserBudgetController::class . "@loadUserBudget")

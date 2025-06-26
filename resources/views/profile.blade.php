@@ -67,7 +67,7 @@
                     <div class="setting-row d-flex align-c gap-10">
                         <label class="setting-label fw-bold flex-1" for="password">Password</label>
                         <input type="password" id="password" class="form-control flex-3 me-20" value="********" disabled>
-                        <button type="button" class="bg-blue pointer btn-primary flex-1">Change Password</button>
+                        <button type="button" class="bg-blue pointer btn-primary flex-1" onclick="window.location.href='{{ route('password.change.form') }}'">Change Password</button>
                     </div>
                 </form>
             </div>

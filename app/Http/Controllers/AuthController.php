@@ -40,4 +40,35 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
         return redirect('/login');
     }
+
+    public function showChangePasswordForm()
+    {
+        return view('change_password');
+    }
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|min:8|confirmed',
+        ]);
+
+        $user = Auth::user();
+
+        if (!\Hash::check($request->current_password, $user->password)) {
+            return back()->withErrors(['current_password' => 'Current password is incorrect.']);
+        }
+
+        if ($request->current_password === $request->new_password) {
+            return back()->withErrors(['new_password' => 'New password must be different from the current password.']);
+        }
+
+        $user->password = bcrypt($request->new_password);
+        $user->save();
+
+        // Optionally log out other sessions
+        // Auth::logoutOtherDevices($request->new_password);
+
+        return back()->with('status', 'Password changed successfully!');
+    }
 }
