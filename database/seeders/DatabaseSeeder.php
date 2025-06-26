@@ -24,6 +24,13 @@ class DatabaseSeeder extends Seeder
             'password' => 'password',
         ]);
 
+        User::factory()->create([
+            'name' => 'Youssef',
+            'email' => 'Transmitter@lisi-budget.com',
+            'role' => 'user',
+            'password' => 'password',
+        ]);
+
         // Seed Line Budgets Table
 
         LineBudget::factory()->create([
