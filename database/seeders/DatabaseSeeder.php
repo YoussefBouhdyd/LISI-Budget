@@ -72,7 +72,7 @@ class DatabaseSeeder extends Seeder
         ]);
         LineBudget::factory()->create([
             'name' => "Achat de carburants",
-            'code' => 000,
+            'code' => 20,
         ]);
         LineBudget::factory()->create([
             'name' => "Achat de matériel scientifique",

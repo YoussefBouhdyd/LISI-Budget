@@ -11,6 +11,7 @@ class BudgetController extends Controller
     public function loadBudget () {
         $budget = Budget::orderBy('created_at','desc')->first();
         $budgetLines = LineBudget::get();
+        $totalSpend = LineBudget::sum('spend');
         return view('budget')
             ->with('budgetLines',$budgetLines)
             ->with("budget",$budget)

@@ -6,14 +6,17 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendPasswordMail;
+use App\Models\Budget;
 Use Illuminate\Support\Str;
 
 class TransmitterController extends Controller
 {
     public function loadTransmitters () {
         $users = User::where('role','user')->get();
+        $notAllocatedBudget = Budget::first()->amount - User::where('role', 'user')->sum('budget');
         return view('transmitter')
-                ->with('users',$users);
+                ->with('users',$users)
+                ->with('notAllocatedBudget',$notAllocatedBudget);
     }
 
     public function createNewTransmitter (Request $request) {
@@ -25,11 +28,12 @@ class TransmitterController extends Controller
             $password = Str::random(10);
             $newTransmitter->password = $password;
             $newTransmitter->profession = $request['profession'];
+            $newTransmitter->role = 'user';
 
             try {
-                Mail::to($request->email)->send(new SendPasswordMail($password));
+                Mail::to($request->email)->send(new SendPasswordMail($password, $request->email));
             } catch (\Exception $e) {
-                return redirect('/transmitter')->with('error', 'Erreur lors de l\'envoi de l\'email: ' . $e->getMessage());
+                return redirect('/transmitter')->with('error', 'Erreur lors de l\'envoi de l\'email: ');
             }
 
             $newTransmitter->save();
@@ -38,7 +42,7 @@ class TransmitterController extends Controller
 
             return redirect('/transmitter')->with('success', 'Émetteur créé avec succès');
         } catch (\Exception $e) {
-            return redirect('/transmitter')->with('error', 'Erreur lors de la création de l\'émetteur: ' . $e->getMessage());
+            return redirect('/transmitter')->with('error', 'Erreur lors de la création de l\'émetteur: ');
         }
     }
 

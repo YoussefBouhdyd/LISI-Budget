@@ -150,13 +150,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach ($budgetLines as $budgetLine)
+                                @foreach ($budgetLines as $budgetLine)
                                     <tr class="status">
-                                        <td class="tt-capital">-</td>
-                                        <td class="tt-capital">{{$budgetLine['name']}}</td>
-                                        <td class="tt-capital">{{$budgetLine->budgetLineProposals->where('status','approved')->sum('proposed_amount')}}</td>
+                                        <td class="tt-capital">{{ $budgetLine->code }}</td>
+                                        <td class="tt-capital">{{$budgetLine->name}}</td>
+                                        <td class="tt-capital">{{$budgetLine->budgetLineProposals->where("status","approved")->sum("proposed_amount")}}</td>
+                                        <td class="tt-capital red-c">{{$budgetLine->budgetLineProposals->sum('spend')}}</td>
+                                        <td class="tt-capital green-c">{{$budgetLine->budgetLineProposals->where("status","approved")->sum("proposed_amount") - $budgetLine->budgetLineProposals->sum('spend')}}</td>
                                     </tr>
-                                @endforeach --}}
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

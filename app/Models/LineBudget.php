@@ -15,10 +15,11 @@ class LineBudget extends Model
     protected $fillable = [
         'name',
         'amount',
+        'code',
     ];
 
     public function budgetLineProposals()
     {   
-        return $this->hasMany(LineBudgetProposal::class);
+        return $this->hasMany(LineBudgetProposal::class , 'budget_line_id');
     }
 }

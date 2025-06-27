@@ -54,8 +54,8 @@
                             <tr>
                                 <td class="p-10">{{ $user['name'] }}</td>
                                 <td class="p-10">{{ $user['budget'] }} DH</td>
-                                <td class="p-10 red-c">{{ $user['spend'] }}DH</td>
-                                <td class="p-10 green-c">{{ $user['budget'] - $user['spend']   }} DH</td>
+                                <td class="p-10 red-c">{{ $user->budgetProposals->sum('spend') }}DH</td>
+                                <td class="p-10 green-c">{{ $user['budget'] - $user->budgetProposals->sum('spend')   }} DH</td>
                                 <td class="p-10">{{ $user['profession'] }}</td>
                                 <td class="p-10">{{ $user['email'] }}</td>
                                 <td class="p-10 d-flex">
@@ -116,7 +116,7 @@
                     <div class="modal-content">
                         <span id="closeModalBtn">&times;</span>
                         <h3 class="mb-20">Ajouter un émetteur</h3>
-                        <form method="POST" action="{{ url('/add-transmitter') }}">
+                        <form method="POST" action="{{ url('/add-transmitter') }}" id="addTransmitterForm">
                             @csrf
                             <div class="mb-15">
                                 <label for="name">Nom de l'émetteur</label>
@@ -124,7 +124,10 @@
                             </div>
                             <div class="mb-15">
                                 <label for="budget">Budget</label>
-                                <input type="number" id="budget" name="budget" class="full-w p-10 rad-6 form-control" required>
+                                <input type="number" id="budget" name="budget" class="full-w p-10 rad-6 form-control" required min="0">
+                                <div id="budgetError" class="alert alert-danger custom-alert" style="display:none; margin-top:8px;">
+                                    Le budget ne peut pas dépasser {{ $notAllocatedBudget }} DH.
+                                </div>
                             </div>
                             <div class="mb-15">
                                 <label for="email">Email</label>
@@ -134,11 +137,10 @@
                                 <label for="profession">Profession</label>
                                 <input type="text" id="profession" name="profession" class="full-w p-10 rad-6 form-control" required>
                             </div>
-                            <button type="submit" class="btn-primary bg-blue rad-6 p-10 pointer c-white m-auto">Enregistrer</button>
+                            <button type="submit" id="submitTransmitterBtn" class="btn-primary bg-blue rad-6 p-10 pointer c-white m-auto" data-restBudget="{{$notAllocatedBudget}}" style="background-color: #ccc; cursor: not-allowed;" disabled>Enregistrer</button>
                         </form>
                     </div>
-                </div>
-
+                </div>>
                 <!-- Delete Confirmation Modal -->
                 <div id="deleteConfirmModal" class="modal">
                     <div class="modal-content delete-modal-content">
@@ -155,4 +157,5 @@
         <!-- End Engagements Content  -->
     </div>
 </div>
+<script src="{{ asset('js/transmitter.js') }}"></script>
 @endsection

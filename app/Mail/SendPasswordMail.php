@@ -17,10 +17,12 @@ class SendPasswordMail extends Mailable
      * Create a new message instance.
      */
     public $password;
+    public $email;
 
-    public function __construct($password)
+    public function __construct($password,$email)
     {
         $this->password = $password;
+        $this->email = $email;
     }
 
     /**
@@ -40,7 +42,8 @@ class SendPasswordMail extends Mailable
     {
         return new Content(
             view: 'emails.password', 
-            with: ['password' => $this->password],
+            with: ['password' => $this->password,
+                   'email' => $this->email],
         );
     }
     
