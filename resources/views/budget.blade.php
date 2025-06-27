@@ -19,6 +19,18 @@
 
         <!-- Start Budget Content -->
         <div class="section-content p-15 mb-20">
+            @if(session('success'))
+                <div class="alert alert-success custom-alert " style="margin: 15px; position: relative;">
+                        <span class="close-alert" onclick="this.parentElement.style.display='none';">&times;</span>
+                        {{ session('success') }}
+                    </div>
+                @endif
+            @if(session('error'))
+                <div class="alert alert-danger custom-alert" style="margin: 15px; position: relative;">
+                    <span class="close-alert" onclick="this.parentElement.style.display='none';">&times;</span>
+                    {{ session('error') }}
+                </div>
+            @endif
             @if(isset($budget))
                 <div class="budget-stats bg-white p-15 rad-6 mb-20">
                     <div class="d-flex s-between align-c mb-10">
@@ -30,16 +42,17 @@
                         <div id="editBudgetModal" class="modal-overlay" style="display:none;">
                             <div class="modal-content bg-white p-20 rad-6" style="min-width:300px; max-width:90vw;">
                                 <h3 class="mb-15">Modifier le budget</h3>
-                                <form id="budgetEditForm" method="POST" action="#">
+                                <form id="budgetEditForm" method="POST" action="{{ route('budget.update') }}">
                                     @csrf
                                     <div class="mb-10">
                                         <label for="budgetAmount" class="fw-bold">Montant du budget</label>
-                                        <input type="number" step="0.01" min="0" class="form-control" id="budgetAmount" name="budgetAmount" value="{{ number_format($budget['amount'],2) }}" required>
+                                        <input type="number" step="0.01" min="0" class="form-control" id="budgetAmount" name="budgetAmount" value="{{ $budget['amount'] }}" required>
                                     </div>
                                     <div class="mb-10">
                                         <label for="budgetSaison" class="fw-bold">Saison</label>
-                                        <input type="text" class="form-control" id="budgetSaison" name="budgetSaison" value="{{ $budget['season'] }}" required>
+                                        <input type="text" class="form-control" id="budgetSaison" name="budgetSeason" value="{{ $budget['season'] }}" required>
                                     </div>
+                                    <input type="hidden" name="budgetId" value="{{ $budget['id'] }}">
                                     <div class="d-flex gap-10 mt-15">
                                         <button type="submit" class="btn-primary bg-blue rad-6 pointer">Enregistrer</button>
                                         <button type="button" class="btn-primary bg-gray rad-6 pointer" id="closeBudgetModal">Annuler</button>

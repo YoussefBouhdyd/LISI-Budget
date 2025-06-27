@@ -26,11 +26,12 @@ Route::middleware('auth')->group(function () {
     // Budget
     Route::get('/budget', BudgetController::class . "@loadBudget")->name('budget.load');
     Route::post('/lineBudget', BudgetController::class . '@updateLineBudget')->name('lineBudget.update');
+    Route::post('/create-budget', BudgetController::class . "@createBudget")->name('userBudget.create');
+    Route::post('/update-budget', BudgetController::class . "@updateBudget")->name('budget.update');
 
     // User Budget
     Route::get('/my-budget', UserBudgetController::class . "@loadUserBudget")->name('userBudget.load');
     Route::post('/propose-line', UserBudgetController::class . "@proposBudgetLine");
-    Route::post('/create-budget', UserBudgetController::class . "@createBudget")->name('userBudget.create');
 
     // Proposition
     Route::get('/proposition/{status?}', [PropositionController::class, "loadPendingProposition"])
