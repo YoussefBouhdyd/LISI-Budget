@@ -25,4 +25,13 @@ class BudgetController extends Controller
         return redirect()->back()->with('success', 'Budget line added successfully.');
     }
 
+    public function createBudget(Request $request) {
+        $budget = new Budget();
+        $budget->amount = $request->input('budgetAmount');
+        $budget->saison = $request->input('budgetSaison');
+        $budget->save();
+
+        return redirect()->back()->with('success', 'Budget created successfully.');
+    }
+
 }

@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function () {
     // User Budget
     Route::get('/my-budget', UserBudgetController::class . "@loadUserBudget")->name('userBudget.load');
     Route::post('/propose-line', UserBudgetController::class . "@proposBudgetLine");
+    Route::post('/create-budget', UserBudgetController::class . "@createBudget")->name('userBudget.create');
 
     // Proposition
     Route::get('/proposition/{status?}', [PropositionController::class, "loadPendingProposition"])
@@ -68,11 +69,6 @@ Route::middleware('auth')->group(function () {
     });
     Route::get('/change-password', [AuthController::class, 'showChangePasswordForm'])->name('password.change.form');
     Route::post('/change-password', [AuthController::class, 'changePassword'])->name('password.change');
-
-    // Order Tracking
-    Route::get('/order-tracking', function () {
-        return view('suivie_BC');
-    });
 });
 
 

@@ -37,6 +37,7 @@
                             <tr class="bg-eee">
                                 <th class="p-10">Émetteur</th>
                                 <th class="p-10">Ligne Budgétaire</th>
+                                <th class="p-10">Date de Création</th>
                                 <th class="p-10">Total Estimé</th>
                                 <th class="p-10">Statut</th>
                                 <th class="p-10">Operation</th>
@@ -47,6 +48,7 @@
                                 <tr class="status">
                                     <td class="tt-capital">{{$engagement->lineBudgetProposal->user->name}}</td>
                                     <td class="tt-capital">{{$engagement->lineBudgetProposal->budgetLine->name}}</td>
+                                    <td class="tt-capital">{{ $engagement->created_at->format('d-m-Y') }}</td>
                                     <td class="tt-capital">{{$engagement->needs->sum('estimated_amount')}}</td>
                                     <td class="tt-capital">
                                         @if ($engagement->status === 'approved')
@@ -79,6 +81,37 @@
                                         </button>
                                     </td>
                                 </tr>
+                                <tr class="engagement-details-row" id="engagement-details-{{ $engagement->id }}" style="display: none;">
+                                    <td colspan="6">
+                                        <div class="engagement-details">
+                                            <h4>Détails de l'engagement</h4>
+                                            <ul>
+                                                @foreach($engagement->needs as $need)
+                                                    <li>
+                                                        <strong>Libellé:</strong> {{ $need->nature }}<br>
+                                                        <strong>Montant estimé:</strong> {{ $need->estimated_amount }}<br>
+                                                        <strong>Description:</strong> {{ $need->description }}
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.view-need-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var id = this.getAttribute('data-id');
+                var detailsRow = document.getElementById('engagement-details-' + id);
+                if (detailsRow.style.display === 'none') {
+                    detailsRow.style.display = '';
+                } else {
+                    detailsRow.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
                             @empty
                                 <tr>
                                     <td colspan="6" class="c-777">Aucune proposition trouvée.</td>

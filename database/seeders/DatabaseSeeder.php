@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Budget;
 use App\Models\LineBudget;
+use App\Models\LineBudgetProposal;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -24,7 +25,7 @@ class DatabaseSeeder extends Seeder
             'password' => 'password',
         ]);
 
-        User::factory()->create([
+        $user = User::factory()->create([
             'name' => 'Youssef',
             'email' => 'Transmitter@lisi-budget.com',
             'role' => 'user',
@@ -70,11 +71,22 @@ class DatabaseSeeder extends Seeder
             'name' => "Achat de matériel informatique",
         ]);
 
-        // Seed Budgets Table
+        // Seed Line Budget Proposals for the user
+        $budgetLines = LineBudget::all();
 
-        Budget::factory()->create([
-            'amount' => 0,
-            'season' => '2024/2025',
-        ]);
+        $proposals = $budgetLines->map(function ($line) use ($user) {
+            return [
+                'user_id' => $user->id,
+                'budget_line_id' => $line->id,
+                'proposed_amount' => 0,
+                'spend' => 0,
+                'is_validated' => false,
+                'status' => 'pending',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+        });
+
+        LineBudgetProposal::insert($proposals->toArray());
     }
 }

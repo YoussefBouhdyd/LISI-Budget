@@ -30,10 +30,8 @@ class User extends Authenticatable
     protected static function booted()
     {
         static::created(function ($user) {
-            // Get all budget lines using Eloquent
             $budgetLines = LineBudget::all();
 
-            // Prepare proposals to insert
             $proposals = $budgetLines->map(function ($line) use ($user) {
                 return [
                     'user_id' => $user->id,
@@ -47,7 +45,6 @@ class User extends Authenticatable
                 ];
             });
 
-            // Insert all proposals for the user using Eloquent
             LineBudgetProposal::insert($proposals->toArray());
         });
     }

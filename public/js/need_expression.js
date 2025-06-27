@@ -70,11 +70,19 @@ function getBudgetDotation() {
     return Number.parseFloat(dotationText);
 }
 
+function getEngagedAmount() {
+    const engagedText = document
+        .getElementById("budget-engaged")
+        .textContent.replace(/,/g, "");
+    return Number.parseFloat(engagedText);
+}
+
 function updateBalance(finalTotal) {
     const budgetBalanceElem = document.getElementById("budget-balance");
     if (!budgetBalanceElem) return;
     const currentDotation = getBudgetDotation();
-    const newBalance = currentDotation - finalTotal;
+    const currentEngaged = getEngagedAmount();
+    const newBalance = currentDotation - currentEngaged - finalTotal;
     budgetBalanceElem.textContent = newBalance.toFixed(2) + " DH";
 
     // Disable all item fields if balance < 0

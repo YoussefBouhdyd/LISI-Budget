@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class UserBudgetController extends Controller
 {
-    public function loadUserBudget(Request $request)
+    public function loadUserBudget()
     {
         $user = auth()->user();
         $totalSpend = $user->budgetProposals->sum('spend');
