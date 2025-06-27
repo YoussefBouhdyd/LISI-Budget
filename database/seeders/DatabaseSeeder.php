@@ -36,39 +36,51 @@ class DatabaseSeeder extends Seeder
 
         LineBudget::factory()->create([
             'name' => "Frais de participation et d'inscription aux colloques",
+            'code' => 38,
         ]);
         LineBudget::factory()->create([
             'name' => "Achats de petit outillage et petit équipement",
+            'code' => 32,
         ]);
         LineBudget::factory()->create([
             'name' => "Achat de fournitures informatiques",
+            'code' => 12,
         ]);
         LineBudget::factory()->create([
             'name' => "Achat de fournitures de bureau, papeterie et imprimés",
+            'code' => 11,
         ]);
         LineBudget::factory()->create([
             'name' => "Achat de matières premières",
+            'code' => 32,
         ]);
         LineBudget::factory()->create([
             'name' => "Frais de transport du personnel et des étudiants à l'étranger",
+            'code' => 23,
         ]);
         LineBudget::factory()->create([
             'name' => "Indemnités de déplacement à l'intérieur du Royaume",
+            'code' => 21,
         ]);
         LineBudget::factory()->create([
             'name' => "Indemnités kilométriques",
+            'code' => 22,
         ]);
         LineBudget::factory()->create([
             'name' => "Indemnités de mission à l'étranger",
+            'code' => 25,
         ]);
         LineBudget::factory()->create([
             'name' => "Achat de carburants",
+            'code' => 000,
         ]);
         LineBudget::factory()->create([
             'name' => "Achat de matériel scientifique",
+            'code' => 13,
         ]);
         LineBudget::factory()->create([
             'name' => "Achat de matériel informatique",
+            'code' => 14,
         ]);
 
         // Seed Line Budget Proposals for the user
@@ -88,5 +100,11 @@ class DatabaseSeeder extends Seeder
         });
 
         LineBudgetProposal::insert($proposals->toArray());
+
+        // Seed Budgets Table
+        Budget::factory()->create([
+            'season' => '2024-2025',
+            'amount' => 0,
+        ]);
     }
 }

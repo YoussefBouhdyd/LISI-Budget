@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\LineBudgetProposal;
+
 
 class LineBudget extends Model
 {
@@ -14,4 +16,9 @@ class LineBudget extends Model
         'name',
         'amount',
     ];
+
+    public function budgetLineProposals()
+    {   
+        return $this->hasMany(LineBudgetProposal::class);
+    }
 }

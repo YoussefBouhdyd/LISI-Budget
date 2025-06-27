@@ -34,7 +34,7 @@
             @if(isset($budget))
                 <div class="budget-stats bg-white p-15 rad-6 mb-20">
                     <div class="d-flex s-between align-c mb-10">
-                        <h2 class="m-15-0">Statistiques du budget</h2>
+                        <h2 class="m-15-0">Statistiques du Budget</h2>
                         <button type="button" class="btn-primary bg-blue rad-6 d-flex align-c gap-5 pointer" id="editBudgetBtn">
                             <i class="fa-solid fa-pen"></i> <span class="hide-mobile">Modifier</span>
                         </button>
@@ -63,6 +63,7 @@
                     </div>
                     <div class="d-flex align-c mb-10 budget-summary-row column-mobile">
                         <!-- Circular Progress Bar on the left, bigger -->
+
                         <div class="d-flex flex-column align-c budget-progress-col">
                             <div class="budget-progress-circle">
                                 <svg width="170" height="170" style="overflow: visible">
@@ -84,6 +85,7 @@
                         </div>
 
                         <!-- Budget Info on the right, smaller and organized in lines -->
+                        
                         <div class="budget-info d-flex flex-column justify-center">
                             <div class="d-flex justify-between budget-info-row">
                                 <span class="fw-bold budget-info-label">Budget Total:</span>
@@ -136,22 +138,27 @@
                             </div>
                         </div>
                     </div>
-                    <div class="budget-lines-list">
-                        @foreach ($budgetLines as $budgetLine)
-                            <div class="budget-line mb-20">
-                                <div class="d-flex justify-between align-c mb-10 column-mobile">
-                                    <span class="fw-bold mr-10">{{ $budgetLine['name']}}:</span>
-                                    <span>{{ $budgetLine['amount'] }} DH ({{$budgetLine['amount'] ? number_format(($budgetLine['spend'] * 100) / $budgetLine['amount'],2) : 0}}%)</span>
-                                </div>
-                                <div class="progress-bar">
-                                    <div class="progress-bar-inner" data-percent="{{$budgetLine['amount'] ? ($budgetLine['spend'] * 100) / $budgetLine['amount'] : 0 }}" style="width: {{$budgetLine['amount'] ? ($budgetLine['spend'] * 100) / $budgetLine['amount'] : 0}}%;height: 100%;border-radius:0.375rem;"></div>
-                                </div>
-                                <div class="d-flex justify-between mt-5 gap-10 column-mobile align-c">
-                                    <span>Dépensé: <span class="budget-info-danger">{{ $budgetLine['spend'] }} DH</span></span>
-                                    <span>Restant: <span class="budget-info-success">{{ $budgetLine['amount'] - $budgetLine['spend'] }} DH</span></span>
-                                </div>
-                            </div>
-                        @endforeach
+                    <div class="orders-table">
+                        <table class="full-w txt-l">
+                            <thead>
+                                <tr class="bg-eee">
+                                    <th class="p-10">Code</th>
+                                    <th class="p-10">Ligne Budgétaire</th>
+                                    <th class="p-10">Montant Proposé Total</th>
+                                    <th class="p-10">Dépensé</th>
+                                    <th class="p-10">Restant</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{-- @foreach ($budgetLines as $budgetLine)
+                                    <tr class="status">
+                                        <td class="tt-capital">-</td>
+                                        <td class="tt-capital">{{$budgetLine['name']}}</td>
+                                        <td class="tt-capital">{{$budgetLine->budgetLineProposals->where('status','approved')->sum('proposed_amount')}}</td>
+                                    </tr>
+                                @endforeach --}}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             @else
