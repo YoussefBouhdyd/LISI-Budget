@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Budget;
 use App\Models\LineBudget;
+use App\Models\LineBudgetProposal;
 use Illuminate\Http\Request;
 
 class BudgetController extends Controller
@@ -11,11 +12,10 @@ class BudgetController extends Controller
     public function loadBudget () {
         $budget = Budget::orderBy('created_at','desc')->first();
         $budgetLines = LineBudget::get();
-        $totalSpend = LineBudget::sum('spend');
         return view('budget')
             ->with('budgetLines',$budgetLines)
             ->with("budget",$budget)
-            ->with('totalSpend',LineBudget::sum('spend'));
+            ->with('totalSpend',LineBudgetProposal::sum('spend'));
     }
 
     public function createBudget(Request $request) {
