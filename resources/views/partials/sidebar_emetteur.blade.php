@@ -11,13 +11,13 @@
             </li>
             <li class="rad-6 tt-capital">
                 <a href="{{ url('/need_expression') }}" class="{{ request()->is('need_expression') ? 'active' : '' }}">
-                    <i class="fa-solid fa-cart-shopping fa-fw"></i>
+                    <i class="fa-regular fa-file-lines fa-fw"></i>
                     <span class="hide-mobile">Engagements</span>
                 </a>
             </li>
             <li class="rad-6 tt-capital">
                 <a href="{{ url('/track-expression') }}" class="{{ request()->is('track-expression') ? 'active' : '' }}">
-                    <i class="fa-solid fa-list-check fa-fw"></i>
+                    <i class="fa-solid fa-chart-line fa-fw"></i>
                     <span class="hide-mobile">Suivi Engagements</span>
                 </a>
             </li>
