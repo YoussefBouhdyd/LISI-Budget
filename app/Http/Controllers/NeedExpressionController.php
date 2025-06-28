@@ -87,6 +87,9 @@ class NeedExpressionController extends Controller
     {
         try {
             $engagement = Engagement::findOrFail($request->input('id'));
+            $budgetLine = $engagement->lineBudgetProposal;
+            $budgetLine->spend -= $engagement->needs->sum('estimated_amount');
+            $budgetLine->save();
             $engagement->status = 'rejected';
             $engagement->save();
             return response()->json(['success' => true, 'message' => 'Need expression rejected successfully.']);
