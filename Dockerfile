@@ -23,7 +23,6 @@ RUN mkdir -p /var/www/database && touch /var/www/database/database.sqlite
 
 # Run Laravel setup commands
 RUN php artisan config:clear
-RUN php artisan migrate --seed
 
 # Set permissions (optional, depending on your setup)
 RUN chown -R www-data:www-data /var/www
