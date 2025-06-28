@@ -19,12 +19,10 @@
         <h1 class="content-title">Budget</h1>
         
         <!-- Start Budget Content -->
-        <div class="section-content p-15 d-flex gap-10 column-mobile">
-            <div class="budget-stats bg-white p-15 rad-6">
-                <div class="d-flex s-between align-c mb-10">
-                    <h2 class="m-15-0">Budget Statics</h2>
-                </div>
-                <div class="d-flex align-c mb-10 budget-summary-row flex-column">
+        <div class="section-content p-15">
+            <div class="budget-stats bg-white p-15 rad-6 mb-20">
+                <h2 class="m-15-0">Statistiques du Budget</h2>
+                <div class="d-flex align-c mb-10 budget-summary-row column-mobil">
                     <!-- Circular Progress Bar on the left, bigger -->
                     <div class="d-flex flex-column align-c budget-progress-col">
                         <div class="budget-progress-circle">
@@ -77,28 +75,39 @@
             </div>
             <div class="lines-stats bg-white p-15 rad-6">
                 <div class="d-flex s-between align-c mb-10">
-                    <h2 class="m-15-0">Lignes Budgétaires</h2>
+                    <h2 class="m-15-0">Lignes Budgétaires Approuvées</h2>
                 </div>
                 <div class="budget-lines-list">
-                    @foreach ($budgetLines as $budgetLine)
-                        <div class="budget-line mb-20">
-                            <div class="d-flex justify-between align-c mb-10 column-mobile">
-                                <span class="fw-bold mr-10">{{ $budgetLine->budgetLine['name'] }}:</span>
-                                @if ($budgetLine['status'] == 'approved')
-                                    <span>{{ $budgetLine['proposed_amount'] }} DH ({{ $budgetLine['proposed_amount'] ? number_format(($budgetLine['spend'] * 100) / $budgetLine['proposed_amount'], 2) : 0 }}%)</span>
+                    <div class="orders-table">
+                        <table class="full-w txt-l">
+                            <thead>
+                                <tr class="bg-eee">
+                                    <th class="p-10">Code Rubrique</th>
+                                    <th class="p-10">Ligne Budgétaire</th>
+                                    <th class="p-10">Montant Proposé</th>
+                                    <th class="p-10">Dépensé</th>
+                                    <th class="p-10">Restant</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if ($budgetLines->where('status','approved')->isEmpty())
+                                    <tr>
+                                        <td colspan="6" class="c-777">Aucune proposition trouvée.</td>
+                                    </tr>
                                 @else
-                                    <span>0 DH (0%)</span>
+                                    @foreach ($budgetLines->where('status','approved') as $budgetLine)
+                                        <tr class="status">
+                                            <td class="tt-capital">{{ $budgetLine->budgetLine->code }}</td>
+                                            <td class="tt-capital">{{ $budgetLine->budgetLine->name }}</td>
+                                            <td class="tt-capital">{{ $budgetLine->proposed_amount }}</td>
+                                            <td class="tt-capital red-c">{{ $budgetLine->spend }}</td>
+                                            <td class="tt-capital green-c">{{ $budgetLine->proposed_amount - $budgetLine->spend}}</td>
+                                        </tr>
+                                    @endforeach
                                 @endif
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-bar-inner" data-percent="{{$budgetLine['proposed_amount'] ? ($budgetLine['spend'] * 100) / $budgetLine['proposed_amount'] : 0 }}" style="width: {{$budgetLine['proposed_amount'] ? ($budgetLine['spend'] * 100) / $budgetLine['proposed_amount'] : 0}}%;height: 100%;border-radius:0.375rem;"></div>
-                            </div>
-                            <div class="d-flex justify-between mt-5 gap-10 column-mobile align-c">
-                                <span>Dépensé: <span class="budget-info-danger">{{ $budgetLine['spend'] }} DH</span></span>
-                                <span>Restant: <span class="budget-info-success">{{ $budgetLine['proposed_amount'] - $budgetLine['spend'] }} DH</span></span>
-                            </div>
-                        </div>
-                    @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
