@@ -97,5 +97,5 @@
         <!-- End User Need Expression  -->
     </div>
 </div>
-
+<script src="{{ asset('js/track_need_expression.js') }}"></script>
 @endsection

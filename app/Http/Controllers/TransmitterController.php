@@ -49,7 +49,6 @@ class TransmitterController extends Controller
     public function deleteTransmitter(Request $request) {
         $id = $request->input('id');
         $transmitter = User::find($id);
-        $restBudget = $transmitter->budget;
         if ($transmitter) {
             $transmitter->delete();
             return response()->json(['message' => 'Émetteur supprimé avec succès']);

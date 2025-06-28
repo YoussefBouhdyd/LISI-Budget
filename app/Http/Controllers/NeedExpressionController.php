@@ -38,7 +38,7 @@ class NeedExpressionController extends Controller
     {   
         try {
             $budgetLine = LineBudgetProposal::findOrFail($request->input('budgetId'));
-            $budgetLine->spend = $request->input('finalTotal');
+            $budgetLine->spend += $request->input('finalTotal');
             $budgetLine->save();
             $budgetId =  $request->input('budgetId');
             $needs = $request->input('items');
