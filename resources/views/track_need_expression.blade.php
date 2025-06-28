@@ -16,7 +16,7 @@
         <!-- Start Page header  -->
         @include('partials.header')
         <!-- End Page header  -->
-
+        <h1 class="content-title">Suivi des Expressions de Besoin</h1>
         <!-- Start User Need Expression -->
         <div class="section-content p-15">
             <div class="projects bg-white rad-6 p-15">

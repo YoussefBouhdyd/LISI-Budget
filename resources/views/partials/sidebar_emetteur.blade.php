@@ -2,6 +2,13 @@
     <h1 class="logo text-center p-relative">LISI</h1>
     <nav>
         <ul class="link">
+            
+            <li class="rad-6 tt-capital">
+                <a href="{{ route('userBudget.proposeLine') }}" class="{{ request()->is('propose-line') ? 'active' : '' }}">
+                    <i class="fa-solid fa-bars-staggered fa-fw"></i>
+                    <span class="hide-mobile">Ligne Budgétaire</span>
+                </a>
+            </li>
             <li class="rad-6 tt-capital">
                 <a href="{{ url('/need_expression') }}" class="{{ request()->is('need_expression') ? 'active' : '' }}">
                     <i class="fa-solid fa-cart-shopping fa-fw"></i>

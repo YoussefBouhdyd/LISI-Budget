@@ -15,7 +15,7 @@
         <!-- Start Page header  -->
         @include('partials.header')
         <!-- End Page header  -->
-        <h1 class="content-title">Engagements</h1>
+        <h1 class="content-title mb-20">Engagements</h1>
         <!-- Start Engagements Content -->
         <div class="section-content p-15">
             <div class="projects bg-white rad-6 p-15">
@@ -84,12 +84,12 @@
                                 <tr class="engagement-details-row" id="engagement-details-{{ $engagement->id }}" style="display: none;">
                                     <td colspan="6">
                                         <div class="engagement-details">
-                                            <h4>Détails de l'engagement</h4>
+                                            <h4 class="mb-5 sp-border p-5-10 text-center">Détails de l'engagement:</h4>
                                             <ul>
                                                 @foreach($engagement->needs as $need)
-                                                    <li>
-                                                        <strong>Libellé:</strong> {{ $need->nature }}<br>
-                                                        <strong>Montant estimé:</strong> {{ $need->estimated_amount }}<br>
+                                                    <li class="sp-border p-5-10 mb-5">
+                                                        <strong>Nature:</strong> {{ $need->nature }}<br>
+                                                        <strong>Montant estimé:</strong> {{ $need->estimated_amount }} DH<br>
                                                         <strong>Description:</strong> {{ $need->description }}
                                                     </li>
                                                 @endforeach
@@ -97,21 +97,7 @@
                                         </div>
                                     </td>
                                 </tr>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('.view-need-btn').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                var id = this.getAttribute('data-id');
-                var detailsRow = document.getElementById('engagement-details-' + id);
-                if (detailsRow.style.display === 'none') {
-                    detailsRow.style.display = '';
-                } else {
-                    detailsRow.style.display = 'none';
-                }
-            });
-        });
-    });
-</script>
+
                             @empty
                                 <tr>
                                     <td colspan="6" class="c-777">Aucune proposition trouvée.</td>

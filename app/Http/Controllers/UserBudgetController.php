@@ -6,6 +6,7 @@ use App\Models\BudgetProposal;
 use App\Models\LineBudgetProposal;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Symfony\Component\CssSelector\Node\FunctionNode;
 
 class UserBudgetController extends Controller
 {
@@ -35,5 +36,15 @@ class UserBudgetController extends Controller
         }
 
         return response()->json(['error' => 'Transmitter not found'], 404);
+    }
+
+    public function loadProposeLineForm() {
+        $user = auth()->user();
+        $budgetLinesProposals = $user->budgetProposals;
+        $totalValidated = $budgetLinesProposals->where('is_validated',true)->sum('proposed_amount');
+        return view('line_proposition')
+                ->with('userData',$user)
+                ->with('budgetLines',$budgetLinesProposals)
+                ->with('totalValidated',$totalValidated);
     }
 }

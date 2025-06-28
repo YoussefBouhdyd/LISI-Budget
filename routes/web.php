@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
 
     // User Budget
     Route::get('/my-budget', UserBudgetController::class . "@loadUserBudget")->name('userBudget.load');
+    Route::get('/propose-line', UserBudgetController::class . "@loadProposeLineForm")->name('userBudget.proposeLine');
     Route::post('/propose-line', UserBudgetController::class . "@proposBudgetLine");
 
     // Proposition
