@@ -68,7 +68,7 @@
                                         <i class="fa-solid fa-pen"></i>
                                         <span class="hide-mobile">Modifier</span>
                                     </button>
-                                    <button data-id="{{ $user['id']}}" class="btn-primary bg-red c-white rad-6 p-5 pointer d-inline-flex align-c delete-btn" title="Supprimer" style="border:none; min-width: 40px; gap: 5px; margin-left: 8px;">
+                                    <button data-id="{{ $user['id']}}" class="btn-primary bg-red c-white rad-6 p-5 gap-5 ml-10 pointer d-inline-flex align-c delete-btn" title="Supprimer" style="border:none; min-width: 40px;">
                                         <i class="fa-solid fa-trash"></i>
                                         <span class="hide-mobile">Supprimer</span>
                                     </button>
