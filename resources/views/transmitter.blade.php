@@ -140,7 +140,7 @@
                             <button type="submit" id="submitTransmitterBtn" class="btn-primary bg-blue rad-6 p-10 pointer c-white m-auto" data-restBudget="{{$notAllocatedBudget}}" style="background-color: #ccc; cursor: not-allowed;" disabled>Enregistrer</button>
                         </form>
                     </div>
-                </div>>
+                </div>
                 <!-- Delete Confirmation Modal -->
                 <div id="deleteConfirmModal" class="modal">
                     <div class="modal-content delete-modal-content">

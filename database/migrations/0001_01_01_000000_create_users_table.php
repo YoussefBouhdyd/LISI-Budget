@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->decimal('budget',12,2)->default(0);
-            $table->decimal('spend',12,2)->default(0);
             $table->string('profession')->nullable();
             $table->enum('role',['admin','user'])->default('user');
             $table->string('email')->unique();
