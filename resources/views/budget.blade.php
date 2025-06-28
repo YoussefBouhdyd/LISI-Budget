@@ -148,9 +148,9 @@
                                 <tr class="bg-eee">
                                     <th class="p-10">Code Rubrique</th>
                                     <th class="p-10">Ligne Budgétaire</th>
-                                    <th class="p-10">Montant Proposé Total</th>
-                                    <th class="p-10">Dépensé</th>
-                                    <th class="p-10">Restant</th>
+                                    <th class="p-10">Montant Proposé Total (DH)</th>
+                                    <th class="p-10">Dépensé (DH)</th>
+                                    <th class="p-10">Restant (DH)</th>
                                     <th class="p-10">Supprimer</th>
                                 </tr>
                             </thead>

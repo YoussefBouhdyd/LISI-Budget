@@ -68,6 +68,22 @@
                                         </button>
                                     </td>
                                 </tr>
+                                <tr class="engagement-details-row" id="engagement-details-{{ $engagement->id }}" style="display: none;">
+                                    <td colspan="6">
+                                        <div class="engagement-details">
+                                            <h4 class="mb-5 sp-border p-5-10 text-center">Détails de l'engagement:</h4>
+                                            <ul>
+                                                @foreach($engagement->needs as $need)
+                                                    <li class="sp-border p-5-10 mb-5">
+                                                        <strong>Nature:</strong> {{ $need->nature }}<br>
+                                                        <strong>Montant estimé:</strong> {{ $need->estimated_amount }} DH<br>
+                                                        <strong>Description:</strong> {{ $need->description }}
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
                             @empty
                                 <tr>
                                     <td colspan="6" class="c-777">Aucune proposition trouvée.</td>

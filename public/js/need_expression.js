@@ -287,6 +287,7 @@ document
                         `Besoin soumis avec succès !`,
                         true,
                     );
+                    window.location.reload();
                 } else {
                     showPopupMessage(
                         `Erreur lors de la soumission du besoin. Veuillez réessayer.`,

@@ -116,7 +116,7 @@
                     
                     <div class="form-actions d-flex flex-end gap-5">
                         <button id="add-item-btn" type="button" class="btn btn-primary rad-6 bg-blue c-white p-10 pointer d-flex gap-5" disabled>
-                            <i class="fas fa-plus-circle mr-5"></i> Ajouter Article
+                            <i class="fas fa-plus-circle mr-5"></i> Proposer un Besoin
                         </button>
                     </div>
                 </div>
@@ -148,7 +148,7 @@
                 <!-- Footer Actions -->
                 <footer class="footer-actions d-flex flex-end pt-20 gap-15 border-top">
                     <button id="submit-need-proposition" class="btn btn-primary rad-6 bg-green c-white p-12 pointer d-flex gap-10 p-10">
-                        Valider le Proposition <i class="fas fa-check"></i>
+                        Valider les Propositions <i class="fas fa-check"></i>
                     </button>
                 </footer>
             </section>
