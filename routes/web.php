@@ -28,6 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/lineBudget', BudgetController::class . '@updateLineBudget')->name('lineBudget.update');
     Route::post('/create-budget', BudgetController::class . "@createBudget")->name('userBudget.create');
     Route::post('/update-budget', BudgetController::class . "@updateBudget")->name('budget.update');
+    Route::post('/add-budget-line', BudgetController::class . "@addBudgetLine")->name('budget.addLine');
+    Route::delete('/delete-budget-line/{id}', BudgetController::class . "@deleteBudgetLine")->name('budget.deleteLine');
 
     // User Budget
     Route::get('/my-budget', UserBudgetController::class . "@loadUserBudget")->name('userBudget.load');

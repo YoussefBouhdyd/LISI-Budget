@@ -18,14 +18,6 @@ class BudgetController extends Controller
             ->with('totalSpend',LineBudget::sum('spend'));
     }
 
-    public function addBudgetLine(Request $request) {
-        $budgetLine = new LineBudget();
-        $budgetLine->name = $request->input('name');
-        $budgetLine->save();
-
-        return redirect()->back()->with('success', 'Budget line added successfully.');
-    }
-
     public function createBudget(Request $request) {
         $request->validate([
             'budgetAmount' => 'required|numeric',
@@ -59,4 +51,27 @@ class BudgetController extends Controller
         return redirect()->back()->withErrors(['error' => 'Aucun budget trouvé à mettre à jour.']);
     }
 
+    public function addBudgetLine(Request $request) {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'code' => 'required|integer',
+        ]);
+
+        $lineBudget = new LineBudget();
+        $lineBudget->code = $request->input('code');
+        $lineBudget->name = $request->input('name');
+        $lineBudget->save();
+
+        return redirect()->back()->with('success', 'Ligne budgétaire ajoutée avec succès.');
+    }
+
+    public function deleteBudgetLine($id) {
+        $lineBudget = LineBudget::find($id);
+        if ($lineBudget) {
+            $lineBudget->delete();
+            return redirect()->back()->with('success', 'Ligne budgétaire supprimée avec succès.');
+        }
+
+        return redirect()->back()->withErrors(['error' => 'Aucune ligne budgétaire trouvée à supprimer.']);
+    }
 }

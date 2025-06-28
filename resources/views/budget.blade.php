@@ -124,8 +124,12 @@
                         <div id="addLineModal" class="modal-overlay" style="display:none;">
                             <div class="modal-content bg-white p-20 rad-6" style="min-width:350px; max-width:95vw;">
                                 <h3 class="mb-15">Ajouter une nouvelle ligne budgétaire</h3>
-                                <form id="addLineForm" method="POST" action="{{ url('/lineBudget/add') }}">
+                                <form id="addLineForm" method="POST" action="{{ route('budget.addLine') }}">
                                     @csrf
+                                    <div class="mb-10">
+                                        <label class="fw-bold" for="lineCode">Code Rubrique</label>
+                                        <input type="number" class="form-control" id="lineCode" name="code" required>
+                                    </div>
                                     <div class="mb-10">
                                         <label class="fw-bold" for="lineName">Nom de la ligne</label>
                                         <input type="text" class="form-control" id="lineName" name="name" required>
@@ -142,21 +146,31 @@
                         <table class="full-w txt-l">
                             <thead>
                                 <tr class="bg-eee">
-                                    <th class="p-10">Code</th>
+                                    <th class="p-10">Code Rubrique</th>
                                     <th class="p-10">Ligne Budgétaire</th>
                                     <th class="p-10">Montant Proposé Total</th>
                                     <th class="p-10">Dépensé</th>
                                     <th class="p-10">Restant</th>
+                                    <th class="p-10">Supprimer</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($budgetLines as $budgetLine)
                                     <tr class="status">
                                         <td class="tt-capital">{{ $budgetLine->code }}</td>
-                                        <td class="tt-capital">{{$budgetLine->name}}</td>
-                                        <td class="tt-capital">{{$budgetLine->budgetLineProposals->where("status","approved")->sum("proposed_amount")}}</td>
-                                        <td class="tt-capital red-c">{{$budgetLine->budgetLineProposals->sum('spend')}}</td>
-                                        <td class="tt-capital green-c">{{$budgetLine->budgetLineProposals->where("status","approved")->sum("proposed_amount") - $budgetLine->budgetLineProposals->sum('spend')}}</td>
+                                        <td class="tt-capital">{{ $budgetLine->name }}</td>
+                                        <td class="tt-capital">{{ $budgetLine->budgetLineProposals->where("status","approved")->sum("proposed_amount") }}</td>
+                                        <td class="tt-capital red-c">{{ $budgetLine->budgetLineProposals->sum('spend') }}</td>
+                                        <td class="tt-capital green-c">{{ $budgetLine->budgetLineProposals->where("status","approved")->sum("proposed_amount") - $budgetLine->budgetLineProposals->sum('spend') }}</td>
+                                        <td>
+                                            <form method="POST" action="{{ route('budget.deleteLine', $budgetLine->id) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette ligne budgétaire ?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger pointer" title="Supprimer">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
