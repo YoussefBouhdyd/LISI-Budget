@@ -173,6 +173,10 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                <tr class="status">
+                                    <td class="tt-capital fw-bold" colspan="2" style="text-align: right">Total: </td>
+                                    <td class="tt-capital" colspan="4">{{ number_format($totalProposed,2)}} DH</td>>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

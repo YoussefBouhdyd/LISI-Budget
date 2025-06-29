@@ -15,7 +15,8 @@ class BudgetController extends Controller
         return view('budget')
             ->with('budgetLines',$budgetLines)
             ->with("budget",$budget)
-            ->with('totalSpend',LineBudgetProposal::sum('spend'));
+            ->with('totalSpend',LineBudgetProposal::sum('spend'))
+            ->with('totalProposed',LineBudgetProposal::sum('proposed_amount'));
     }
 
     public function createBudget(Request $request) {
