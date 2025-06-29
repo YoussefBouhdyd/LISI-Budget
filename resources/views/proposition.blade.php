@@ -74,9 +74,6 @@
                                                 <i class="fas fa-check"></i>
                                             </button>
                                         @endif
-                                        <button class="edit-propo-btn btn-primary bg-orange pointer" title="Modifier">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
                                         @if (request('status') !== 'rejected')
                                             <button class="reject-propo-btn btn-primary bg-red pointer" title="Rejeter" data-id="{{$proposition->id}}">
                                                 <i class="fas fa-times"></i>
