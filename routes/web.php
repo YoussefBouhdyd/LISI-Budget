@@ -63,9 +63,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/add-transmitter', TransmitterController::class . "@createNewTransmitter")->name('transmitter.create');
     Route::delete('/remove-transmitter', TransmitterController::class . "@deleteTransmitter")->name('transmitter.delete');
     Route::post('/update-transmitter', TransmitterController::class . "@updateTransmitter")->name('transmitter.update');
-    Route::get('/transmitter-profile', function () {
-        return view('profil_emetteur');
-    });
 
     // Profile & Password
     Route::get('/profile', function () {

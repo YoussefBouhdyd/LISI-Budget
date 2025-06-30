@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Budget;
 use App\Models\Engagement;
 use App\Models\LineBudget;
+use App\Models\LineBudgetProposal;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -17,6 +18,7 @@ class DashboardController extends Controller
             ->with('budgetLines',$budgetLines)
             ->with("budget",$budget)
             ->with('engagements', $engagement)
-            ->with('totalSpend',LineBudget::sum('spend'));
+            ->with('totalSpend',LineBudget::sum('spend'))
+            ->with('totalSpend',LineBudgetProposal::sum('spend'));
     }
 }

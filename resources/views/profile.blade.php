@@ -25,29 +25,27 @@
                     <!-- Left: Profile Image and Name -->
                     <div class="profile-left text-center">
                         <img src="{{ asset('imgs/user-profile.svg') }}" alt="Profile Image" class="profile-img mb-10">
-                        <div class="profile-fullname fw-bold fs-20 mt-10">John Doe</div>
+                        <div class="profile-fullname fw-bold fs-20 mt-10">
+                            {{ auth()->user()->name }}
+                        </div>
                     </div>
                     <!-- Right: General Info -->
                     <div class="profile-info flex-1 ms-40">
                         <div class="info-row mb-10">
                             <span class="info-label fw-bold">Username:</span>
-                            <span class="info-value ms-10">johndoe</span>
+                            <span class="info-value ms-10">{{ auth()->user()->name }}</span>
                         </div>
                         <div class="info-row mb-10">
-                            <span class="info-label fw-bold">Full Name:</span>
-                            <span class="info-value ms-10">John Doe</span>
+                            <span class="info-label fw-bold">Email:</span>
+                            <span class="info-value ms-10">{{ auth()->user()->email }}</span>
                         </div>
                         <div class="info-row mb-10">
-                            <span class="info-label fw-bold">First Login:</span>
-                            <span class="info-value ms-10">2023-01-01 09:00</span>
+                            <span class="info-label fw-bold">Créé(e) le:</span>
+                            <span class="info-value ms-10">{{ auth()->user()->created_at }}</span>
                         </div>
                         <div class="info-row mb-10">
-                            <span class="info-label fw-bold">Last Login:</span>
-                            <span class="info-value ms-10">2024-06-01 18:30</span>
-                        </div>
-                        <div class="info-row mb-10">
-                            <span class="info-label fw-bold">Role:</span>
-                            <span class="info-value ms-10">User</span>
+                            <span class="info-label fw-bold">Rôle:</span>
+                            <span class="info-value ms-10"> {{ auth()->user()->role }} </span>
                         </div>
                     </div>
                 </div>
@@ -57,12 +55,6 @@
             <div class="account-settings bg-white p-15 rad-6">
                 <h2 class="m-15-0">Authentification</h2>
                 <form>
-                    <!-- Email Row -->
-                    <div class="setting-row d-flex align-c mb-20 gap-10">
-                        <label class="setting-label fw-bold flex-1" for="email">Email</label>
-                        <input type="email" id="email" class="form-control flex-3 me-20" value="john@example.com" disabled>
-                        <button type="button" class="bg-blue pointer btn-primary flex-1">Change Email</button>
-                    </div>
                     <!-- Password Row -->
                     <div class="setting-row d-flex align-c gap-10">
                         <label class="setting-label fw-bold flex-1" for="password">Password</label>

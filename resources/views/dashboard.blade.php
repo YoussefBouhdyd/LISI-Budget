@@ -63,7 +63,7 @@
                             {{ $budget['amount'] ? number_format(($totalSpend * 100 / $budget['amount']), 2) : '0.00' }}%
                         </div>
                     </div>
-                    <div class="fw-bold mt-10 budget-total-amount">{{ $budget['amount'] }} DH </div>
+                    <div class="fw-bold mt-10 budget-total-amount">{{ number_format($budget['amount'],2) }} DH </div>
                     <div class="budget-total-label">Budget Total</div>
                 </div>
             </div>

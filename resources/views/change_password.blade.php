@@ -13,16 +13,22 @@
         @include('partials.header')
         <h1 class="content-title">Change Password</h1>
         <div class="section-content p-15 d-flex gap-20 column-mobile">
-            <div class="account-settings bg-white p-15 rad-6" style="min-width:350px;max-width:400px;margin:auto;">
+            <div class="account-settings bg-white p-15 rad-6">
                 <h2 class="m-15-0">Update Your Password</h2>
                 @if (session('status'))
-                    <div class="alert alert-success">{{ session('status') }}</div>
+                    <div class="alert alert-success custom-alert " style="margin: 15px; position: relative;">
+                        <span class="close-alert" onclick="this.parentElement.style.display='none';">&times;</span>
+                        {{ session('status') }}
+                    </div>
                 @endif
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul class="mb-0">
                             @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
+                                <div class="alert alert-danger custom-alert" style="margin: 15px; position: relative;">
+                                    <span class="close-alert" onclick="this.parentElement.style.display='none';">&times;</span>
+                                    {{ $error }}
+                                </div>
                             @endforeach
                         </ul>
                     </div>

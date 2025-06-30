@@ -3,7 +3,7 @@
             <h2>Admin</h3>
     @elseif (Auth::user()->role === 'user')
         <div class="p-10 fit-content bg-blue rad-6 fw-bold c-white">
-            {{ Auth::user()->budget - Auth::user()->budgetProposals->sum('spend') }} MAD
+            {{ number_format(Auth::user()->budget - Auth::user()->budgetProposals->sum('spend'),2) }} MAD
         </div>
     @endif
     <div class="profile flex-between">

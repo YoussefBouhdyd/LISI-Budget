@@ -28,7 +28,7 @@
                 </a>
             </li>
             <li class="rad-6 tt-capital">
-                <a href="{{ url('/transmitter-profile') }}" class="{{ request()->is('transmitter-profile') ? 'active' : '' }}">
+                <a href="{{ url('/profile') }}" class="{{ request()->is('profile') ? 'active' : '' }}">
                     <i class="fa-regular fa-user fa-fw"></i>
                     <span class="hide-mobile">Profil</span>
                 </a>

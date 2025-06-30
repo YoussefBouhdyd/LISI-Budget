@@ -56,19 +56,17 @@ class AuthController extends Controller
         $user = Auth::user();
 
         if (!\Hash::check($request->current_password, $user->password)) {
-            return back()->withErrors(['current_password' => 'Current password is incorrect.']);
+            return back()->withErrors(['current_password' => 'Le mot de passe actuel est incorrect.']);
         }
 
         if ($request->current_password === $request->new_password) {
-            return back()->withErrors(['new_password' => 'New password must be different from the current password.']);
+            return back()->withErrors(['new_password' => 'Le nouveau mot de passe doit être différent de l\'ancien mot de passe.']);
         }
 
         $user->password = bcrypt($request->new_password);
         $user->save();
 
-        // Optionally log out other sessions
-        // Auth::logoutOtherDevices($request->new_password);
 
-        return back()->with('status', 'Password changed successfully!');
+        return back()->with('status', 'Mot de passe mis à jour avec succès.');
     }
 }
