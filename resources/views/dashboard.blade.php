@@ -83,7 +83,7 @@
                         </div>
                         <div class="engagement-row d-flex align-c p-10">
                             <div class="flex-1 tt-capital">Ilyas Ouzani</div>
-                            <div class="flex-1 tt-capital">10 €</div>
+                            <div class="flex-1 tt-capital">150 DH</div>
                             <div class="flex-1 tt-capital">
                                 <span class="btn-primary bg-orange">En attente</span>
                             </div>
@@ -95,7 +95,7 @@
                         </div>
                         <div class="engagement-row d-flex align-c p-10">
                             <div class="flex-1 tt-capital">Sara Benali</div>
-                            <div class="flex-1 tt-capital">25 €</div>
+                            <div class="flex-1 tt-capital">225 DH</div>
                             <div class="flex-1 tt-capital">
                                 <span class="btn-primary bg-orange">En attente</span>
                             </div>
@@ -107,7 +107,7 @@
                         </div>
                         <div class="engagement-row d-flex align-c p-10">
                             <div class="flex-1 tt-capital">Amine Boudiaf</div>
-                            <div class="flex-1 tt-capital">50 €</div>
+                            <div class="flex-1 tt-capital">350 DH</div>
                             <div class="flex-1 tt-capital">
                                 <span class="btn-primary bg-orange">En attente</span>
                             </div>
@@ -119,7 +119,7 @@
                         </div>
                         <div class="engagement-row d-flex align-c p-10">
                             <div class="flex-1 tt-capital">Nadia Khelifi</div>
-                            <div class="flex-1 tt-capital">75 €</div>
+                            <div class="flex-1 tt-capital">475 DH</div>
                             <div class="flex-1 tt-capital">
                                 <span class="btn-primary bg-orange">En attente</span>
                             </div>
