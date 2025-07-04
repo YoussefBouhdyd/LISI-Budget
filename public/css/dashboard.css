@@ -323,6 +323,26 @@
     .btn-action i {
         margin: 0;
     }
+    /* Main action button (like "Ajouter Un Émetteur") responsive styling */
+    .d-flex.flex-between .btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.8rem;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+    /* Adjust header flex layout for mobile */
+    .d-flex.flex-between.mb-10 {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+    .d-flex.flex-between.mb-10 h2 {
+        margin: 0;
+    }
+    .d-flex.flex-between.mb-10 .btn {
+        align-self: flex-end;
+        width: auto;
+    }
 }
 /* Table Footer */
 .table-footer {
