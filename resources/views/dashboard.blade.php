@@ -49,18 +49,22 @@
             <div class="box bg-white rad-6 p-15">
                 <h2 class="m-15-0">Budget</h2>
                 <p class="tt-capital c-777">Résumé du budget de l'année en cours</p>
+                @php
+                    $budgetAmount = (float) ($budget['amount'] ?? 0);
+                    $spendPercent = $budgetAmount > 0 ? (($totalSpend * 100) / $budgetAmount) : 0;
+                @endphp
                 <div class="d-flex flex-column align-c budget-progress-col mt-15">
                     <div class="budget-progress-circle">
                         <svg width="170" height="170" style="overflow: visible">
                             <circle cx="85" cy="85" r="80" stroke="#eee" stroke-width="14" fill="none"/>
                             <circle cx="85" cy="85" r="80" stroke="#dc3545" stroke-width="14" fill="none"
                                 stroke-dasharray="502"
-                                stroke-dashoffset="{{ 502 - (502 * ($budget['amount'] ? ($totalSpend * 100 / $budget['amount']) : 0) / 100) }}"
+                                stroke-dashoffset="{{ 502 - (502 * $spendPercent / 100) }}"
                                 stroke-linecap="round"
                             />
                         </svg>
                         <div class="budget-progress-percent">
-                            {{ $budget['amount'] ? number_format(($totalSpend * 100 / $budget['amount']), 2) : '0.00' }}%
+                            {{ number_format($spendPercent, 2) }}%
                         </div>
                     </div>
                     <div class="fw-bold mt-10 budget-total-amount">{{ number_format($budget['amount'],2) }} DH </div>

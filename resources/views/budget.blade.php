@@ -63,6 +63,10 @@
                     </div>
                     <div class="d-flex align-c mb-10 budget-summary-row column-mobile">
                         <!-- Circular Progress Bar on the left, bigger -->
+                        @php
+                            $budgetAmount = (float) ($budget['amount'] ?? 0);
+                            $spendPercent = $budgetAmount > 0 ? (($totalSpend * 100) / $budgetAmount) : 0;
+                        @endphp
 
                         <div class="d-flex flex-column align-c budget-progress-col">
                             <div class="budget-progress-circle">
@@ -70,12 +74,12 @@
                                     <circle cx="85" cy="85" r="80" stroke="#eee" stroke-width="14" fill="none"/>
                                     <circle cx="85" cy="85" r="80" stroke="#dc3545" stroke-width="14" fill="none"
                                         stroke-dasharray="502"
-                                        stroke-dashoffset="{{ 502 - (502 * ($budget['amount'] ? ($totalSpend * 100 / $budget['amount']) : 0) / 100) }}"
+                                        stroke-dashoffset="{{ 502 - (502 * $spendPercent / 100) }}"
                                         stroke-linecap="round"
                                     />
                                 </svg>
                                 <div class="budget-progress-percent">
-                                    {{ $budget['amount'] ? number_format(($totalSpend * 100 / $budget['amount']),2) : 0 }}%
+                                    {{ number_format($spendPercent, 2) }}%
                                 </div>
                             </div>
                             <div class="fw-bold mt-10 budget-total-amount">
@@ -97,7 +101,7 @@
                             </div>
                             <div class="d-flex justify-between budget-info-row">
                                 <span class="fw-bold budget-info-label">% du budget:</span>
-                                <span class="budget-info-value budget-info-danger">{{ $budget['amount'] ? (number_format($totalSpend * 100 / $budget['amount'],2)) : 0 }}%</span>
+                                <span class="budget-info-value budget-info-danger">{{ number_format($spendPercent, 2) }}%</span>
                             </div>
                             <div class="d-flex justify-between budget-info-row">
                                 <span class="fw-bold budget-info-label">Saison:</span>

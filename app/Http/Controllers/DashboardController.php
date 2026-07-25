@@ -18,7 +18,6 @@ class DashboardController extends Controller
             ->with('budgetLines',$budgetLines)
             ->with("budget",$budget)
             ->with('engagements', $engagement)
-            ->with('totalSpend',LineBudget::sum('spend'))
             ->with('totalSpend',LineBudgetProposal::sum('spend'));
     }
 }
